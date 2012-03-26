@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.manNtel_mid"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/appName"
+        android:name="com.manNtel.service.SharedDataService" >
+        <activity
+            android:name="com.manNtel.activity.Main"
+            android:label="@string/mainMenuLabel" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.manNtel.activity.UserList"
+            android:label="@string/userListLabel" />
+        <activity
+            android:name="com.manNtel.activity.UserInfo"
+            android:label="@string/userInfoLabel" />
+        <activity
+            android:name="com.manNtel.activity.AddUser"
+            android:label="@string/addUserLabel" />
+        <activity
+            android:name="com.manNtel.activity.PartChoice"
+            android:label="@string/partChoiceLabel" />
+        <activity
+            android:name="com.manNtel.activity.ReadyAdd"
+            android:label="@string/balanceLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.Balance"
+            android:label="@string/balanceLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.AngleWeight"
+            android:label="@string/setAngleWeightLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.Roll"
+            android:label="@string/setRollingLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.Pitch"
+            android:label="@string/setPitchingLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.Slide"
+            android:label="@string/setSlidingLabel" />
+        <activity
+            android:name="com.manNtel.activity.Login"
+            android:label="@string/gameMainLabel" />
+        <activity
+            android:name="com.manNtel.activity.ReadyGame"
+            android:label="@string/chkGameBalLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.GameBalance"
+            android:label="@string/chkGameBalLabel" />
+        <activity
+            android:name="com.manNtel.activity.GameSelect"
+            android:label="@string/gameSelectLabel" />
+        <activity
+            android:name="com.manNtel.activity.LevelSelect"
+            android:label="@string/levelSelectLabel" />
+        <activity
+            android:name="com.manNtel.activity.Tutorial"
+            android:label="@string/tutorialLabel" />
+        <activity
+            android:name="com.manNtel.activity.Game"
+            android:label="dddd" />
+        <activity
+            android:name="com.manNtel.setting.GameSetting"
+            android:label="@string/gameSettingLabel"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.manNtel.record.GameRecord"
+            android:label="@string/gameRecordLabel" />
+        <activity
+            android:name="com.manNtel.activity.ReadyEval"
+            android:label="@string/EvalLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalBalance"
+            android:label="@string/balanceLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalAngleWeight"
+            android:label="@string/setAngleWeightLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalRoll"
+            android:label="@string/setRollingLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalPitch"
+            android:label="@string/setPitchingLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalSlide"
+            android:label="@string/setSlidingLabel" />
+        <activity
+            android:name="com.manNtel.record.EvalRecord"
+            android:label="평가 이력" />
+        <activity
+            android:name="com.manNtel.setting.SystemSetting"
+            android:label="@string/SystemLabel" />
+        <activity
+            android:name="com.manNtel.setting.SensorSetting"
+            android:label="@string/SensorLabel" />
+        <activity
+            android:name="com.manNtel.gameLayer.GameQuit"
+            android:label="게임 종료" />
+        <service android:name="com.manNtel.service.DataService"></service> 
+    </application>
+
+</manifest>

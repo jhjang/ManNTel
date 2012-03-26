@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg" >
+
+    <LinearLayout
+        android:id="@+id/setGameLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt1"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt2"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt3"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt4"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt5"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtGameOpt6"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetGame6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setLevelLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOpt1"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetLevel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOptDef"
+                android:textColor="#083762"
+                android:textSize="25px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOpt2"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetLevel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOptDef"
+                android:textColor="#083762"
+                android:textSize="25px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOpt3"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetLevel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOptDef"
+                android:textColor="#083762"
+                android:textSize="25px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOpt4"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetLevel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOptDef"
+                android:textColor="#083762"
+                android:textSize="25px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOpt5"
+                android:textColor="#083762"
+                android:textSize="25px" />
+
+            <EditText
+                android:id="@+id/edtSetLevel5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="number" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLevelOptDef"
+                android:textColor="#083762"
+                android:textSize="25px" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setSlideLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <SeekBar
+            android:id="@+id/slideSeekBar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:padding="10dip"
+            android:progress="50" />
+
+        <TextView
+            android:id="@+id/slideSeekValue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=" "
+            android:textColor="#083762"
+            android:textSize="25px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="40px"
+        android:gravity="right|bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="btnEvent"
+            android:text="@string/btnSave"
+            android:textColor="#083762"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="btnEvent"
+            android:text="@string/btnExit"
+            android:textColor="#083762"
+            android:textSize="30px" />
+    </LinearLayout>
+
+</FrameLayout>

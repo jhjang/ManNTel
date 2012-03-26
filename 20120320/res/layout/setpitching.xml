@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginTop="50px"
+        android:gravity="center"
+        android:text="@string/pitchDesp"
+        android:textColor="#083762"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/textCnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100px"
+        android:text="@string/space"
+        android:textColor="#083762"
+        android:textSize="60px" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="150px"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pitchMaxPitch"
+            android:textColor="#083762"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/textPitching"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#083762"
+            android:textSize="40px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="110px"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnPrev"
+            android:textColor="#083762"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnNext"
+            android:textColor="#083762"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnExit"
+            android:textColor="#083762"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <!-- 디버그 -->
+
+    <LinearLayout
+        android:id="@+id/layoutDebug"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="5px"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/txtDebug1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+
+        <TextView
+            android:id="@+id/txtDebug2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+
+        <TextView
+            android:id="@+id/txtDebug3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+    </LinearLayout>
+
+</LinearLayout>

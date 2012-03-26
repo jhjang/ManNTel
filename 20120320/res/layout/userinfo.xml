@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <TableRow android:layout_marginTop="30dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_ID"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/userid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_Age"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/userAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:textColor="#083762"
+                android:textSize="35px" />
+        </TableRow>
+
+        <TableRow android:layout_gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_Name"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="2"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_Sex"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:textColor="#083762"
+                android:textSize="35px" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:text="@string/info_Part"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/part"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:textColor="#083762"
+                android:textSize="35px" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_Balance"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_BalLeft"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/balLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_BalRight"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/balRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:textColor="#083762"
+                android:textSize="35px" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:text="@string/info_AngleWeight"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:text="@string/info_MaxAngle"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/maxAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/titleshape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:text="@string/info_MaxWeight"
+                android:textColor="#083762"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/maxWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cell_shape"
+                android:gravity="center"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:textColor="#083762"
+                android:textSize="35px" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="200dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnValRecord"
+            android:textColor="#083762"
+            android:textSize="25px" />
+
+        <Button
+            android:id="@+id/btnOtherUser"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="200dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnOtherUser"
+            android:textColor="#083762"
+            android:textSize="25px" />
+
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="200dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnSelectOK"
+            android:textColor="#083762"
+            android:textSize="25px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnGame"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnGameRecord"
+            android:textColor="#083762"
+            android:textSize="25px" />
+
+        <Button
+            android:id="@+id/btnMain"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnMain"
+            android:textColor="#083762"
+            android:textSize="25px" />
+
+        <Button
+            android:id="@+id/btnExit"
+            android:layout_width="250px"
+            android:layout_height="80px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:onClick="_onClick"
+            android:text="@string/btnShutdown"
+            android:textColor="#083762"
+            android:textSize="25px" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnGoMain"
+            android:layout_width="90px"
+            android:layout_height="48px"
+            android:onClick="btnTouch"
+            android:text="@string/btnGoMain"
+            android:textColor="#083762"
+            android:textSize="17px" />
+
+        <Button
+            android:id="@+id/btnShutdown"
+            android:layout_width="111px"
+            android:layout_height="48px"
+            android:onClick="btnTouch"
+            android:text="@string/btnShutdown"
+            android:textColor="#083762"
+            android:textSize="17px" />
+
+        <Button
+            android:id="@+id/btnOtherUser"
+            android:layout_width="149px"
+            android:layout_height="48px"
+            android:onClick="btnTouch"
+            android:text="@string/btnOtherUser"
+            android:textColor="#083762"
+            android:textSize="17px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/txtWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10px"
+            android:layout_marginTop="20px"
+            android:textColor="#083762"
+            android:textSize="25px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="@string/msgWelcome"
+            android:textColor="#083762"
+            android:textSize="25px" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSelGame"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:layout_marginTop="30px"
+        android:onClick="btnTouch"
+        android:text="@string/btnSelGame"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+    <Button
+        android:id="@+id/btnValUser"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:onClick="btnTouch"
+        android:text="@string/btnValUser"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+    <Button
+        android:id="@+id/btnUserInfo"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:onClick="btnTouch"
+        android:text="@string/btnUserInfo"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+    <Button
+        android:id="@+id/btnSetting"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:onClick="btnTouch"
+        android:text="@string/btnSetting"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+    <Button
+        android:id="@+id/btnSysSetting"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:onClick="btnTouch"
+        android:text="@string/btnSysSetting"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+    <Button
+        android:id="@+id/btnShutdown2"
+        android:layout_width="320px"
+        android:layout_height="80px"
+        android:layout_gravity="center"
+        android:onClick="btnTouch"
+        android:text="@string/btnShutdown"
+        android:textColor="#083762"
+        android:textSize="35px" />
+
+</LinearLayout>

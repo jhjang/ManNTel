@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnSensor"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="@string/btnSensor"
+        android:textColor="#083762"
+        android:textSize="30px" />
+
+    <Button
+        android:id="@+id/btnRomLoad"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="@string/btnRomLoad"
+        android:textColor="#083762"
+        android:textSize="30px" />
+
+    <Button
+        android:id="@+id/btnRomSave"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="@string/btnRomSave"
+        android:textColor="#083762"
+        android:textSize="30px" />
+
+    <Button
+        android:id="@+id/btnDebug"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="@string/btnDebug"
+        android:textColor="#083762"
+        android:textSize="30px" />
+
+    <Button
+        android:id="@+id/btnClose"
+        android:layout_width="150px"
+        android:layout_height="80px"
+        android:layout_gravity="right"
+        android:layout_marginRight="30px"
+        android:onClick="onClick"
+        android:text="@string/dlgClose"
+        android:textColor="#083762"
+        android:textSize="20px" />
+
+</LinearLayout>

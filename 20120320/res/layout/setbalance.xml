@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/pattern_bg"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50px"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="40px"
+                android:src="@drawable/part_1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="40px"
+                android:src="@drawable/part_2" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textCnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/space"
+            android:textColor="#083762"
+            android:textSize="60px" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textLeft"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#083762"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/textTot"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#083762"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/textRight"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#083762"
+            android:textSize="40px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10px"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnPrev"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnPrev"
+            android:textColor="#083762"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnNext"
+            android:textColor="#083762"
+            android:textSize="30px" />
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="150px"
+            android:layout_height="80px"
+            android:layout_gravity="bottom"
+            android:onClick="popup"
+            android:text="@string/btnExit"
+            android:textColor="#083762"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <!-- 디버그 -->
+
+    <LinearLayout
+        android:id="@+id/layoutDebug"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="5px"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/txtDebug1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+
+        <TextView
+            android:id="@+id/txtDebug2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+
+        <TextView
+            android:id="@+id/txtDebug3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textColor="#00ff00"
+            android:textSize="12px" />
+    </LinearLayout>
+
+</LinearLayout>
