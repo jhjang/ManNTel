@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -21,19 +20,20 @@ import android.widget.TextView;
 
 import com.android.manNtel_mid.R;
 import com.manNtel.activity.Main;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.EvalStruct;
 
 public class EvalBalance extends Activity {
-	
+
 	EvalStruct user = null;
 	Timer mTimer = null;
 	Handler handler = new Handler();
-	
+
 	public CountDownTimer cdt = new CountDownTimer(6000,1000)
 	{
 		int i = 5;
-		
+
 		@Override
 		public void onFinish()
 		{
@@ -41,7 +41,7 @@ public class EvalBalance extends Activity {
 			cnt.setText(R.string.valComplete);
 			getWeight();
 		}
-		
+
 		@Override
 		public void onTick(long millisUntilFinished)
 		{
@@ -50,41 +50,41 @@ public class EvalBalance extends Activity {
 			getWeight();
 		}		
 	};
-	
+
 	//무게 읽어오는 함수
 	public void getWeight()
 	{
 		TextView left = (TextView)findViewById(R.id.textLeft);
 		TextView right = (TextView)findViewById(R.id.textRight);
 		TextView tot = (TextView)findViewById(R.id.textTot);
-		
+
 		//무게 소켓에서 읽어오는 부분 필요
 		SharedDataService ds = (SharedDataService)getApplication();
-				
+
 		float tmpLeft = ds.getDataService().getValue("LL");
 		float tmpRight = ds.getDataService().getValue("RL");
-				
+
 		float tmpTot = tmpLeft+tmpRight;
-		
+
 		String LeftFormat = String.format("%.2f", tmpLeft);
 		String RightFormat = String.format("%.2f",tmpRight);
-		
+
 		float tmpLeftPer = tmpLeft/tmpTot*100;
 		float tmpRightPer = tmpRight/tmpTot*100;
-		
+
 		String LeftPerFormat = String.format("%.2f", tmpLeftPer) + "%";
 		String RightPerFormat = String.format("%.2f", tmpRightPer) + "%";
 
 		////////////////////////////////////////////////////////////////////
-		
+
 		left.setText(LeftFormat + "kg\n" + LeftPerFormat);
 		right.setText(RightFormat+ "kg\n" + RightPerFormat);
 		tot.setText(Float.toString(tmpTot) + "kg\n");
-		
+
 		user.mLeftBal = tmpLeft;
 		user.mRightBal = tmpRight;		
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode,int resultCode, Intent data)
 	{
@@ -95,60 +95,62 @@ public class EvalBalance extends Activity {
 			startActivity(intent);
 		}
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
-    {
+	{
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);		
-		
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.setbalance);
-        
-        Bundle bundle = getIntent().getExtras();
-        user = bundle.getParcelable("evalData");
-        
-        cdt.start();
-        
-      //디버그 모드 처리       
-      		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
-      		if(pref.getBoolean("isDebug", false)){
-      			LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
-      			debugLayout.setVisibility(View.VISIBLE);
-      			Log.i("[Balance]","Debug On");
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);		
 
-      			TimerTask debugTask = new TimerTask(){
-      				@Override
-					public void run(){
-      					try{
-      						Log.i("[Balance]","Debugging");
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.setbalance);
 
-      						handler.post(new Runnable() {
-      							@Override
-								public void run(){
-      								TextView debug1 = (TextView)findViewById(R.id.txtDebug1);
-      								TextView debug2 = (TextView)findViewById(R.id.txtDebug2);
-      								TextView debug3 = (TextView)findViewById(R.id.txtDebug3);                				        				
+		Bundle bundle = getIntent().getExtras();
+		user = bundle.getParcelable("evalData");
 
-      								debug1.setText(debug2.getText().toString());
-      								debug2.setText(debug3.getText().toString());
-      								SharedDataService ds = (SharedDataService)getApplication();
+		cdt.start();
 
-      								SimpleDateFormat sd = new SimpleDateFormat("yyyy MM dd-HH:mm:ss");		
-      								Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());      				 
+		//디버그 모드 처리       
+		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+		if(pref.getBoolean("isDebug", false)){
+			LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
+			debugLayout.setVisibility(View.VISIBLE);
 
-      								debug3.setText(sd.format(currentTimestamp) + "  :  " + ds.getDataService().getFullData());
-      							}
-      						});        				        				       				
-      					} catch(Exception e) { e.printStackTrace(); }
-      				}
-      			};        	
-      			mTimer = new Timer();
-      			mTimer.schedule(debugTask, 0, 1000);        	
-      		}  
-        
-        Log.i("[EvalBal]",user.mKey);    
-    }
+			TimerTask debugTask = new TimerTask(){
+				@Override
+				public void run(){
+					try{
+						handler.post(new Runnable() {
+							@Override
+							public void run(){
+								TextView debug1 = (TextView)findViewById(R.id.txtDebug1);
+								TextView debug2 = (TextView)findViewById(R.id.txtDebug2);
+								TextView debug3 = (TextView)findViewById(R.id.txtDebug3);                				        				
+
+								debug1.setText(debug2.getText().toString());
+								debug2.setText(debug3.getText().toString());
+								SharedDataService ds = (SharedDataService)getApplication();
+
+								SimpleDateFormat sd = new SimpleDateFormat("yyyy MM dd-HH:mm:ss");		
+								Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());      				 
+
+								debug3.setText(sd.format(currentTimestamp) + "  :  " + ds.getDataService().getFullData());
+							}
+						});        				        				       				
+					} catch(Exception e) { e.printStackTrace(); }
+				}
+			};        	
+			mTimer = new Timer();
+			mTimer.schedule(debugTask, 0, 1000);        	
+		}  
+		ProcessManager.getInstance().addActivity(this);
+	}
+
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
+	}
 	public void popup(View v)
 	{
 		if(mTimer !=null){
@@ -163,17 +165,15 @@ public class EvalBalance extends Activity {
 			finish();
 			break;
 		case R.id.btnNext:
-			Log.i("[BtnTouch","next");			
 			Intent goSetAngleWeight = new Intent(this,EvalAngleWeight.class);
 			goSetAngleWeight.putExtra("userInfo", user);			
 			goSetAngleWeight.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			startActivityForResult(goSetAngleWeight, 1);			
 			break;
 		case R.id.btnClose:
-			Log.i("[BtnTouch","close");
 			startActivity(new Intent(this,Main.class));
 			break;
 		}	
 	}	
-	
+
 }

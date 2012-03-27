@@ -7,12 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.android.manNtel_mid.R;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 
 public class SystemSetting extends Activity implements OnClickListener {
@@ -26,13 +26,19 @@ public class SystemSetting extends Activity implements OnClickListener {
 		Button btnDebug = (Button)findViewById(R.id.btnDebug);
 		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
 		String str = getResources().getText(R.string.btnDebug).toString();
-		Log.i("[SystemSetting]",str);
 		if(pref.getBoolean("isDebug", false)){
 			btnDebug.setText(str + " [" + "ON" + "]");
 		}
 		else{
 			btnDebug.setText(str + " [" + "OFF" + "]");
 		}
+		
+		ProcessManager.getInstance().addActivity(this);
+	}
+	
+	public void onDestory(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
 	}
 
 	@Override
@@ -62,7 +68,6 @@ public class SystemSetting extends Activity implements OnClickListener {
 		public void onClick(DialogInterface dialog, int which) 
 		{
 			if(which == DialogInterface.BUTTON1){
-				Log.i("[SystemSetting","Rom Load Yes");
 				SharedDataService ds = (SharedDataService)getApplication();
 				ds.getDataService().sendMsg("LOAD");
 				
@@ -71,9 +76,6 @@ public class SystemSetting extends Activity implements OnClickListener {
 				editor.putString("loadedPacket", ds.getDataService().getLoadedData());
 				editor.putBoolean("loadPacketFlag", true);
 				editor.commit();
-			}							
-			else{
-				Log.i("[SystemSetting","Rom Load No");
 			}									
 		}
 	};
@@ -84,16 +86,13 @@ public class SystemSetting extends Activity implements OnClickListener {
 		public void onClick(DialogInterface dialog, int which) 
 		{
 			if(which == DialogInterface.BUTTON1){
-				Log.i("[SystemSetting","Rom Save Yes");
 				//To do : 서버로 save 패킷 전송 
 				SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
 				
 				SharedDataService ds = (SharedDataService)getApplication();
 				ds.getDataService().sendMsg(pref.getString("savePacket", "SAVE"));
-			}							
-			else{
-				Log.i("[SystemSetting","Rom Save No");
-			}														
+			}						
+															
 		}
 	};
 
@@ -108,13 +107,11 @@ public class SystemSetting extends Activity implements OnClickListener {
 			String str = getResources().getText(R.string.btnDebug).toString();
 			
 			if(which == DialogInterface.BUTTON1){
-				Log.i("[SystemSetting","debug Yes");
 				btnDebug.setText(str+ " [" + "ON" + "]");				
 				editor.putBoolean("isDebug", true);
 				editor.commit();
 			}							
 			else{
-				Log.i("[SystemSetting","debug No");
 				btnDebug.setText(str + " [" + "OFF" + "]");
 				editor.putBoolean("isDebug", false);
 				editor.commit();

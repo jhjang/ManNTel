@@ -6,8 +6,6 @@ import org.cocos2d.nodes.CCTextureCache;
 import org.cocos2d.types.CGPoint;
 
 import android.content.Context;
-import android.util.Log;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.GameStruct;
@@ -19,8 +17,6 @@ public class Number_1 extends MoveFlower {
 	{
 		super(user, context);
 		mUser = user;
-
-		Log.i("[Value]",""+mUser.clearValue);
 
 		this.schedule("moveObj");
 	}

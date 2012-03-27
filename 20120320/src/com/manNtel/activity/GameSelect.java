@@ -3,7 +3,6 @@ package com.manNtel.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -62,8 +61,7 @@ public class GameSelect extends Activity
 			Intent intent = new Intent(this,Login.class);
 			intent.putExtra("userKey", user.key);
 			intent.putExtra("userName", user.name);
-			Log.i("[GameSelect]","" + user.key);
-			
+					
 			startActivity(intent);
 			
 			break;
@@ -84,10 +82,6 @@ public class GameSelect extends Activity
 		TextView welcome = (TextView)findViewById(R.id.txtWelcome);
 		welcome.setText(user.name);
 
-		Log.i("[Info]",Float.toString(user.leftBal));
-		Log.i("[Info]",Float.toString(user.rightBal));
-		Log.i("[PART]",user.part);
-		
 		switch(user.gameNum)
 		{
 		case 1 :

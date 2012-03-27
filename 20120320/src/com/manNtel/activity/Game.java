@@ -9,7 +9,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
@@ -95,12 +94,9 @@ public class Game extends Activity
     
     @Override
 	public boolean onKeyUp(int keyCode,KeyEvent event)
-    {
-    	Log.i("KEY","KeyNUM : " + keyCode);
-    	
+    {    	 	
     	if(keyCode == KeyEvent.KEYCODE_BACK)
-    	{
-    		Log.i("KEY","KeyUP : Back");
+    	{    	
     		finish();
     	}
     	return true;

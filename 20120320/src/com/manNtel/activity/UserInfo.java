@@ -6,7 +6,6 @@ package com.manNtel.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -23,8 +22,6 @@ public class UserInfo extends Activity
 		
 	public void _onClick(View v)
 	{
-		Log.i("[UserInfo]",""+v.getWidth());
-		
 		switch(v.getId())
 		{
 		case R.id.btnTest :
@@ -32,18 +29,15 @@ public class UserInfo extends Activity
 			Intent evalRecord = new Intent(this,EvalRecord.class);
 			evalRecord.putExtra("userKey", userInfo.mKey);
 			startActivity(evalRecord);
-			Log.i("[Info]","btnTest");
 			break;
 		case R.id.btnGame :
 			//게임 이력 보기
-			Log.i("[Info]","btnGame");
 			Intent gameRecord = new Intent(this,GameRecord.class);
 			gameRecord.putExtra("userKey", userInfo.mKey);
 			startActivity(gameRecord);
 			break;
 		case R.id.btnOK :
 			//선택 완료
-			Log.i("[Info]","btnOK");
 			Intent goLogin = new Intent(this,Login.class);
 			goLogin.putExtra("userKey", userInfo.mKey);
 			goLogin.putExtra("userName", userInfo.mName);
@@ -53,19 +47,16 @@ public class UserInfo extends Activity
 			
 		case R.id.btnOtherUser :
 			//다른 사용자 선택
-			Log.i("[Info]","btnOtherUser");
 			Intent goUserList = new Intent(this,UserList.class);
 			goUserList.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(goUserList);
 			break;
 		case R.id.btnMain :
 			//메인화면
-			Log.i("[Info]","btnMain");			
 			startActivity(new Intent(this,Main.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		case R.id.btnExit :
 			//시스템 종료
-			Log.i("[Info]","btnExit");
 			break;
 		}
 	}

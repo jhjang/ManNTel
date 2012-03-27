@@ -16,7 +16,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -69,17 +68,13 @@ public class UserList extends Activity
 		@Override
 		public void onClick(View v) 
 		{
-			Log.i("[UserList]",""+v.getWidth());
-
 			switch(v.getId())
 			{
 			case 1:
-				Log.i("[Touch]","Prev");
 				if(pageNumber>0)
 					pageNumber-=10;
 				break;
 			case 2:
-				Log.i("[Touch]","Next");
 				pageNumber+=10;
 				if(userList.length>=10)
 				{
@@ -87,10 +82,8 @@ public class UserList extends Activity
 				}
 				break;
 			case 3:
-				Log.i("[Values]",Integer.toString(selIndex) + " / " + Integer.toString(userList.length));
 				if(selFlag && selIndex<userList.length)
 				{
-					Log.i("[Touch]","Info");
 					Intent goUserInfo = new Intent(UserList.this,UserInfo.class);
 					goUserInfo.putExtra("userInfo", userList[selIndex]);
 					startActivity(goUserInfo);
@@ -98,15 +91,14 @@ public class UserList extends Activity
 				else
 				{
 					new AlertDialog.Builder(UserList.this)
-					.setTitle("알림")
-					.setMessage("사용자를 선택하세요.")
+					.setTitle(R.string.notification)
+					.setMessage(R.string.msgSelectUser)
 					.setIcon(R.drawable.icon)
-					.setNeutralButton("닫기",new DialogInterface.OnClickListener(){ @Override
+					.setNeutralButton(R.string.dlgClose,new DialogInterface.OnClickListener(){ @Override
 					public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 				}
 				break;
 			case 4:
-				Log.i("[Touch]","OK");
 				if(selFlag && selIndex<userList.length)
 				{
 					Intent goLogin = new Intent(UserList.this,Login.class);					
@@ -118,15 +110,14 @@ public class UserList extends Activity
 				else
 				{
 					new AlertDialog.Builder(UserList.this)
-					.setTitle("알림")
-					.setMessage("사용자를 선택하세요.")
+					.setTitle(R.string.notification)
+					.setMessage(R.string.msgSelectUser)
 					.setIcon(R.drawable.icon)
-					.setNeutralButton("닫기",new DialogInterface.OnClickListener(){ @Override
+					.setNeutralButton(R.string.dlgClose,new DialogInterface.OnClickListener(){ @Override
 					public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 				}
 				break;
 			case 5:
-				Log.i("[Touch]","End");
 				startActivity(new Intent(UserList.this,Main.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 				break;
 			case 6:
@@ -293,10 +284,8 @@ public class UserList extends Activity
 		fromDB = dbm.fetchAllItems(0);
 		userList = new UserInfoStruct[fromDB.getCount()];            
 
-		Log.i("[getUserList]","start........");
 		fromDB.moveToFirst();
 
-		Log.i("[getUserList]","after move first");
 		for(int i=0;i<fromDB.getCount();i++)
 		{
 			userList[i] = new UserInfoStruct(); 
@@ -316,8 +305,6 @@ public class UserList extends Activity
 			userList[i].mMaxPitch = fromDB.getInt(12);
 			userList[i].mMaxSlide = fromDB.getInt(13);
 			userList[i].mRecent = fromDB.getString(14);
-
-			userList[i].printInfo();
 
 			fromDB.moveToNext();
 		}
@@ -369,7 +356,8 @@ public class UserList extends Activity
 		init();
 
 		drawTable();
-		drawBtn();        
+		drawBtn();
+		
 
 		setContentView(mainL);
 		mainL.setBackgroundResource(R.drawable.pattern_bg);

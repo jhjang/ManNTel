@@ -13,8 +13,6 @@ import org.cocos2d.opengl.CCTexture2D;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.util.Log;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.service.SharedDataService;
@@ -133,7 +131,6 @@ public class Number_3 extends MoveFlower {
 				//현재 위치가 바운드면 무게 유지 함수 타이머 가동.
 				if(chkBound_Left(seed))
 				{
-					Log.e("[GameThree]","Goal!");
 					this.unschedule("moveObj");
 					this.schedule("seedToFlower",1.0f);
 					return;
@@ -166,7 +163,6 @@ public class Number_3 extends MoveFlower {
 				//현재 위치가 바운드면 무게 유지 함수 타이머 가동.
 				if(chkBound_Right(seed))
 				{
-					Log.e("[GameThree]","Goal!");
 					this.unschedule("moveObj");
 					this.schedule("seedToFlower",1.0f);
 					return;
@@ -204,7 +200,6 @@ public class Number_3 extends MoveFlower {
 		SharedPreferences pref = mContext.getSharedPreferences("pref", Context.MODE_PRIVATE);
 		targetCount = Integer.parseInt(pref.getString("gameOpt2", "5"));
 
-		Log.i("[Game3]","Value : " + value + "Angle : " + inputAngle);
 		//무게가 목표치와 크거나 같으면?
 		if(inputAngle >= clearAngle && value >= mUser.clearValue)
 		{			
@@ -215,7 +210,7 @@ public class Number_3 extends MoveFlower {
 				seed.runAction(action);
 			}
 			
-			seedToFlowerCount.setString(count + "초!!");
+			seedToFlowerCount.setString(count + "!");
 		}
 		//아니면 원위치
 		else

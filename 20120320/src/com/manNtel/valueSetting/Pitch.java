@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -21,6 +20,7 @@ import android.widget.TextView;
 
 import com.android.manNtel_mid.R;
 import com.manNtel.activity.Main;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.UserInfoStruct;
 
@@ -94,14 +94,11 @@ public class Pitch extends Activity
 		if(pref.getBoolean("isDebug", false)){
 			LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
 			debugLayout.setVisibility(View.VISIBLE);
-			Log.i("[Balance]","Debug On");
 
 			TimerTask debugTask = new TimerTask(){
 				@Override
 				public void run(){
 					try{
-						Log.i("[Balance]","Debugging");
-
 						handler.post(new Runnable() {
 							@Override
 							public void run(){
@@ -127,7 +124,15 @@ public class Pitch extends Activity
 		}       
 
 		Bundle bundle = getIntent().getExtras();
-		newUser = bundle.getParcelable("userInfo");        
+		newUser = bundle.getParcelable("userInfo");
+		
+		ProcessManager.getInstance().addActivity(this);
+	}
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
 	}
 
 	public void popup(View v)
@@ -144,13 +149,11 @@ public class Pitch extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Log.i("[BtnTouch","next");
 			Intent goSlide = new Intent(this,Slide.class);
 			goSlide.putExtra("userInfo", newUser);
 			startActivityForResult(goSlide, 3);
 			break;
 		case R.id.btnClose:
-			Log.i("[BtnTouch","close");
 			startActivity(new Intent(this,Main.class));
 			break;
 		}	

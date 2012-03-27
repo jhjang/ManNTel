@@ -3,7 +3,6 @@ package com.manNtel.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -68,8 +67,6 @@ public class Tutorial extends Activity
 
 		TextView welcome = (TextView)findViewById(R.id.txtWelcome);
 		welcome.setText(user.name);
-
-		Log.i("[PART]",user.part);
 
 		switch(user.gameNum)
 		{

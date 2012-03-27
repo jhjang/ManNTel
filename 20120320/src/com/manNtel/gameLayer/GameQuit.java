@@ -3,7 +3,6 @@ package com.manNtel.gameLayer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -41,31 +40,43 @@ public class GameQuit extends Activity {
     	TextView txtScore = (TextView)findViewById(R.id.txtScore);
     	txtScore.setText(String.valueOf(mUser.score));  	
     	
+    	TextView txtGameType = (TextView)findViewById(R.id.txtGameQuit);
+    	switch(mUser.gameNum){
+    	
+    	case 1:
+    	case 5:
+    		txtGameType.setText(R.string.gameQuitOne);
+    		break;
+    	case 2:
+    	case 3:
+    		txtGameType.setText(R.string.gameQuitTwo);
+    		break;
+    	case 4:
+    	case 6:
+    		txtGameType.setText(R.string.gameQuitFour);
+    		break;
+    	}
+    	
     	DatabaseManager dbm = new DatabaseManager(this);
     	dbm.open();
     	dbm.addItem(mUser);
-    	Log.i("[GameQuit]","DataSaved");
     	dbm.close();    	
     }
 	
 	public void onClick(View v){
 		switch(v.getId()){
 		case R.id.btnMain : 
-			Log.i("[GameEnd]","Main");
 			Intent intent = new Intent(this,Main.class);
 			startActivity(intent);
 			break;
 		case R.id.btnShutdown :
-			Log.i("[GameEnd]","shut");
 			break;
 		case R.id.btnReplay : 
-			Log.i("[GameEnd]","rE");
 			Intent intent3 = new Intent(this,Game.class);
 			intent3.putExtra("userInfo", mUser);
 			startActivity(intent3);
 			break;
 		case R.id.btnPlayOther: 
-			Log.i("[GameEnd]","Ohter");
 			Intent intent2 = new Intent(this,GameSelect.class);
 			intent2.putExtra("userInfo", mUser);
 			startActivity(intent2);

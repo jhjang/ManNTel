@@ -13,7 +13,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -88,14 +87,11 @@ public class EvalSlide extends Activity
       		if(pref.getBoolean("isDebug", false)){
       			LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
       			debugLayout.setVisibility(View.VISIBLE);
-      			Log.i("[Balance]","Debug On");
 
       			TimerTask debugTask = new TimerTask(){
       				@Override
 					public void run(){
       					try{
-      						Log.i("[Balance]","Debugging");
-
       						handler.post(new Runnable() {
       							@Override
 								public void run(){
@@ -143,7 +139,6 @@ public class EvalSlide extends Activity
 			finish();			
 			break;
 		case R.id.btnOK:
-			Log.i("[BtnTouch]","OK");
 			//최근 접속시간을 ID생성시간으로 설정
 			SimpleDateFormat sd = new SimpleDateFormat("yyyy.MM.dd");		
 			Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());			
@@ -161,7 +156,7 @@ public class EvalSlide extends Activity
 			
 			break;
 		case R.id.btnClose:
-			Log.i("[BtnTouch","close");
+			startActivity(new Intent(this,Main.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 			break;
 		}	
 	}

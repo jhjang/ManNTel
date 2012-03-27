@@ -2,7 +2,6 @@ package com.manNtel.struct;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 
 public class UserInfoStruct implements Parcelable
 {
@@ -71,24 +70,24 @@ public class UserInfoStruct implements Parcelable
 	public int describeContents() 
 	{ return 0; }
 	
-	public void printInfo()
-	{
-		Log.i("[KEY]",mKey);
-		Log.i("[NAME]",mName);
-		Log.i("[ID]",mID);
-		Log.i("[BIRTH]",mBirth);
-		Log.i("[AGE]",Integer.toString(mAge));
-		Log.i("[SEX]",mSex);
-		Log.i("[PART]",mPart);
-		Log.i("[WEIGHT]",Float.toString(mWeight));
-		Log.i("[ANGLE]",Float.toString(mAngle));
-		Log.i("[LEFT BAL]",Float.toString(mLeftBal));
-		Log.i("[RIGHT BAL]",Float.toString(mRightBal));
-		Log.i("[ROLLING]",Integer.toString(mMaxRoll));
-		Log.i("[PITCHING]",Integer.toString(mMaxPitch));
-		Log.i("[SLIDING]",Integer.toString(mMaxSlide));
-		Log.i("[RECENT]",mRecent);
-	}
+//	public void printInfo()
+//	{
+//		Log.i("[KEY]",mKey);
+//		Log.i("[NAME]",mName);
+//		Log.i("[ID]",mID);
+//		Log.i("[BIRTH]",mBirth);
+//		Log.i("[AGE]",Integer.toString(mAge));
+//		Log.i("[SEX]",mSex);
+//		Log.i("[PART]",mPart);
+//		Log.i("[WEIGHT]",Float.toString(mWeight));
+//		Log.i("[ANGLE]",Float.toString(mAngle));
+//		Log.i("[LEFT BAL]",Float.toString(mLeftBal));
+//		Log.i("[RIGHT BAL]",Float.toString(mRightBal));
+//		Log.i("[ROLLING]",Integer.toString(mMaxRoll));
+//		Log.i("[PITCHING]",Integer.toString(mMaxPitch));
+//		Log.i("[SLIDING]",Integer.toString(mMaxSlide));
+//		Log.i("[RECENT]",mRecent);
+//	}
 	
 	private void readFromParcel(Parcel in)
 	{

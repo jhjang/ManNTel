@@ -11,8 +11,6 @@ import org.cocos2d.opengl.CCTexture2D;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.util.Log;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.service.SharedDataService;
@@ -48,12 +46,8 @@ public class Number_5 extends MoveFlower{
 		cursor.close();
 		dbm.close();
 
-		Log.i("[Game5]","Before Slide : " + mUserSlide);
-
 		SharedPreferences pref = CCDirector.sharedDirector().getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
 		mUserSlide = mUserSlide * Integer.parseInt(pref.getString("gameOpt4", "80")) / 100;		
-
-		Log.i("[Game5]","After Slide : " + mUserSlide);
 
 		//사용자 타입 및 이미지 포지션 설정
 		if(user.part.equals("좌")){
@@ -144,9 +138,8 @@ public class Number_5 extends MoveFlower{
 		//목적지에 도착하면.
 		if((mUser.part.equals("좌") && chkBound_Left(flower)) || mUser.part.equals("우") && chkBound_Right(flower) && mWeightFlag){			
 			mSlideFlag = true;			
-			guideLabel.setString("원래 위치로 돌아가세요");
+			guideLabel.setString(mContext.getResources().getText(R.string.gameDecreaseWeight));
 			if(!mScoreFlag){
-				Log.e("[Game5]","Goal!");
 				this.schedule("checkScore");
 				mScoreFlag = true;
 			}
@@ -154,7 +147,6 @@ public class Number_5 extends MoveFlower{
 	}
 	
 	public void checkScore(float dt){
-		Log.e("[Game5]","Balance : " + mBalance + "Slide : " + mSlide);
 		if(mBalance <= 0 && mSlide <=0){
 			mScoreFlag = false;
 			mWeightFlag = false;

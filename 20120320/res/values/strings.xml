@@ -1,133 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!-- Defalut Language -->
 
-<!-- 공백 -->
-	<string name="space"> </string>
-	
-	<!-- 센서설정 -->
-	<string name="sensorLoadDefault">kg 올린 상태 AD Data : </string>
-	<string name="sensorTiltDefault">도 굽힌 상태 AD Data : </string>
-	<string name="sensorRollDefault">도 회전 상태 AD Data : </string>
-	<string name="sensorSlideDefault">cm 이동 상태 AD Data : </string>
-	<string name="sensorGetData">측정</string>
-	
-<!-- 환경설정 -->
-	<string name="txtGameOpt1">게임 #2 : 성공 판정을 위한 체중 유지 시간(단위 : 초)</string>
-	<string name="txtGameOpt2">게임 #3 : 성공 판정을 위한 무릎을 굽힌채 유지하는 시간(단위 : 초)</string>
-	<string name="txtGameOpt3">게임 #3 : 최대 무릎을 굽히는 능력에 대한 꽃이 피는 성공 퍼센트(단위 : %)</string>
-	<string name="txtGameOpt4">게임 #4 : 최대 Pitching 능력에 대한 물주기 성공 퍼센트(단위 : %)</string>
-	<string name="txtGameOpt5">게임 #5 : 최대 Sliding 능력에 대한 이동 성공 퍼센트(단위 : %)</string>
-	<string name="txtGameOpt6">게임 #6 : 최대 Rolling 능력에 대한 물주기 성공 퍼센트(단위 : %)</string>
-	
-	<string name="txtLevelOpt1">1단계 : 체중의</string>
-	<string name="txtLevelOpt2">2단계 : 체중의</string>
-	<string name="txtLevelOpt3">3단계 : 체중의</string>
-	<string name="txtLevelOpt4">4단계 : 체중의</string>
-	<string name="txtLevelOpt5">5단계 : 체중의</string>
-	<string name="txtLevelOptDef"> %를 실어야 함</string>
-	
-<!-- 게임 메시지 -->
-	<string name="game1StartLeft">왼쪽 다리로 체중을 옮겨 보세요!</string>
-	<string name="game1StartRight">오른쪽 다리로 체중을 옮겨 보세요!</string>
-	<string name="game1MovingLeft">왼쪽 다리로 조금 더 체중을 실어 보세요!</string>
-	<string name="game1MovingRight">오른쪽 다리로 조금 더 체중을 실어 보세요!</string>
-	<string name="game1End">화분이 잘 옮겨졌네요. 원래 자세로 돌아가시면 됩니다.</string>
+    <!-- Defalut Language -->
 
-	<string name="game2SeedToFlower">해바라기 모종을 잘 심으셨습니다.\n 이제 5초간 그 자세를 유지하시면 예쁜 해바라기 꽃이 핍니다.</string>
-	<string name="game2SeedToFlowerFail">해바라기 모종이 피지 못합니다.\n 다시 5초간 자세를 유지하세요.</string>
-	<string name="game2End">해바라기 꽃이 잘 피었습니다. 원래 자세로 돌아가시면 됩니다.</string>
-	
-	<string name="game3SeedToFlower">해바라기 모종을 잘 심으셨습니다. \\n 이제 무릎을 굽히고 5초간 그 자세를 유지하시면 예쁜 해바라기 꽃이 핍니다.</string>
-	
-	<string name="game5SlideNow">해님이 웃기 시작했네요. \n 이제 상체를 왼쪽으로 이동해서 화분을 옮겨주세요.</string>
-	
-	<string name="gameSuccess">성공!!</string>
-	<string name="gameDecreaseWeight">원래 자세로 돌아가세요!</string>
-	<string name="gameMovingNow">화분을 잘 옮기고 있어요!</string>
-		
-<!-- 게임 라벨 -->
-	<string name="gameMovedPot">옮긴 화분수 : </string>
-	<string name="gameGrownFlower">피운 해바라기 수 : </string>
-	<string name="gamePotCount">개</string> <!-- 한개 두개 할때 그 개 -->
-	<string name="gamePlayTime">플레이 시간 : </string>
-	<string name="menuMain">메인화면</string>
-	<string name="menuSysOff">시스템 종료</string>
-	<string name="menuBack">이전화면</string>
-	<string name="menuPause">일시정지</string>
-	<string name="menuSetLevel">난이도 설정</string>
-	<string name="menuEndGame">게임 종료</string>
-	
-<!-- 메시지 -->
-	<string name="warning">경고</string>
-	<string name="wrongName">이름을 입력하세요.</string>
-	<string name="wrongID">환자번호를 입력하세요.</string>
-	<string name="wrongSex">성별을 선택하세요.</string>
-	<string name="wrongPart">재활 부위를 선택하세요.</string>
-	<string name="dlgClose">닫기</string>
-	<string name="msgWelcome">님 환영합니다.</string>
-	<string name="msgGameSel">실행할 게임을 선택해 주세요.</string>
-	<string name="msgLevelSel">게임의 난이도를 골라주세요.</string>
-	
-<!-- 튜토리얼 메시지 -->
-	<string name="tutGame1_1">화분 옮기기 게임을 시작합니다.</string>
-	<string name="tutGame1_2_Left">왼쪽 다리로 체중을 옮겼다가 제 자리로 돌아오시면 해바라기 화분이 안전한 곳으로 옮겨집니다.</string>	
-	<string name="tutGame1_2_Right">오른쪽 다리로 체중을 옮겼다가 제 자리로 돌아오시면 해바라기 화분이 안전한 곳으로 옮겨집니다.</string>
-	
-	<string name="tutGame2_1">해바라기 심기 게임을 시작합니다.</string>
-	<string name="tutGame2_2_Left">왼쪽 다리로 체중을 옮겨 해바라기 모종을 화분에 옮겨 심습니다. 체중을 왼쪽 다리에 5초간 유지하면 해바라기 꽃이 핍니다.</string>	
-	<string name="tutGame2_2_Right">오른쪽 다리로 체중을 옮겨 해바라기 모종을 화분에 옮겨 심습니다. 체중을 왼쪽 다리에 5초간 유지하면 해바라기 꽃이 핍니다.</string>
-	
-	<string name="tutGame3_1">해바라기 심기 게임을 시작합니다.</string>
-	<string name="tutGame3_2_Left">왼쪽 다리로 체중을 옮겨 해바라기 모종을 화분으로 옮겨 심습니다. 무릎을 굽히고 5초간 유지하면 해바라기 꽃이 핍니다.</string>	
-	<string name="tutGame3_2_Right">오른쪽 다리로 체중을 옮겨 해바라기 모종을 화분으로 옮겨 심습니다. 무릎을 굽히고 5초간 유지하면 해바라기 꽃이 핍니다.</string>
-	
-	<string name="tutGame4_1">해바라기 물주기 게임을 시작합니다.</string>
-	<string name="tutGame4_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 앞으로 숙여 화분에 물을 주면 됩니다.</string>	
-	<string name="tutGame4_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 앞으로 숙여 화분에 물을 주면 됩니다.</string>
-	
-	<string name="tutGame5_1">해바라기 화분 옮기기 게임을 시작합니다.</string>
-	<string name="tutGame5_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 햇볕 쪽으로 화분을 옮기면 됩니다.</string>	
-	<string name="tutGame5_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 햇볕 쪽으로 화분을 옮기면 됩니다.</string>
-	
-	<string name="tutGame6_1">해바라기 물주기 게임을 시작합니다.</string>
-	<string name="tutGame6_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 왼쪽으로 숙여 화분에 물을 주면 됩니다.</string>	
-	<string name="tutGame6_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 오른쪽으로 숙여 화분에 물을 주면 됩니다.</string>
-	
-<!-- 게임 메뉴 -->
-	<string name="gameNum1">해바라기 화분 옮기기\n(체중 이동하기)</string>
-	<string name="gameNum2">해바라기 심기\n(체중 이동 후 자세 유지)</string>
-	<string name="gameNum3">해바라기 심기\n(체중 이동 후 무릎 굽히기)</string>
-	<string name="gameNum4">해바라기 물주기\n(체중 이동 후 앞으로 숙이기)</string>
-	<string name="gameNum5">해바라기 화분 옮기기\n(체중 이동 후 옆으로 이동하기)</string>
-	<string name="gameNum6">해바라기 물주기\n(체중 이동 후 회전하기)</string>
 
-<!-- App Name -->
-	<string name="appName">ManNtel</string>
+    <!-- 공백 -->
+    <string name="space"></string>
 
-<!-- Activity Label -->
-	<string name="mainMenuLabel">ManNtel_mid</string>
-	<string name="userListLabel">사용자 목록</string>
-	<string name="userInfoLabel">사용자 정보</string>
-	<string name="addUserLabel">신규 사용자 등록</string>
-	<string name="partChoiceLabel">재활 다리 선택</string>
-	<string name="balanceLabel">좌 우 발란스 기준점 설정</string>
-	<string name="setAngleWeightLabel">기울기 및 하중의 최대값 측정</string>
-	<string name="setRollingLabel">Rolling 최대값 측정</string>
-	<string name="setPitchingLabel">Pitching 최대값 측정</string>
-	<string name="setSlidingLabel">Sliding 최대값 측정</string>
-	<string name="gameMainLabel">로그인</string>
-	<string name="chkGameBalLabel">게임 전 좌 우 발란스 측정</string>
-	<string name="gameSelectLabel">게임 선택</string>
-	<string name="levelSelectLabel">난이도 선택</string>
-	<string name="tutorialLabel">튜토리얼</string>
-	<string name="gameSettingLabel">환경 설정</string>
-	<string name="gameRecordLabel">재활 게임 이력</string>
-	<string name="EvalLabel">평가 전 좌 우 발란스 측정</string>	
-	<string name="SystemLabel">시스템 설정</string>
-	<string name="SensorLabel">센서 설정</string>
+    <!-- 센서설정 -->
+    <string name="sensorLoadDefault">kg 올린 상태 AD Data : </string>
+    <string name="sensorTiltDefault">도 굽힌 상태 AD Data : </string>
+    <string name="sensorRollDefault">도 회전 상태 AD Data : </string>
+    <string name="sensorSlideDefault">cm 이동 상태 AD Data : </string>
+    <string name="sensorGetData">측정</string>
+    
+    <!-- 게임종료 -->
+    <string name="gameQuitWho">님께서</string>
+    <string name="gameQuitWhile">동안</string>
+    <string name="gameQuitReplay">다시하기</string>
+    <string name="gameQuitOtherGame">다른 게임 선택</string>
+    <string name="gameQuitOne"> 개의 해바라기 화분을 옮기셨습니다.</string>
+    <string name="gameQuitTwo"> 개의 해바라기를 심으셨습니다.</string>
+    <string name="gameQuitFour"> 번 물을 주셨습니다. </string>
+    
+    <!-- 이력 -->
+    <string name="recordDate">날짜</string>
+    <string name="recordTimes">회차</string>
+    <string name="recordBalance">좌, 우 발란스</string>
+    <string name="recordWeightLeft">무게(좌)</string>
+    <string name="recordWeightRight">무게(우)</string>
+    <string name="recordWeight">몸무게</string>
+    <string name="recordAbility">최대 운동 능력</string>
+    <string name="recordAngle">각도</string>
+    <string name="recordLoad">하중</string>
+    <string name="recordRoll">롤링</string>
+    <string name="recordPitch">피칭</string>
+    <string name="recordSlide">슬라이딩</string>    
 
-<!-- 버튼 -->
+    <!-- 환경설정 -->
+    <string name="txtGameOpt1">게임 #2 : 성공 판정을 위한 체중 유지 시간(단위 : 초)</string>
+    <string name="txtGameOpt2">게임 #3 : 성공 판정을 위한 무릎을 굽힌채 유지하는 시간(단위 : 초)</string>
+    <string name="txtGameOpt3">게임 #3 : 최대 무릎을 굽히는 능력에 대한 꽃이 피는 성공 퍼센트(단위 : %)</string>
+    <string name="txtGameOpt4">게임 #4 : 최대 Pitching 능력에 대한 물주기 성공 퍼센트(단위 : %)</string>
+    <string name="txtGameOpt5">게임 #5 : 최대 Sliding 능력에 대한 이동 성공 퍼센트(단위 : %)</string>
+    <string name="txtGameOpt6">게임 #6 : 최대 Rolling 능력에 대한 물주기 성공 퍼센트(단위 : %)</string>
+    <string name="txtLevelOpt1">1단계 : 체중의</string>
+    <string name="txtLevelOpt2">2단계 : 체중의</string>
+    <string name="txtLevelOpt3">3단계 : 체중의</string>
+    <string name="txtLevelOpt4">4단계 : 체중의</string>
+    <string name="txtLevelOpt5">5단계 : 체중의</string>
+    <string name="txtLevelOptDef"> %를 실어야 함</string>
+
+    <!-- 게임 메시지 -->
+    <string name="game1StartLeft">왼쪽 다리로 체중을 옮겨 보세요!</string>
+    <string name="game1StartRight">오른쪽 다리로 체중을 옮겨 보세요!</string>
+    <string name="game1MovingLeft">왼쪽 다리로 조금 더 체중을 실어 보세요!</string>
+    <string name="game1MovingRight">오른쪽 다리로 조금 더 체중을 실어 보세요!</string>
+    <string name="game1End">화분이 잘 옮겨졌네요. 원래 자세로 돌아가시면 됩니다.</string>
+    <string name="game2SeedToFlower">이제 5초간 그 자세를 유지하시면 예쁜 해바라기 꽃이 핍니다.</string>
+    <string name="game2SeedToFlowerFail">해바라기 모종이 피지 못합니다. 다시 5초간 자세를 유지하세요.</string>
+    <string name="game2End">해바라기 꽃이 잘 피었습니다. 원래 자세로 돌아가시면 됩니다.</string>
+    <string name="game3SeedToFlower">이제 무릎을 굽히고 5초간 그 자세를 유지하시면 예쁜 해바라기 꽃이 핍니다.</string>
+    <string name="game4Roll">햇님이 웃기 시작했어요 몸을 앞으로 숙여주세요</string>
+    <string name="game6Pitch">햇님이 웃기 시작햇어요 몸을 회전해 주세요</string>
+    <string name="game5SlideNow">이제 상체를 왼쪽으로 이동해서 화분을 옮겨주세요.</string>
+    <string name="gameSecond">초!</string>
+    <string name="gameSuccess">성공!!</string>
+    <string name="gameDecreaseWeight">원래 자세로 돌아가세요!</string>
+    <string name="gameMovingNow">화분을 잘 옮기고 있어요!</string>
+
+    <!-- 게임 라벨 -->
+    <string name="gameMovedPot">옮긴 화분수 : </string>
+    <string name="gameGrownFlower">피운 해바라기 수 : </string>
+    <string name="gamePotCount">개</string> <!-- 한개 두개 할때 그 개 -->
+    <string name="gamePlayTime">플레이 시간 : </string>
+    <string name="menuMain">메인화면</string>
+    <string name="menuSysOff">시스템 종료</string>
+    <string name="menuBack">이전화면</string>
+    <string name="menuPause">일시정지</string>
+    <string name="menuSetLevel">난이도 설정</string>
+    <string name="menuEndGame">게임 종료</string>
+
+    <!-- 메시지 -->
+    <string name="notification">알림</string>
+    <string name="msgSelectUser">사용자를 선택하세요.</string>
+    <string name="warning">경고</string>
+    <string name="wrongName">이름을 입력하세요.</string>
+    <string name="wrongID">환자번호를 입력하세요.</string>
+    <string name="wrongSex">성별을 선택하세요.</string>
+    <string name="wrongPart">재활 부위를 선택하세요.</string>
+    <string name="dlgClose">닫기</string>
+    <string name="msgWelcome">님 환영합니다.</string>
+    <string name="msgGameSel">실행할 게임을 선택해 주세요.</string>
+    <string name="msgLevelSel">게임의 난이도를 골라주세요.</string>
+
+    <!-- 튜토리얼 메시지 -->
+    <string name="tutGame1_1">화분 옮기기 게임을 시작합니다.</string>
+    <string name="tutGame1_2_Left">왼쪽 다리로 체중을 옮겼다가 제 자리로 돌아오시면 해바라기 화분이 안전한 곳으로 옮겨집니다.</string>
+    <string name="tutGame1_2_Right">오른쪽 다리로 체중을 옮겼다가 제 자리로 돌아오시면 해바라기 화분이 안전한 곳으로 옮겨집니다.</string>
+    <string name="tutGame2_1">해바라기 심기 게임을 시작합니다.</string>
+    <string name="tutGame2_2_Left">왼쪽 다리로 체중을 옮겨 해바라기 모종을 화분에 옮겨 심습니다. 체중을 왼쪽 다리에 5초간 유지하면 해바라기 꽃이 핍니다.</string>
+    <string name="tutGame2_2_Right">오른쪽 다리로 체중을 옮겨 해바라기 모종을 화분에 옮겨 심습니다. 체중을 왼쪽 다리에 5초간 유지하면 해바라기 꽃이 핍니다.</string>
+    <string name="tutGame3_1">해바라기 심기 게임을 시작합니다.</string>
+    <string name="tutGame3_2_Left">왼쪽 다리로 체중을 옮겨 해바라기 모종을 화분으로 옮겨 심습니다. 무릎을 굽히고 5초간 유지하면 해바라기 꽃이 핍니다.</string>
+    <string name="tutGame3_2_Right">오른쪽 다리로 체중을 옮겨 해바라기 모종을 화분으로 옮겨 심습니다. 무릎을 굽히고 5초간 유지하면 해바라기 꽃이 핍니다.</string>
+    <string name="tutGame4_1">해바라기 물주기 게임을 시작합니다.</string>
+    <string name="tutGame4_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 앞으로 숙여 화분에 물을 주면 됩니다.</string>
+    <string name="tutGame4_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 앞으로 숙여 화분에 물을 주면 됩니다.</string>
+    <string name="tutGame5_1">해바라기 화분 옮기기 게임을 시작합니다.</string>
+    <string name="tutGame5_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 햇볕 쪽으로 화분을 옮기면 됩니다.</string>
+    <string name="tutGame5_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 햇볕 쪽으로 화분을 옮기면 됩니다.</string>
+    <string name="tutGame6_1">해바라기 물주기 게임을 시작합니다.</string>
+    <string name="tutGame6_2_Left">왼쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 왼쪽으로 숙여 화분에 물을 주면 됩니다.</string>
+    <string name="tutGame6_2_Right">오른쪽 다리로 체중을 옮기면 따뜻한 햇볕이 비칩니다. 이 때 몸을 오른쪽으로 숙여 화분에 물을 주면 됩니다.</string>
+
+    <!-- 게임 메뉴 -->
+    <string name="gameNum1">해바라기 화분 옮기기\n(체중 이동하기)</string>
+    <string name="gameNum2">해바라기 심기\n(체중 이동 후 자세 유지)</string>
+    <string name="gameNum3">해바라기 심기\n(체중 이동 후 무릎 굽히기)</string>
+    <string name="gameNum4">해바라기 물주기\n(체중 이동 후 앞으로 숙이기)</string>
+    <string name="gameNum5">해바라기 화분 옮기기\n(체중 이동 후 옆으로 이동하기)</string>
+    <string name="gameNum6">해바라기 물주기\n(체중 이동 후 회전하기)</string>
+
+    <!-- App Name -->
+    <string name="appName">ManNtel</string>
+
+    <!-- Activity Label -->
+    <string name="mainMenuLabel">ManNtel_mid</string>
+    <string name="userListLabel">사용자 목록</string>
+    <string name="userInfoLabel">사용자 정보</string>
+    <string name="addUserLabel">신규 사용자 등록</string>
+    <string name="partChoiceLabel">재활 다리 선택</string>
+    <string name="balanceLabel">좌 우 발란스 기준점 설정</string>
+    <string name="setAngleWeightLabel">기울기 및 하중의 최대값 측정</string>
+    <string name="setRollingLabel">Rolling 최대값 측정</string>
+    <string name="setPitchingLabel">Pitching 최대값 측정</string>
+    <string name="setSlidingLabel">Sliding 최대값 측정</string>
+    <string name="gameMainLabel">로그인</string>
+    <string name="chkGameBalLabel">게임 전 좌 우 발란스 측정</string>
+    <string name="gameSelectLabel">게임 선택</string>
+    <string name="levelSelectLabel">난이도 선택</string>
+    <string name="tutorialLabel">튜토리얼</string>
+    <string name="gameSettingLabel">환경 설정</string>
+    <string name="gameRecordLabel">재활 게임 이력</string>
+    <string name="EvalLabel">평가 전 좌 우 발란스 측정</string>
+    <string name="SystemLabel">시스템 설정</string>
+    <string name="SensorLabel">센서 설정</string>
+
+    <!-- 버튼 -->
     <string name="btnPrevPage">이전화면</string>
     <string name="btnNextPage">다음화면</string>
     <string name="btnGetUserInfo">개인 정보 조회</string>
@@ -135,122 +155,109 @@
     <string name="btnSelectOK">선택 완료</string>
     <string name="btnEvalComp">평가 완료</string>
     <string name="btnExit">창 닫기</string>
-    
     <string name="btnValRecord">평가 이력 보기</string>
     <string name="btnGameRecord">재활게임 이력 보기</string>
     <string name="btnOtherUser">다른 사용자 선택</string>
     <string name="btnMain">초기화면으로 이동</string>
     <string name="btnGoMain">초기화면</string>
     <string name="btnShutdown">시스템 종료</string>
-    
     <string name="btnPrev">이\t전</string>
     <string name="btnNext">다\t음</string>
-    
     <string name="btnInputOK">입력 완료</string>
-    
     <string name="btnSelGame">재활 게임 선택</string>
     <string name="btnValUser">환자(사용자) 평가</string>
     <string name="btnUserInfo">개인 정보 조회</string>
     <string name="btnSetting">환경 설정</string>
-    <string name="btnSysSetting">시스템 설정</string>    
-     
+    <string name="btnSysSetting">시스템 설정</string>
     <string name="btnLevel1">1단계</string>
     <string name="btnLevel2">2단계</string>
     <string name="btnLevel3">3단계</string>
     <string name="btnLevel4">4단계</string>
     <string name="btnLevel5">5단계</string>
-    
     <string name="btnStart">게임 시작</string>
     <string name="btnChoiceGame">게임 선택</string>
     <string name="btnSave">저장</string>
-    
     <string name="btnSensor">센서 설정</string>
     <string name="btnRomSave">EEPROM 저장</string>
     <string name="btnRomLoad">EEPROM 읽기</string>
     <string name="btnDebug">디버그 모드</string>
-    		
-<!-- 메인 메뉴 -->    
+
+    <!-- 메인 메뉴 -->
     <string name="main_list">사용자 목록</string>
     <string name="main_adduser">신규 사용자 등록</string>
     <string name="main_setting">시스템 설정</string>
     <string name="main_exit">시스템 종료</string>
 
-<!-- 사용자 목록 -->    
+    <!-- 사용자 목록 -->
     <string name="list_userName">환자이름</string>
     <string name="list_userID">환자 번호</string>
     <string name="list_userBirth">생년월일</string>
     <string name="list_userRecentCon">최근접속시간</string>
-    
-<!-- 사용자 정보 -->
-	<string name="info_ID">환자번호</string>
-	<string name="info_Name">환자이름</string>
-	<string name="info_Age">나이</string>
-	<string name="info_Sex">성별</string>
-	<string name="info_Part">재활 다리(좌/우)</string>
-	<string name="info_Balance">좌우 발란스</string>
-	<string name="info_BalLeft">좌(최초)</string>
-	<string name="info_BalRight">우(최초)</string>
-	<string name="info_AngleWeight">각도/하중</string>
-	<string name="info_MaxAngle">최대각도(최초)</string>
-	<string name="info_MaxWeight">최대하중(최초)</string>
-    
-<!-- 재활 게임 이력 -->
-	<string name="GameRecordDate">날짜</string>
-	<string name="GameRecordTimes">회차</string>
-	<string name="GameRecordNum">게임 번호</string>
-	<string name="GameRecordLevel">난이도</string>
-	<string name="GameRecordPlayTime">게임 시간</string>
-	<string name="GameRecordScore">점수</string>
-	<string name="GameRecordTitle">재활게임</string>
-	
-	<!--  환경 설정 -->
-	<string name="dlgSysTitle">시스템 설정</string>
-	<string name="dlgSaveContent">설정 Data를 EEPROM에 저장하시겠습니까?</string>
-	<string name="dlgLoadContent">설정 Data를 EEPROM에서 읽어오시겠습니까?</string>
-	<string name="dlgDebugContent">디버그 모드로 동작 하시겠습니까?</string>
-	
-	<string name="dlgYes">예</string>
-	<string name="dlgNo">아니오</string>
-	
-<!-- 사용자 추가 -->
-	<string name="dlgSexTitle">성별</string>
-	<string name="dlgSexContent">성별을 선택하세요</string>
-	<string name="dlgSexMale">남</string>
-	<string name="dlgSexFemale">여</string>
-	
-	<string name="dlgPartTitle">재활다리</string>
-	<string name="dlgPartContent">재활다리를 선택하세요</string>
-	<string name="dlgPartLeft">좌</string>
-	<string name="dlgPartRight">우</string>
-	
-	<string name="addUser_name">이\t\t름 : </string>
-	<string name="addUser_ID">환자 번호 : </string>
-	<string name="addUser_birth">생년 월일 : </string>
-	<string name="addUser_birthChoice">생년 월일 : </string>
-	<string name="addUser_sex">성         별 : </string>
-	<string name="addUser_sexChoice">성별선택</string>
-	<string name="addUser_part">재활 다리 : </string>
-	<string name="addUser_partChoice">재활다리 선택</string>
-	
-<!-- 발란스 측정 -->
-	<string name="bal_totWeight">전체 몸무게</string>
-	<string name="bal_stance">자세를 편하게 하세요.</string>
-	<string name="bal_stanceReady">자세를 잡으셨습니까?</string>
-	<string name="bal_startCount">측정 카운트다운이 시작됩니다.</string>	
 
-<!-- 각,하중,롤링,피칭,슬라이딩 -->
-	<string name="valComplete">측정이 완료되었습니다</string>
-	
-	<string name="angleWeightDesp">무릎을 최대한 굽히고\n재활 다리로 체중을 최대한 옮기세요.</string>
-	<string name="angleWeightMaxAngle">최대 각도 :</string>
-	<string name="angleWeightMaxWeight">최대 하중 :</string>
-	
-	<string name="pitchDesp">무릎을 최대한 굽히면서\n상체를 앞쪽으로 굽히세요.</string>
-	<string name="pitchMaxPitch">최대 Pitching : </string>
-	
-	<string name="rollDesp">무릎을 최대한 굽히면서\n상체를 재활 다리쪽으로 회전시키세요</string>
-	<string name="rollMaxRoll">최대 Rolling : </string>
-	
-	<string name="slideDesp">무릎을 최대한 굽히면서\n상체를 재활 다리쪽으로 이동시키세요.</string>
-	<string name="slideMaxSlide">최대 Sliding : </string>   
+    <!-- 사용자 정보 -->
+    <string name="info_ID">환자번호</string>
+    <string name="info_Name">환자이름</string>
+    <string name="info_Age">나이</string>
+    <string name="info_Sex">성별</string>
+    <string name="info_Part">재활 다리(좌/우)</string>
+    <string name="info_Balance">좌우 발란스</string>
+    <string name="info_BalLeft">좌(최초)</string>
+    <string name="info_BalRight">우(최초)</string>
+    <string name="info_AngleWeight">각도/하중</string>
+    <string name="info_MaxAngle">최대각도(최초)</string>
+    <string name="info_MaxWeight">최대하중(최초)</string>
+
+    <!-- 재활 게임 이력 -->
+    <string name="GameRecordDate">날짜</string>
+    <string name="GameRecordTimes">회차</string>
+    <string name="GameRecordNum">게임 번호</string>
+    <string name="GameRecordLevel">난이도</string>
+    <string name="GameRecordPlayTime">게임 시간</string>
+    <string name="GameRecordScore">점수</string>
+    <string name="GameRecordTitle">재활게임</string>
+
+    <!-- 환경 설정 -->
+    <string name="dlgSysTitle">시스템 설정</string>
+    <string name="dlgSaveContent">설정 Data를 EEPROM에 저장하시겠습니까?</string>
+    <string name="dlgLoadContent">설정 Data를 EEPROM에서 읽어오시겠습니까?</string>
+    <string name="dlgDebugContent">디버그 모드로 동작 하시겠습니까?</string>
+    <string name="dlgYes">예</string>
+    <string name="dlgNo">아니오</string>
+
+    <!-- 사용자 추가 -->
+    <string name="dlgSexTitle">성별</string>
+    <string name="dlgSexContent">성별을 선택하세요</string>
+    <string name="dlgSexMale">남</string>
+    <string name="dlgSexFemale">여</string>
+    <string name="dlgPartTitle">재활다리</string>
+    <string name="dlgPartContent">재활다리를 선택하세요</string>
+    <string name="dlgPartLeft">좌</string>
+    <string name="dlgPartRight">우</string>
+    <string name="addUser_name">이\t\t름 : </string>
+    <string name="addUser_ID">환자 번호 : </string>
+    <string name="addUser_birth">생년 월일 : </string>
+    <string name="addUser_birthChoice">생년 월일 : </string>
+    <string name="addUser_sex">성         별 : </string>
+    <string name="addUser_sexChoice">성별선택</string>
+    <string name="addUser_part">재활 다리 : </string>
+    <string name="addUser_partChoice">재활다리 선택</string>
+
+    <!-- 발란스 측정 -->
+    <string name="bal_totWeight">전체 몸무게</string>
+    <string name="bal_stance">자세를 편하게 하세요.</string>
+    <string name="bal_stanceReady">자세를 잡으셨습니까?</string>
+    <string name="bal_startCount">측정 카운트다운이 시작됩니다.</string>
+
+    <!-- 각,하중,롤링,피칭,슬라이딩 -->
+    <string name="valComplete">측정이 완료되었습니다</string>
+    <string name="angleWeightDesp">무릎을 최대한 굽히고\n재활 다리로 체중을 최대한 옮기세요.</string>
+    <string name="angleWeightMaxAngle">최대 각도 :</string>
+    <string name="angleWeightMaxWeight">최대 하중 :</string>
+    <string name="pitchDesp">무릎을 최대한 굽히면서\n상체를 앞쪽으로 굽히세요.</string>
+    <string name="pitchMaxPitch">최대 Pitching : </string>
+    <string name="rollDesp">무릎을 최대한 굽히면서\n상체를 재활 다리쪽으로 회전시키세요</string>
+    <string name="rollMaxRoll">최대 Rolling : </string>
+    <string name="slideDesp">무릎을 최대한 굽히면서\n상체를 재활 다리쪽으로 이동시키세요.</string>
+    <string name="slideMaxSlide">최대 Sliding : </string>
+
 </resources>

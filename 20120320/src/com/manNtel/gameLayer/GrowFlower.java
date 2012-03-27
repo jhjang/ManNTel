@@ -27,12 +27,12 @@ import org.cocos2d.types.ccColor3B;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.android.manNtel_mid.R;
 import com.manNtel.activity.LevelSelect;
 import com.manNtel.activity.Main;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.GameStruct;
 
@@ -141,7 +141,6 @@ public class GrowFlower extends CCLayer implements ControlState {
 		//디버깅 셋
 		SharedPreferences pref = CCDirector.theApp.getSharedPreferences("pref", Context.MODE_PRIVATE);
 		if(pref.getBoolean("isDebug", false)){
-			Log.i("[Game]","Debug On");
 			debugLabel_1 = CCLabel.makeLabel(" ", "DroidSans", 15);
 			debugLabel_1.setColor(ccColor3B.ccGREEN);
 			debugLabel_1.setAnchorPoint(CGPoint.ccp(0, 0));
@@ -170,7 +169,6 @@ public class GrowFlower extends CCLayer implements ControlState {
 
 	public void debug(float dt){
 		//디버그 모드 처리		
-		Log.i("[Game]","Debugging");
 
 		SharedDataService ds = (SharedDataService)CCDirector.theApp.getApplication();
 
@@ -206,14 +204,11 @@ public class GrowFlower extends CCLayer implements ControlState {
 	}
 
 	public boolean ccTochesBegan(MotionEvent event){
-		Log.i("[Touch]", "touched");
 		int x = (int)event.getX();
 		int y = (int)event.getY();
 
 		CGPoint touchLocation = CGPoint.ccp(x,y);
 		touchLocation = CCDirector.sharedDirector().convertToGL(touchLocation);
-
-		Log.e("[Touch]","X : " + touchLocation.x + "Y : " + touchLocation.y);
 
 		return CCTouchDispatcher.kEventHandled;
 	}
@@ -313,7 +308,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 				potCountLabel.setString(mContext.getResources().getText(R.string.gameMovedPot) + "" + ++score + mContext.getResources().getText(R.string.gamePotCount).toString());
 				scoreFlag = true;
 			}
-			guideLabel.setString("원래 자세로 돌아가세용");
+			guideLabel.setString(mContext.getResources().getText(R.string.gameDecreaseWeight));
 
 		}
 		//무게 o 각도 x
@@ -360,7 +355,41 @@ public class GrowFlower extends CCLayer implements ControlState {
 
 	public void setEndGame(Object sender)
 	{
-		//게임 종료		
+		//게임 종료
+		mUser.score = score;
+		mUser.count++;		
+
+		Calendar calendar = Calendar.getInstance( );  // 현재 날짜/시간 등의 각종 정보 얻기
+
+		mUser.playDate = calendar.get(Calendar.YEAR) + "." + (calendar.get(Calendar.MONDAY)+1) + "." + calendar.get(Calendar.DAY_OF_MONTH);
+
+		String playTime = "00 : 00 : 00";
+		currentTime = System.currentTimeMillis();
+
+		long millis = currentTime - startTime;
+		int seconds = (int)(millis / 1000);
+		int minutes = seconds / 60;
+		int hour = minutes / 60;
+
+		seconds = seconds % 60;
+		minutes = minutes % 60;
+		millis = (millis / 10) % 100;
+
+		playTime = String.format("%02d:%02d:%02d", hour, minutes, seconds);		
+		mUser.playTime = playTime;		
+
+		this.removeAllChildren(true);
+		this.removeFromParentAndCleanup(true);
+
+		CCSpriteFrameCache.purgeSharedSpriteFrameCache();
+		CCTextureCache.purgeSharedTextureCache();
+		CCDirector.sharedDirector().purgeCachedData();
+		CCDirector.sharedDirector().getSendCleanupToScene();
+
+		Intent intent = new Intent(CCDirector.theApp,GameQuit.class);
+		intent.putExtra("userInfo", mUser);
+
+		CCDirector.theApp.startActivity(intent);
 	}
 
 	public void setLevel(Object sender)
@@ -369,14 +398,10 @@ public class GrowFlower extends CCLayer implements ControlState {
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
-		Log.i("[GameCommon]","Children Removed");
-
 		CCSpriteFrameCache.purgeSharedSpriteFrameCache();
 		CCTextureCache.purgeSharedTextureCache();
 		CCDirector.sharedDirector().purgeCachedData();
 		CCDirector.sharedDirector().getSendCleanupToScene();
-
-		Log.i("[GameCommon]","Cache Cleaned");
 
 		Intent intent = new Intent(CCDirector.theApp,LevelSelect.class);
 		intent.putExtra("userInfo", mUser);
@@ -426,7 +451,8 @@ public class GrowFlower extends CCLayer implements ControlState {
 
 	public void sysShutdown(Object sender)
 	{
-		//시스템 종료
+		ProcessManager.getInstance().allEndActivity();
+		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 	//플레이타임 업데이트3

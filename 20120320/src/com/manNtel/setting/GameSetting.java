@@ -12,6 +12,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.android.manNtel_mid.R;
+import com.manNtel.service.ProcessManager;
 
 public class GameSetting extends TabActivity 
 {	
@@ -108,7 +109,15 @@ public class GameSetting extends TabActivity
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {}
 		});
+        
+        ProcessManager.getInstance().addActivity(this);        
     }
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
+	}
 	
 	private void updatePref()
 	{

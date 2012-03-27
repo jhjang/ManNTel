@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -129,7 +128,6 @@ public class Login extends Activity
 		uis.mMaxSlide = c.getInt(13);
 		uis.mRecent = c.getString(14);
 
-		uis.printInfo();
 		c.close();
 		dbm.close();
 		
@@ -149,11 +147,11 @@ public class Login extends Activity
         dbm = new DatabaseManager(this);
         dbm.open();        
         
-        Log.i("[userKey]","Key : " + intent.getStringExtra("userKey"));
+        
         Cursor gameRec = dbm.fetchItem(1, intent.getStringExtra("userKey"));
         
         
-        Log.i("[DBCount]",Integer.toString(gameRec.getCount()));
+        
         //해당 사용자 게임 이력이 없을때
         if(gameRec.getCount()==0)
         {
@@ -175,6 +173,7 @@ public class Login extends Activity
         TextView welcome = (TextView)findViewById(R.id.txtWelcome);
         welcome.setText(user.name);
         dbm.close();
+        
         ProcessManager.getInstance().addActivity(this);
         
     }

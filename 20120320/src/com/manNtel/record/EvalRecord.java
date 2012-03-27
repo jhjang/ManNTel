@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -138,10 +137,8 @@ public class EvalRecord extends Activity
         fromDB = dbm.fetchItem(2,intent.getStringExtra("userKey"));
         List = new EvalStruct[fromDB.getCount()];            
 		
-		Log.i("[getList]","start........");
 		fromDB.moveToFirst();
 		
-		Log.i("[getList]","after move first");
 		for(int i=0;i<fromDB.getCount();i++)
 		{
 			List[i] = new EvalStruct(getIntent().getStringExtra("userKey")); 
@@ -193,12 +190,10 @@ public class EvalRecord extends Activity
         	switch(v.getId())
         	{
         	case 1:
-        		Log.i("[Touch]","Prev");
         		if(pageNumber>0)
         			pageNumber-=10;
         		break;
         	case 2:
-        		Log.i("[Touch]","Next");
         		pageNumber+=10;
         		
         		break;

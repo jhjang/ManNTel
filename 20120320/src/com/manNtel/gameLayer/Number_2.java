@@ -12,8 +12,6 @@ import org.cocos2d.opengl.CCTexture2D;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.GameStruct;
@@ -35,7 +33,7 @@ public class Number_2 extends MoveFlower {
 		
 		flower.runAction(CCHide.action());
 
-		seedToFlowerCount = loadLabel(POS_BACKGROUND, count + "초!", 30);
+		seedToFlowerCount = loadLabel(POS_BACKGROUND, count + " ", 30);
 		seedToFlowerCount.runAction(CCHide.action());
 		this.addChild(seedToFlowerCount,VIEW_BACK);
 
@@ -113,7 +111,6 @@ public class Number_2 extends MoveFlower {
 				//현재 위치가 바운드면 무게 유지 함수 타이머 가동.
 				if(chkBound_Left(seed))
 				{
-					Log.e("[GameTwo]","Goal!");
 					this.unschedule("moveObj");
 					this.schedule("seedToFlower",1.0f);
 					return;
@@ -146,7 +143,6 @@ public class Number_2 extends MoveFlower {
 				//현재 위치가 바운드면 무게 유지 함수 타이머 가동.
 				if(chkBound_Right(seed))
 				{
-					Log.e("[GameTwo]","Goal!");
 					this.unschedule("moveObj");
 					this.schedule("seedToFlower",1.0f);
 					return;
@@ -185,7 +181,6 @@ public class Number_2 extends MoveFlower {
 		SharedPreferences pref = mContext.getSharedPreferences("pref", Context.MODE_PRIVATE);
 		targetCount = Integer.parseInt(pref.getString("gameOpt1", "5"));		
 		
-		Log.i("[Game2]",""+value);
 		//무게가 목표치와 크거나 같으면?
 		if(value >= mUser.clearValue && value >= mUser.clearValue)
 		{			
@@ -194,9 +189,8 @@ public class Number_2 extends MoveFlower {
 			if(!growUpAnimationFlag ){
 				growUpAnimationFlag = true;
 				seed.runAction(action);
-			}				
-			
-			seedToFlowerCount.setString(count + "초!!");
+			}							
+			seedToFlowerCount.setString(count + "!");
 		}
 		//아니면 원위치
 		else

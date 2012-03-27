@@ -191,7 +191,5 @@ public class AddUser extends Activity
 		
     	newUser.mSex = mSex.getText().toString();
     	newUser.mPart = mPart.getText().toString();
-    	
-    	newUser.printInfo();    	 
     }
 }

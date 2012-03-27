@@ -5,7 +5,6 @@ package com.manNtel.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -29,7 +28,6 @@ public class PartChoice extends Activity
 			switch(v.getId())
 			{
 			case R.id.partleft : 
-				Log.i("[ImageTouch]","PartLeft");
 				mLeft.setImageResource(R.drawable.part_3);
 				mRight.setImageResource(R.drawable.part_2);
 				
@@ -37,7 +35,6 @@ public class PartChoice extends Activity
 				break;
 			
 			case R.id.partright : 
-				Log.i("[ImageTouch]","PartRight");
 				mLeft.setImageResource(R.drawable.part_1);
 				mRight.setImageResource(R.drawable.part_4);
 				
@@ -62,9 +59,7 @@ public class PartChoice extends Activity
         mRight.setOnClickListener(partTouch);
         
         Bundle bundle = getIntent().getExtras();
-        newUser = bundle.getParcelable("userInfo");
-        
-        newUser.printInfo();
+        newUser = bundle.getParcelable("userInfo");        
         
         ProcessManager.getInstance().addActivity(this);
     }
@@ -80,11 +75,9 @@ public class PartChoice extends Activity
 		switch(v.getId())
 		{
 		case R.id.btnPrev:
-			Log.i("[BtnTouch]","Prev");
 			finish();
 			break;
 		case R.id.btnNext:
-			Log.i("[BtnTouch]","Next");
 			
 			Intent goWaitBal = new Intent(this,ReadyAdd.class); 
     		goWaitBal.putExtra("userInfo", newUser);
@@ -92,7 +85,6 @@ public class PartChoice extends Activity
     		
 			break;
 		case R.id.btnClose:
-			Log.i("[BtnTouch]","Close");
 			finish();
 			break;		
 		}

@@ -23,12 +23,12 @@ import org.cocos2d.types.ccColor3B;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.android.manNtel_mid.R;
 import com.manNtel.activity.LevelSelect;
 import com.manNtel.activity.Main;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 import com.manNtel.struct.GameStruct;
 
@@ -77,8 +77,6 @@ public class MoveFlower extends CCLayer implements ControlState
 		mContext = context;
 		mUser = user;
 		pauseFlag = false;
-
-		Log.i("[PART]",user.part);
 
 		String msg;
 
@@ -141,7 +139,6 @@ public class MoveFlower extends CCLayer implements ControlState
 		//디버깅 셋
 		SharedPreferences pref = CCDirector.theApp.getSharedPreferences("pref", Context.MODE_PRIVATE);
 		if(pref.getBoolean("isDebug", false)){
-			Log.i("[Game]","Debug On");
 			debugLabel_1 = CCLabel.makeLabel(" ", "DroidSans", 15);
 			debugLabel_1.setColor(ccColor3B.ccGREEN);
 			debugLabel_1.setAnchorPoint(CGPoint.ccp(0, 0));
@@ -170,7 +167,6 @@ public class MoveFlower extends CCLayer implements ControlState
 
 	public void debug(float dt){
 		//디버그 모드 처리		
-		Log.i("[Game]","Debugging");
 
 		SharedDataService ds = (SharedDataService)CCDirector.theApp.getApplication();
 
@@ -192,8 +188,6 @@ public class MoveFlower extends CCLayer implements ControlState
 
 		CGPoint touchLocation = CGPoint.ccp(x,y);
 		touchLocation = CCDirector.sharedDirector().convertToGL(touchLocation);
-
-		Log.e("[Touch]","X : " + touchLocation.x + "Y : " + touchLocation.y);
 
 		return CCTouchDispatcher.kEventHandled;
 	}
@@ -271,14 +265,10 @@ public class MoveFlower extends CCLayer implements ControlState
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
-		Log.i("[GameCommon]","Children Removed");
-
 		CCSpriteFrameCache.purgeSharedSpriteFrameCache();
 		CCTextureCache.purgeSharedTextureCache();
 		CCDirector.sharedDirector().purgeCachedData();
 		CCDirector.sharedDirector().getSendCleanupToScene();
-
-		Log.i("[GameCommon]","Cache Cleaned");
 
 		Intent intent = new Intent(CCDirector.theApp,Main.class);
 		CCDirector.theApp.startActivity(intent);		
@@ -318,14 +308,10 @@ public class MoveFlower extends CCLayer implements ControlState
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
-		Log.i("[GameCommon]","Children Removed");
-
 		CCSpriteFrameCache.purgeSharedSpriteFrameCache();
 		CCTextureCache.purgeSharedTextureCache();
 		CCDirector.sharedDirector().purgeCachedData();
 		CCDirector.sharedDirector().getSendCleanupToScene();
-
-		Log.i("[GameCommon]","Cache Cleaned");
 
 		Intent intent = new Intent(CCDirector.theApp,GameQuit.class);
 		intent.putExtra("userInfo", mUser);
@@ -340,14 +326,10 @@ public class MoveFlower extends CCLayer implements ControlState
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
-		Log.i("[GameCommon]","Children Removed");
-
 		CCSpriteFrameCache.purgeSharedSpriteFrameCache();
 		CCTextureCache.purgeSharedTextureCache();
 		CCDirector.sharedDirector().purgeCachedData();
 		CCDirector.sharedDirector().getSendCleanupToScene();
-
-		Log.i("[GameCommon]","Cache Cleaned");
 
 		Intent intent = new Intent(CCDirector.theApp,LevelSelect.class);
 		intent.putExtra("userInfo", mUser);
@@ -398,7 +380,8 @@ public class MoveFlower extends CCLayer implements ControlState
 
 	public void sysShutdown(Object sender)
 	{
-		//시스템 종료
+		ProcessManager.getInstance().allEndActivity();
+		android.os.Process.killProcess(android.os.Process.myPid());
 	}
 
 	public void updateTime(float dt)

@@ -11,7 +11,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
@@ -19,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.manNtel_mid.R;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.service.SharedDataService;
 
 public class SensorSetting extends TabActivity {
@@ -83,8 +83,6 @@ public class SensorSetting extends TabActivity {
 
 		if(pref.getBoolean("loadPacketFlag", false)){
 			mData = pref.getString("loadedPacket", "null");
-			Log.i("[Sensor]","Loaded");
-			Log.i("[Sensor]","Before : " + mData);
 			SharedPreferences.Editor editor = pref.edit();
 			editor.putBoolean("loadPacketFlag", false);
 
@@ -93,19 +91,14 @@ public class SensorSetting extends TabActivity {
 				mData = tmp[1];
 			}
 
-			Log.i("[Sensor]","After : " + mData);
 			editor.putString("savePacket", mData);
 
 			editor.commit();
 		}		
 
-		Log.i("[Sensor]","Final : " + pref.getString("savePacket", "null"));
-
 		initValue();
 
 		//디버그 모드 처리				
-		Log.i("[Sensor]","Debug On");
-
 		TimerTask debugTask = new TimerTask(){
 			@Override
 			public void run(){
@@ -133,7 +126,15 @@ public class SensorSetting extends TabActivity {
 		};        	
 		mTimer = new Timer();
 		mTimer.schedule(debugTask, 0, 1000);	
+		
+		ProcessManager.getInstance().addActivity(this);
 	}	 
+	
+	@Override
+	public void onDestroy(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
+	}
 
 	private void initValue(){
 		if(mData.equals("null")){
@@ -483,12 +484,10 @@ public class SensorSetting extends TabActivity {
 			}
 			else if(tmp[i].equals(("SL"))|| tmp[i].equals("SC")){
 				value = tmp[i+2];
-				Log.i("[Sensor Value]", "SensorValue : " + value);
 				value.replaceAll(" ", " ");
 				value.replaceAll("\\n"," ");				
 
 				realValue = Integer.parseInt(value);
-				Log.i("[Sensor Value]", "RealValue : " + realValue);
 
 				switch(realValue){
 				case 30 : 
@@ -523,12 +522,10 @@ public class SensorSetting extends TabActivity {
 			}			
 			else if(tmp[i].equals(("SR"))){
 				value = tmp[i+2];
-				Log.i("[Sensor Value]", "SensorValue : " + value);
 				value.replaceAll(" ", " ");
 				value.replaceAll("\\n"," ");				
 
 				realValue = Integer.parseInt(value);
-				Log.i("[Sensor Value]", "RealValue : " + realValue);
 
 				switch(realValue){
 				case 30 : 
@@ -846,8 +843,7 @@ public class SensorSetting extends TabActivity {
 		SharedPreferences.Editor editor = pref.edit();
 		editor.putString("savePacket", str);
 		editor.commit();
-		Log.i("[Save]","Packet saved : " + str);
-		Toast.makeText(this, "저장되었습니다.", 3).show();
+		Toast.makeText(this, "Saved", 3).show();
 	}
 
 	public void onClick(View v){

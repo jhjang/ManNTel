@@ -5,7 +5,6 @@ package com.manNtel.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,23 +21,18 @@ public class Main extends Activity
     	switch(v.getId())
     	{
     	case R.id.list :
-    		Log.i("[moveAct]","환자 리스트");
         	startActivity(new Intent(this, UserList.class));
     		break;
     	
     	case R.id.addList :
-    		Log.i("[moveAct]","신규 사용자 등록");
     		startActivity(new Intent(this, AddUser.class));
     		break;
     	
     	case R.id.setting :
-    		Log.i("[moveAct]","시스템 설정");
     		startActivity(new Intent(this, SystemSetting.class));
     		break;    		
     	
     	case R.id.exit :
-    		
-    		Log.i("[moveAct]","시스템 종료");    		
     		ProcessManager.getInstance().allEndActivity();    		
     		android.os.Process.killProcess(android.os.Process.myPid());
     		

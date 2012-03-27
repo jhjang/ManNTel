@@ -10,8 +10,7 @@ import org.cocos2d.opengl.CCTexture2D;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
-
+import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.struct.GameStruct;
 
@@ -28,8 +27,6 @@ public class Number_4 extends GrowFlower {
 
 		Cursor cursor = dbm.fetchItem(0, mUser.key);
 		incValue = CLEAR_ROTATE_VALUE / cursor.getInt(9);
-
-		Log.i("[GameFourLayer]",""+incValue);
 
 		cursor.close();
 		dbm.close();
@@ -50,7 +47,6 @@ public class Number_4 extends GrowFlower {
 		this.schedule("increaseWeight");
 		this.schedule("increaseAngle");
 
-		Log.i("[GameFourLayer]","ClearValue : " + mUser.clearValue);					
 	}	
 
 	public void decreaseAngle(float dt)
@@ -205,8 +201,12 @@ public class Number_4 extends GrowFlower {
 		//무게가 0이거나 0보다 작을때 : 무게를 실어봐 
 		if(inputBal <= 0){			
 			activeSunSmile(false);
-			guideLabel.setString("무게를 실어보세용");
-			guideLabel.setString("무게가 부족");			
+			if(mUser.part.equals("좌")){
+				guideLabel.setString(mContext.getResources().getText(R.string.game1StartLeft));
+			}
+			else{
+				guideLabel.setString(mContext.getResources().getText(R.string.game1StartRight));
+			}
 		}
 
 		//무게가 0보다 크지만 목표치보다 작을때
@@ -216,12 +216,17 @@ public class Number_4 extends GrowFlower {
 			// 1: 무게를 올리고 있는 길인가.
 			if(!sunFlag)
 			{
-				guideLabel.setString("무게를 좀 더 실어보세용");											
+				if(mUser.part.equals("좌")){
+					guideLabel.setString(mContext.getResources().getText(R.string.game1MovingLeft));
+				}
+				else{
+					guideLabel.setString(mContext.getResources().getText(R.string.game1MovingRight));
+				}											
 			}
 			// 2: 점수를 올리고 돌아가는 길인가.
 			else
 			{
-				guideLabel.setString("무게를 더 줄여보세용");
+				guideLabel.setString(mContext.getResources().getText(R.string.gameDecreaseWeight));
 			}
 		}
 
@@ -230,7 +235,7 @@ public class Number_4 extends GrowFlower {
 			sunFlag = true;
 			activeSunSmile(true);
 
-			guideLabel.setString("햇님이 웃기 시작했어용 몸을 앞으로 숙여주세용");			
+			guideLabel.setString(mContext.getResources().getText(R.string.game4Roll));			
 		}
 		weightLabel.setString((int)(inputBal/mUser.clearValue*100)+"%");		
 
