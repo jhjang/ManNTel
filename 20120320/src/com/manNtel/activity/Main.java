@@ -34,8 +34,7 @@ public class Main extends Activity
     	
     	case R.id.exit :
     		ProcessManager.getInstance().allEndActivity();    		
-    		android.os.Process.killProcess(android.os.Process.myPid());
-    		
+    		System.exit(1);    		
     		break;    		
     	}
     }    

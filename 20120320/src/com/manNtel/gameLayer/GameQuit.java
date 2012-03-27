@@ -13,13 +13,14 @@ import com.manNtel.activity.Game;
 import com.manNtel.activity.GameSelect;
 import com.manNtel.activity.Main;
 import com.manNtel.database.DatabaseManager;
+import com.manNtel.service.ProcessManager;
 import com.manNtel.struct.GameStruct;
 
 public class GameQuit extends Activity {
 	private GameStruct mUser;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
-    {
+    {	
     	super.onCreate(savedInstanceState);
     	
     	requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -61,7 +62,14 @@ public class GameQuit extends Activity {
     	dbm.open();
     	dbm.addItem(mUser);
     	dbm.close();    	
+    	
+    	ProcessManager.getInstance().addActivity(this);
     }
+	
+	public void onDestroy(){
+		super.onDestroy();
+		ProcessManager.getInstance().deleteActivity(this);
+	}
 	
 	public void onClick(View v){
 		switch(v.getId()){
@@ -70,6 +78,8 @@ public class GameQuit extends Activity {
 			startActivity(intent);
 			break;
 		case R.id.btnShutdown :
+			ProcessManager.getInstance().allEndActivity();
+			System.exit(1);
 			break;
 		case R.id.btnReplay : 
 			Intent intent3 = new Intent(this,Game.class);
