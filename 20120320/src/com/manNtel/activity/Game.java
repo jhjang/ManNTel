@@ -3,7 +3,6 @@ package com.manNtel.activity;
 import org.cocos2d.layers.CCScene;
 import org.cocos2d.nodes.CCDirector;
 import org.cocos2d.opengl.CCGLSurfaceView;
-import org.cocos2d.sound.SoundEngine;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -33,11 +32,6 @@ public class Game extends Activity
     int displayWidth, displayHeight;
     
     GameStruct user;
-    
-    public static SoundEngine bg_sound = SoundEngine.sharedEngine();
-    public static SoundEngine bt_sound = SoundEngine.sharedEngine();
-    
-    public static int soundCode = 0;
     
     @Override
 	public void onCreate(Bundle savedInstanceState)
@@ -95,7 +89,6 @@ public class Game extends Activity
     	super.onDestroy();
     	
     	CCDirector.sharedDirector().end();
-    	bg_sound.realesAllSounds();
     	ProcessManager.getInstance().deleteActivity(this);
     }
     
@@ -115,8 +108,6 @@ public class Game extends Activity
     {
     	super.onPause();
     	
-    	
-    	bg_sound.pauseSound();
     	CCDirector.sharedDirector().onPause();
     }
     
@@ -124,13 +115,6 @@ public class Game extends Activity
 	public void onResume()
     {
     	super.onResume();
-    	
-//    	public static final int button=0x7f040000;
-//        public static final int ending=0x7f040001;
-//        public static final int playing=0x7f040002;
-    	if(soundCode == 0x7f040002){
-    		bg_sound.playSound(app, 0x7f040002, true);
-    	}
     	
     	CCDirector.sharedDirector().onResume();
     }
