@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.view.MotionEvent;
 
 import com.android.manNtel_mid.R;
+import com.manNtel.activity.Game;
 import com.manNtel.activity.LevelSelect;
 import com.manNtel.activity.Main;
 import com.manNtel.service.ProcessManager;
@@ -254,7 +255,7 @@ public class MoveFlower extends CCLayer implements ControlState
 	public void moveBack(Object sender)
 	{		
 		//		ds.endFlag = true;
-
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		CCDirector.theApp.finish();
 	}		
 
@@ -262,6 +263,7 @@ public class MoveFlower extends CCLayer implements ControlState
 	{
 		//메인화면으로 이동		
 
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
@@ -277,12 +279,16 @@ public class MoveFlower extends CCLayer implements ControlState
 	@Override
 	public void onEnter()
 	{
+		Game.bg_sound.playSound(Game.app, 0x7f040002, true);
+		Game.soundCode = 0x7f040002;
 		super.onEnter();	
 	}	
 
 	public void setEndGame(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		//게임 종료
+		
 		mUser.score = score;
 		mUser.count++;		
 
@@ -316,11 +322,13 @@ public class MoveFlower extends CCLayer implements ControlState
 		Intent intent = new Intent(CCDirector.theApp,GameQuit.class);
 		intent.putExtra("userInfo", mUser);
 
+		Game.bt_sound.realesAllSounds();
 		CCDirector.theApp.startActivity(intent);
 	}
 
 	public void setLevel(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		//난이도 선택
 
 		this.removeAllChildren(true);
@@ -367,19 +375,21 @@ public class MoveFlower extends CCLayer implements ControlState
 
 	public void setPause(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		if(pauseFlag)
 		{
-			CCDirector.sharedDirector().pause();
+			Game.app.onPause();
 			pauseFlag = false;
 
 			return;
 		}
 		pauseFlag = true;
-		CCDirector.sharedDirector().resume();		
+		Game.app.onResume();		
 	}
 
 	public void sysShutdown(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		ProcessManager.getInstance().allEndActivity();
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
