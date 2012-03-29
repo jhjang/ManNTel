@@ -103,8 +103,6 @@ public class Number_4 extends GrowFlower {
 	public void increaseAngle(float dt)
 	{	
 		CCTexture2D texture;
-		
-		Log.i("[Value_Game4]","Pitch : " + inputPitch + "Delta : " + incValue + "P * D : " + inputPitch * incValue);
 
 		if(mUser.part.equals("аб")){
 			progressTimer.setPercentage(Math.abs(inputPitch) * incValue / CLEAR_ROTATE_VALUE * 100);
