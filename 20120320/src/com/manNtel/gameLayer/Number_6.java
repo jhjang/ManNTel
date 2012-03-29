@@ -95,22 +95,22 @@ public class Number_6 extends GrowFlower {
 			return;
 		}
 	}
+	
 
 	//롤링에 따른 효과
 	public void increaseAngle(float dt)
 	{	
 		CCTexture2D texture;
 
-//		if(inputRoll * incValue / CLEAR_ROTATE_VALUE * 100 < 0){
-//			progressTimer.setPercentage(0);
-//		}
-		
-
 		//위치 변경 부분
 
 		//왼 발
 		if(mUser.part.equals("좌")){
-			progressTimer.setPercentage(Math.abs(inputRoll) * incValue / CLEAR_ROTATE_VALUE * 100);			
+			if(inputRoll>=0){
+				progressTimer.setPercentage(Math.abs(inputRoll) * incValue / CLEAR_ROTATE_VALUE * 100);
+			}
+			else 
+				progressTimer.setPercentage(0);
 
 			if(inputRoll * incValue > CLEAR_ROTATE_VALUE){		
 				waterFlag = false;
@@ -152,7 +152,13 @@ public class Number_6 extends GrowFlower {
 		}
 		//오른 발 
 		else{			
-			progressTimer.setPercentage(Math.abs(inputRoll) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
+			if(inputRoll<=0){
+				progressTimer.setPercentage(Math.abs(inputRoll) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
+			}
+			else{ 
+				progressTimer.setPercentage(0);
+			}
+			
 			if(inputRoll * incValue < CLEAR_ROTATE_VALUE){		
 				waterFlag = false;
 

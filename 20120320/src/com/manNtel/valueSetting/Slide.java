@@ -64,6 +64,7 @@ public class Slide extends Activity
 		else
 			valueSlide= (int)ds.getDataService().getValue("SR");
 
+//		valueSlide = 2000;
 		sliding.setText(Integer.toString(valueSlide));
 
 		newUser.mMaxSlide = valueSlide;

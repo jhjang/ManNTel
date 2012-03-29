@@ -127,19 +127,22 @@ public class Number_5 extends MoveFlower{
 
 	public void checkSlide(float dt){		
 		//무게가 다 안되면 바로 리턴
-		if(!mWeightFlag){			
+		if(!mWeightFlag || mSlideFlag){			
 			return;
 		}		
+		
 		
 		//다음 이동 좌표 계산 후 이동  
 		float nextFlowerX = mStartX + (mDistance * mSlide / mUserSlide);		
 		flower.setPosition(nextFlowerX,flower.getPosition().y);
 		
 		//목적지에 도착하면.
-		if((mUser.part.equals("좌") && chkBound_Left(flower)) || mUser.part.equals("우") && chkBound_Right(flower) && mWeightFlag){			
+		if(((mUser.part.equals("좌") && chkBound_Left(flower)) && mWeightFlag) || (mUser.part.equals("우") && chkBound_Right(flower) && mWeightFlag)){			
 			mSlideFlag = true;			
 			guideLabel.setString(mContext.getResources().getText(R.string.gameDecreaseWeight));
 			if(!mScoreFlag){
+				this.unschedule("checkWeight");
+				this.unschedule("checkSlide");
 				this.schedule("checkScore");
 				mScoreFlag = true;
 			}
@@ -154,6 +157,8 @@ public class Number_5 extends MoveFlower{
 			potCountLabel.setString(mContext.getResources().getText(R.string.gameMovedPot).toString()
 					+ ++score + mContext.getResources().getText(R.string.gamePotCount).toString());
 			this.unschedule("checkScore");
+			this.schedule("checkWeight");
+			this.schedule("checkSlide");
 			return;
 		}
 			

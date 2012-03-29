@@ -104,12 +104,16 @@ public class Number_4 extends GrowFlower {
 	{	
 		CCTexture2D texture;
 
-		if(mUser.part.equals("좌")){
-			progressTimer.setPercentage(Math.abs(inputPitch) * incValue / CLEAR_ROTATE_VALUE * 100);
+		if(inputPitch<=0){
+			progressTimer.setPercentage(Math.abs(inputPitch) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
 		}
 		else{
-			progressTimer.setPercentage(Math.abs(inputPitch) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
-		}		
+			progressTimer.setPercentage(0);
+		}
+		
+		Log.i("[Percent]","Delta : " + incValue + " Pitch : " + inputPitch + "Percent : " + Math.abs(inputPitch) * incValue / CLEAR_ROTATE_VALUE * 100);
+			
+				
 
 		//위치 변경 부분
 		if(inputPitch * incValue > CLEAR_ROTATE_VALUE){		
