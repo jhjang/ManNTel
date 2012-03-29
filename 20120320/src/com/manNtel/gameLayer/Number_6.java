@@ -9,6 +9,8 @@ import org.cocos2d.opengl.CCTexture2D;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.struct.GameStruct;
@@ -25,7 +27,8 @@ public class Number_6 extends GrowFlower {
 		dbm.open();
 
 		Cursor cursor = dbm.fetchItem(0, mUser.key);
-		incValue = CLEAR_ROTATE_VALUE / cursor.getInt(9);
+		incValue = CLEAR_ROTATE_VALUE / cursor.getInt(11);
+		incValue = Math.abs(incValue) * -1;
 
 		cursor.close();
 		dbm.close();
@@ -98,14 +101,17 @@ public class Number_6 extends GrowFlower {
 	{	
 		CCTexture2D texture;
 
-		if(inputRoll * incValue / CLEAR_ROTATE_VALUE * 100 < 0)
-			progressTimer.setPercentage(0);
-		progressTimer.setPercentage(inputRoll * incValue / CLEAR_ROTATE_VALUE * 100);
+//		if(inputRoll * incValue / CLEAR_ROTATE_VALUE * 100 < 0){
+//			progressTimer.setPercentage(0);
+//		}
+		
 
 		//위치 변경 부분
-		
-		//왼발
+
+		//왼 발
 		if(mUser.part.equals("좌")){
+			progressTimer.setPercentage(Math.abs(inputRoll) * incValue / CLEAR_ROTATE_VALUE * 100);			
+
 			if(inputRoll * incValue > CLEAR_ROTATE_VALUE){		
 				waterFlag = false;
 
@@ -114,7 +120,7 @@ public class Number_6 extends GrowFlower {
 				waterAniRunFlag = false;
 				waterDropAniRunFlag = false;
 
-				if(inputRoll == 0){
+				if(inputRoll <= 0){
 					waterBucket.setRotation(0);
 				}
 				else if(inputRoll * incValue >= CLEAR_ROTATE_VALUE){
@@ -131,14 +137,10 @@ public class Number_6 extends GrowFlower {
 
 				if(!waterDropAniRunFlag){
 					CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
-					if(mUser.part.equals("좌")){
-						waterAnimation.addFrame("game6/water_left1.png");
-						waterAnimation.addFrame("game6/water_left2.png");
-					}
-					else{
-						waterAnimation.addFrame("game6/water_right1.png");
-						waterAnimation.addFrame("game6/water_right2.png");
-					}
+
+					waterAnimation.addFrame("game6/water_left1.png");
+					waterAnimation.addFrame("game6/water_left2.png");
+
 
 					CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
 
@@ -148,8 +150,9 @@ public class Number_6 extends GrowFlower {
 				}
 			}	
 		}
-		//오른발
-		else{
+		//오른 발 
+		else{			
+			progressTimer.setPercentage(Math.abs(inputRoll) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
 			if(inputRoll * incValue < CLEAR_ROTATE_VALUE){		
 				waterFlag = false;
 
@@ -158,7 +161,7 @@ public class Number_6 extends GrowFlower {
 				waterAniRunFlag = false;
 				waterDropAniRunFlag = false;
 
-				if(inputRoll == 0){
+				if(inputRoll >= 0){
 					waterBucket.setRotation(0);
 				}
 				else if(inputRoll * incValue <= CLEAR_ROTATE_VALUE){
@@ -199,7 +202,7 @@ public class Number_6 extends GrowFlower {
 			else{
 				guideLabel.setString(mContext.getResources().getText(R.string.game1StartRight));
 			}
-						
+
 		}
 
 		//무게가 0보다 크지만 목표치보다 작을때

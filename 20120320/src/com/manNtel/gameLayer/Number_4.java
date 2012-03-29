@@ -10,6 +10,8 @@ import org.cocos2d.opengl.CCTexture2D;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
+
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.struct.GameStruct;
@@ -26,19 +28,21 @@ public class Number_4 extends GrowFlower {
 		dbm.open();
 
 		Cursor cursor = dbm.fetchItem(0, mUser.key);
-		incValue = CLEAR_ROTATE_VALUE / cursor.getInt(9);
-
+		CLEAR_ROTATE_VALUE = -45;
+		incValue = CLEAR_ROTATE_VALUE / cursor.getInt(12);
+		
 		cursor.close();
 		dbm.close();
 
 		if(mUser.part.equals("ÁÂ")){
 			waterBucket = loadImage(POS_WATERBUCKET_LEFT,"game4/can_left1");
-			waterDrop = loadImage(POS_WATERDROP_LEFT,"game4/water_left1");
+			waterDrop = loadImage(POS_WATERDROP_LEFT,"game4/water_left1");			
 		}
 		else{
 			waterBucket = loadImage(POS_WATERBUCKET_RIGHT,"game4/can_right1");
-			waterDrop = loadImage(POS_WATERDROP_RIGHT,"game4/water_right1");
+			waterDrop = loadImage(POS_WATERDROP_RIGHT,"game4/water_right1");			
 		}
+		
 
 		super.addChild(waterDrop,VIEW_OBJ);
 		super.addChild(waterBucket,VIEW_OBJ);
@@ -46,6 +50,7 @@ public class Number_4 extends GrowFlower {
 
 		this.schedule("increaseWeight");
 		this.schedule("increaseAngle");
+
 
 	}	
 
@@ -98,101 +103,117 @@ public class Number_4 extends GrowFlower {
 	public void increaseAngle(float dt)
 	{	
 		CCTexture2D texture;
+		
+		Log.i("[Value_Game4]","Pitch : " + inputPitch + "Delta : " + incValue + "P * D : " + inputPitch * incValue);
 
-		if(inputPitch * incValue / CLEAR_ROTATE_VALUE * 100 < 0)
-			progressTimer.setPercentage(0);
-		progressTimer.setPercentage(inputPitch * incValue / CLEAR_ROTATE_VALUE * 100);
+		if(mUser.part.equals("ÁÂ")){
+			progressTimer.setPercentage(Math.abs(inputPitch) * incValue / CLEAR_ROTATE_VALUE * 100);
+		}
+		else{
+			progressTimer.setPercentage(Math.abs(inputPitch) * incValue * -1 / CLEAR_ROTATE_VALUE * 100);
+		}		
 
 		//À§Ä¡ º¯°æ ºÎºÐ
-		
-		//¿Þ¹ß
-		if(mUser.part.equals("ÁÂ")){
-			if(inputPitch * incValue > CLEAR_ROTATE_VALUE){		
-				waterFlag = false;
+		if(inputPitch * incValue > CLEAR_ROTATE_VALUE){		
+			waterFlag = false;
 
-				waterDrop.stopAllActions();
-				waterDrop.runAction(CCHide.action());
-				waterAniRunFlag = false;
-				waterDropAniRunFlag = false;
+			waterDrop.stopAllActions();
+			waterDrop.runAction(CCHide.action());
+			waterAniRunFlag = false;
+			waterDropAniRunFlag = false;
 
-				if(inputPitch == 0){
+			if(inputPitch >= 0){
+				if(mUser.part.equals("ÁÂ")){
 					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_left1.png");
-					waterBucket.setTexture(texture);
 				}
-				else if(inputPitch * incValue >= CLEAR_ROTATE_VALUE){
-					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_left2.png");
-					waterBucket.setTexture(texture);
-				}
-
-			}
-			else if(inputPitch*incValue <= CLEAR_ROTATE_VALUE){
-
-				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_left3.png");
-				waterBucket.setTexture(texture);
-
-				waterFlag = true;
-
-
-				if(!waterDropAniRunFlag){
-					CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
-					if(mUser.part.equals("ÁÂ")){
-						waterAnimation.addFrame("game4/water_left1.png");
-						waterAnimation.addFrame("game4/water_left2.png");
-					}
-					else{
-						waterAnimation.addFrame("game4/water_right1.png");
-						waterAnimation.addFrame("game4/water_right2.png");
-					}
-
-					CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
-
-					waterDrop.runAction(CCShow.action());
-					waterDrop.runAction(CCRepeatForever.action(waterani));
-					waterDropAniRunFlag = true;
-				}
-			}	
-		}
-		//¿À¸¥¹ß
-		else{
-			if(inputPitch * incValue < CLEAR_ROTATE_VALUE){		
-				waterFlag = false;
-
-				waterDrop.stopAllActions();
-				waterDrop.runAction(CCHide.action());
-				waterAniRunFlag = false;
-				waterDropAniRunFlag = false;
-
-				if(inputPitch == 0){
+				else{
 					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right1.png");
-					waterBucket.setTexture(texture);
 				}
-				else if(inputPitch * incValue >= CLEAR_ROTATE_VALUE){
-					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right2.png");
-					waterBucket.setTexture(texture);
-				}
-
-			}
-			else if(inputPitch*incValue >= CLEAR_ROTATE_VALUE){
-
-				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right3.png");
 				waterBucket.setTexture(texture);
+			}
+			else if(inputPitch * incValue > CLEAR_ROTATE_VALUE){
+				if(mUser.part.equals("ÁÂ")){
+					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_left2.png");
+				}
+				else{
+					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right2.png");
+				}
+				waterBucket.setTexture(texture);
+			}
 
-				waterFlag = true;
+		}
+		else if(inputPitch*incValue <= CLEAR_ROTATE_VALUE){
+			if(mUser.part.equals("ÁÂ")){
+				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_left3.png");
+			}
+			else{
+				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right3.png");
+			}
+			waterBucket.setTexture(texture);
+
+			waterFlag = true;
 
 
-				if(!waterDropAniRunFlag){
-					CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
+			if(!waterDropAniRunFlag){
+				CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
+				if(mUser.part.equals("ÁÂ")){
+					waterAnimation.addFrame("game4/water_left1.png");
+					waterAnimation.addFrame("game4/water_left2.png");
+				}
+				else{
 					waterAnimation.addFrame("game4/water_right1.png");
 					waterAnimation.addFrame("game4/water_right2.png");
-
-					CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
-
-					waterDrop.runAction(CCShow.action());
-					waterDrop.runAction(CCRepeatForever.action(waterani));
-					waterDropAniRunFlag = true;
 				}
-			}	
-		}
+
+				CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
+
+				waterDrop.runAction(CCShow.action());
+				waterDrop.runAction(CCRepeatForever.action(waterani));
+				waterDropAniRunFlag = true;
+			}
+		}	
+
+		//¿À¸¥¹ß
+		//		else{
+		//			if(inputPitch * incValue < CLEAR_ROTATE_VALUE){		
+		//				waterFlag = false;
+		//
+		//				waterDrop.stopAllActions();
+		//				waterDrop.runAction(CCHide.action());
+		//				waterAniRunFlag = false;
+		//				waterDropAniRunFlag = false;
+		//
+		//				if(inputPitch == 0){
+		//					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right1.png");
+		//					waterBucket.setTexture(texture);
+		//				}
+		//				else if(inputPitch * incValue <= CLEAR_ROTATE_VALUE){
+		//					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right2.png");
+		//					waterBucket.setTexture(texture);
+		//				}
+		//
+		//			}
+		//			else if(inputPitch*incValue >= CLEAR_ROTATE_VALUE){
+		//
+		//				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right3.png");
+		//				waterBucket.setTexture(texture);
+		//
+		//				waterFlag = true;
+		//
+		//
+		//				if(!waterDropAniRunFlag){
+		//					CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
+		//					waterAnimation.addFrame("game4/water_right1.png");
+		//					waterAnimation.addFrame("game4/water_right2.png");
+		//
+		//					CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
+		//
+		//					waterDrop.runAction(CCShow.action());
+		//					waterDrop.runAction(CCRepeatForever.action(waterani));
+		//					waterDropAniRunFlag = true;
+		//				}
+		//			}	
+		//		}
 	}
 
 	//¹«°Ô¿¡ µû¸¥ È¿°ú

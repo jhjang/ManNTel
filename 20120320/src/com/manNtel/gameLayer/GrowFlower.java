@@ -100,7 +100,8 @@ public class GrowFlower extends CCLayer implements ControlState {
 			progressTimer.setPosition(POS_WATERPROGRESS_LEFT);
 			CLEAR_ROTATE_VALUE = -45;
 		}
-
+		
+		
 		else{
 			weightLabel = loadLabel(POS_WEIGHTLABELWATER_RIGHT,0+"%",30);
 			progressTimer.setPosition(POS_WATERPROGRESS_RIGHT);

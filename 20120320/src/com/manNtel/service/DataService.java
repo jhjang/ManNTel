@@ -80,6 +80,12 @@ public class DataService extends Service
 				break;
 			}			
 		}
+		
+		if(type.equals("PS")){
+			int tmp = Integer.parseInt(foundValue) + 26;
+			foundValue = String.valueOf(tmp);
+		}
+		
 		return foundValue;
 	}
 
