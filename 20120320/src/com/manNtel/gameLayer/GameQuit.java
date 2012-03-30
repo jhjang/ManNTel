@@ -2,8 +2,7 @@ package com.manNtel.gameLayer;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,82 +19,70 @@ import com.manNtel.struct.GameStruct;
 
 public class GameQuit extends Activity {
 	private GameStruct mUser;
-	SoundPool pool;
-	int stream;
+	private static MediaPlayer mp;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
-    {	
-    	super.onCreate(savedInstanceState);
-    	
-    	requestWindowFeature(Window.FEATURE_NO_TITLE);
-    	getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    	getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-    	
-    	Bundle bundle = getIntent().getExtras();
-		mUser = bundle.getParcelable("userInfo");
-   	
-    	setContentView(R.layout.gamequit);
-    	
-    	TextView txtName = (TextView)findViewById(R.id.txtName);    	
-    	txtName.setText(mUser.name);
-    	
-    	TextView txtPlayTime = (TextView)findViewById(R.id.txtPlayTime);
-    	txtPlayTime.setText(mUser.playTime);
-    	
-    	TextView txtScore = (TextView)findViewById(R.id.txtScore);
-    	txtScore.setText(String.valueOf(mUser.score));  	
-    	
-    	TextView txtGameType = (TextView)findViewById(R.id.txtGameQuit);
-    	switch(mUser.gameNum){
-    	
-    	case 1:
-    	case 5:
-    		txtGameType.setText(R.string.gameQuitOne);
-    		break;
-    	case 2:
-    	case 3:
-    		txtGameType.setText(R.string.gameQuitTwo);
-    		break;
-    	case 4:
-    	case 6:
-    		txtGameType.setText(R.string.gameQuitFour);
-    		break;
-    	}
-    	
-    	DatabaseManager dbm = new DatabaseManager(this);
-    	dbm.open();
-    	dbm.addItem(mUser);
-    	dbm.close();    	
-    	
-    	ProcessManager.getInstance().addActivity(this);
-    	
-		//사운드 추가
-		pool = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+	{	
+		super.onCreate(savedInstanceState);
 
-		pool.setOnLoadCompleteListener(mListener);
-		pool.load(this, R.raw.ending,1);
-    }
-	
+		//사운드 처리
+		mp = MediaPlayer.create(this, R.raw.ending);
+		mp.setLooping(true);
+		mp.start();		
+
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		Bundle bundle = getIntent().getExtras();
+		mUser = bundle.getParcelable("userInfo");
+
+		setContentView(R.layout.gamequit);
+
+		TextView txtName = (TextView)findViewById(R.id.txtName);    	
+		txtName.setText(mUser.name);
+
+		TextView txtPlayTime = (TextView)findViewById(R.id.txtPlayTime);
+		txtPlayTime.setText(mUser.playTime);
+
+		TextView txtScore = (TextView)findViewById(R.id.txtScore);
+		txtScore.setText(String.valueOf(mUser.score));  	
+
+		TextView txtGameType = (TextView)findViewById(R.id.txtGameQuit);
+		switch(mUser.gameNum){
+
+		case 1:
+		case 5:
+			txtGameType.setText(R.string.gameQuitOne);
+			break;
+		case 2:
+		case 3:
+			txtGameType.setText(R.string.gameQuitTwo);
+			break;
+		case 4:
+		case 6:
+			txtGameType.setText(R.string.gameQuitFour);
+			break;
+		}
+
+		DatabaseManager dbm = new DatabaseManager(this);
+		dbm.open();
+		dbm.addItem(mUser);
+		dbm.close();    	
+
+		ProcessManager.getInstance().addActivity(this);
+
+	}
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
 		ProcessManager.getInstance().deleteActivity(this);
-	}
-	
-	SoundPool.OnLoadCompleteListener mListener =
-			new SoundPool.OnLoadCompleteListener() {
-		@Override
-		public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-			if(status ==0){
-				stream = soundPool.play(sampleId, 1, 1, 0, 1, 1);
-			}
-		}
-	};
-	
+	}	
+
 	public void onClick(View v){
-		pool.stop(stream);
-		pool.release();
-		
+		mp.stop();
+
 		switch(v.getId()){
 		case R.id.btnMain : 
 			Intent intent = new Intent(this,Main.class);

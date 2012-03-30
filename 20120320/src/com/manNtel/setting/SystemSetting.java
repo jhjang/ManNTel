@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -88,9 +89,10 @@ public class SystemSetting extends Activity implements OnClickListener {
 			if(which == DialogInterface.BUTTON1){
 				//To do : 서버로 save 패킷 전송 
 				SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
-				
+				Log.i("[Packet]",pref.getString("savePacket", "FF"));
 				SharedDataService ds = (SharedDataService)getApplication();
 				ds.getDataService().sendMsg(pref.getString("savePacket", "SAVE"));
+				
 			}						
 															
 		}

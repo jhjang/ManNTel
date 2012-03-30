@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
@@ -26,7 +27,7 @@ public class SensorSetting extends TabActivity {
 	private static final int FACTOR = 1;
 	private static final int VALUE = 2;
 
-	private static final int PACKET_TYPE = 88;
+	private static final int PACKET_LENGTH = 43;
 
 	private Timer mTimer = null;
 	private Handler handler = new Handler();
@@ -47,14 +48,13 @@ public class SensorSetting extends TabActivity {
 
 		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Left Load").setContent(R.id.sensorLeftLoad));        
 		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Right Load").setContent(R.id.sensorRightLoad));
-		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Tilt").setContent(R.id.sensorTilt));
-		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Roll").setContent(R.id.sensorRoll));
-		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Pitch").setContent(R.id.sensorPitch));
+		//		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Tilt").setContent(R.id.sensorTilt));
+		//		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Roll").setContent(R.id.sensorRoll));
+		//		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Pitch").setContent(R.id.sensorPitch));
 		mTab.addTab(mTab.newTabSpec("tag").setIndicator("Slide").setContent(R.id.sensorSlide));
 
-		//0~14 : LL, 15~29 : RR, 30~44 : TS, 45~59 : RS, 60~74 : PS, 75~89 : SL, SR 
-		packet = new String[PACKET_TYPE][3];
-		for(int i=0;i<88;i++){     	
+		packet = new String[PACKET_LENGTH][3];
+		for(int i=0;i<PACKET_LENGTH;i++){     	
 
 			if(i>=0 && i<15){
 				packet[i][TYPE]="LL";
@@ -64,20 +64,22 @@ public class SensorSetting extends TabActivity {
 				packet[i][TYPE]="RL";
 				packet[i][VALUE]=String.valueOf(i*10-150);
 			}
-			else if(i>=30 && i<45){
-				packet[i][TYPE]="TL";					
-			}
-			else if(i>=45 && i<60){
-				packet[i][TYPE]="RS";
-			}
-			else if(i>=60 && i<75){
-				packet[i][TYPE]="PS";
-			}
-			else if(i>=75 && i<88){
+			else if(i>=30 && i<36){
 				packet[i][TYPE]="SL";
+				packet[i][VALUE]=String.valueOf(-1);
 			}
+			else if(i==30){
+				packet[i][TYPE]="SC";
+				packet[i][VALUE]=String.valueOf(0);
+			}
+			else if(i>=36){
+				packet[i][TYPE]="SR";
+				packet[i][VALUE]=String.valueOf(1);
+			}			
+
 			packet[i][FACTOR]="FFFF";
 		}
+
 		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
 		mData = pref.getString("savePacket", "null");
 
@@ -126,16 +128,17 @@ public class SensorSetting extends TabActivity {
 		};        	
 		mTimer = new Timer();
 		mTimer.schedule(debugTask, 0, 1000);	
-		
+
 		ProcessManager.getInstance().addActivity(this);
 	}	 
-	
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
 		ProcessManager.getInstance().deleteActivity(this);
 	}
 
+	//onCreate에서 호출 
 	private void initValue(){
 		if(mData.equals("null")){
 			Toast.makeText(this, "저장된 데이터 없음", 3);
@@ -214,73 +217,6 @@ public class SensorSetting extends TabActivity {
 					break;					
 				}				
 			}
-			else if(tmp[i].equals(("TL"))){
-				value = tmp[i+2];
-				realValue = Integer.parseInt(value);
-
-				switch(realValue){
-				case -70 :
-					TextView TiltText0 = (TextView)findViewById(R.id.txtSensorTilt0);
-					TiltText0.setText(tmp[i+1]);
-					break;
-				case -60 :
-					TextView TiltText1 = (TextView)findViewById(R.id.txtSensorTilt1);
-					TiltText1.setText(tmp[i+1]);
-					break;
-				case -50 :
-					TextView TiltText2 = (TextView)findViewById(R.id.txtSensorTilt2);
-					TiltText2.setText(tmp[i+1]);
-					break;
-				case -40 :
-					TextView TiltText3 = (TextView)findViewById(R.id.txtSensorTilt3);
-					TiltText3.setText(tmp[i+1]);
-					break;
-				case -30 :
-					TextView TiltText4 = (TextView)findViewById(R.id.txtSensorTilt4);
-					TiltText4.setText(tmp[i+1]);
-					break;
-				case -20 :
-					TextView TiltText5 = (TextView)findViewById(R.id.txtSensorTilt5);
-					TiltText5.setText(tmp[i+1]);
-					break;
-				case -10 :
-					TextView TiltText6 = (TextView)findViewById(R.id.txtSensorTilt6);
-					TiltText6.setText(tmp[i+1]);
-					break;
-				case 0 :
-					TextView TiltText7 = (TextView)findViewById(R.id.txtSensorTilt7);
-					TiltText7.setText(tmp[i+1]);
-					break;
-				case 10 :
-					TextView TiltText8 = (TextView)findViewById(R.id.txtSensorTilt8);
-					TiltText8.setText(tmp[i+1]);
-					break;
-				case 20 :
-					TextView TiltText9 = (TextView)findViewById(R.id.txtSensorTilt9);
-					TiltText9.setText(tmp[i+1]);
-					break;
-				case 30 :
-					TextView TiltText10 = (TextView)findViewById(R.id.txtSensorTilt10);
-					TiltText10.setText(tmp[i+1]);
-					break;
-				case 40 :
-					TextView TiltText11 = (TextView)findViewById(R.id.txtSensorTilt11);
-					TiltText11.setText(tmp[i+1]);
-					break;
-				case 50 :
-					TextView TiltText12 = (TextView)findViewById(R.id.txtSensorTilt12);
-					TiltText12.setText(tmp[i+1]);
-					break;
-				case 60 :
-					TextView TiltText13 = (TextView)findViewById(R.id.txtSensorTilt13);
-					TiltText13.setText(tmp[i+1]);
-					break;
-				case 70 :
-					TextView TiltText14 = (TextView)findViewById(R.id.txtSensorTilt14);
-					TiltText14.setText(tmp[i+1]);
-					break;					
-				}
-			}
 			else if(tmp[i].equals(("RL"))){
 				value = tmp[i+2];
 				realValue = Integer.parseInt(value);
@@ -348,140 +284,7 @@ public class SensorSetting extends TabActivity {
 					break;					
 				}
 			}
-			else if(tmp[i].equals(("PS"))){
-				value = tmp[i+2];
-				realValue = Integer.parseInt(value);
-
-				switch(realValue){
-				case -70 :
-					TextView PitchText0 = (TextView)findViewById(R.id.txtSensorPitch0);
-					PitchText0.setText(tmp[i+1]);
-					break;
-				case -60 :
-					TextView PitchText1 = (TextView)findViewById(R.id.txtSensorPitch1);
-					PitchText1.setText(tmp[i+1]);
-					break;
-				case -50 :
-					TextView PitchText2 = (TextView)findViewById(R.id.txtSensorPitch2);
-					PitchText2.setText(tmp[i+1]);
-					break;
-				case -40 :
-					TextView PitchText3 = (TextView)findViewById(R.id.txtSensorPitch3);
-					PitchText3.setText(tmp[i+1]);
-					break;
-				case -30 :
-					TextView PitchText4 = (TextView)findViewById(R.id.txtSensorPitch4);
-					PitchText4.setText(tmp[i+1]);
-					break;
-				case -20 :
-					TextView PitchText5 = (TextView)findViewById(R.id.txtSensorPitch5);
-					PitchText5.setText(tmp[i+1]);
-					break;
-				case -10 :
-					TextView PitchText6 = (TextView)findViewById(R.id.txtSensorPitch6);
-					PitchText6.setText(tmp[i+1]);
-					break;
-				case 0 :
-					TextView PitchText7 = (TextView)findViewById(R.id.txtSensorPitch7);
-					PitchText7.setText(tmp[i+1]);
-					break;
-				case 10 :
-					TextView PitchText8 = (TextView)findViewById(R.id.txtSensorPitch8);
-					PitchText8.setText(tmp[i+1]);
-					break;
-				case 20 :
-					TextView PitchText9 = (TextView)findViewById(R.id.txtSensorPitch9);
-					PitchText9.setText(tmp[i+1]);
-					break;
-				case 30 :
-					TextView PitchText10 = (TextView)findViewById(R.id.txtSensorPitch10);
-					PitchText10.setText(tmp[i+1]);
-					break;
-				case 40 :
-					TextView PitchText11 = (TextView)findViewById(R.id.txtSensorPitch11);
-					PitchText11.setText(tmp[i+1]);
-					break;
-				case 50 :
-					TextView PitchText12 = (TextView)findViewById(R.id.txtSensorPitch12);
-					PitchText12.setText(tmp[i+1]);
-					break;
-				case 60 :
-					TextView PitchText13 = (TextView)findViewById(R.id.txtSensorPitch13);
-					PitchText13.setText(tmp[i+1]);
-					break;
-				case 70 :
-					TextView PitchText14 = (TextView)findViewById(R.id.txtSensorPitch14);
-					PitchText14.setText(tmp[i+1]);
-					break;					
-				}				
-			}
-			else if(tmp[i].equals(("RS"))){
-				value = tmp[i+2];
-				realValue = Integer.parseInt(value);
-
-				switch(realValue){
-				case -70 :
-					TextView RollText0 = (TextView)findViewById(R.id.txtSensorRoll0);
-					RollText0.setText(tmp[i+1]);
-					break;
-				case -60 :
-					TextView RollText1 = (TextView)findViewById(R.id.txtSensorRoll1);
-					RollText1.setText(tmp[i+1]);
-					break;
-				case -50 :
-					TextView RollText2 = (TextView)findViewById(R.id.txtSensorRoll2);
-					RollText2.setText(tmp[i+1]);
-					break;
-				case -40 :
-					TextView RollText3 = (TextView)findViewById(R.id.txtSensorRoll3);
-					RollText3.setText(tmp[i+1]);
-					break;
-				case -30 :
-					TextView RollText4 = (TextView)findViewById(R.id.txtSensorRoll4);
-					RollText4.setText(tmp[i+1]);
-					break;
-				case -20 :
-					TextView RollText5 = (TextView)findViewById(R.id.txtSensorRoll5);
-					RollText5.setText(tmp[i+1]);
-					break;
-				case -10 :
-					TextView RollText6 = (TextView)findViewById(R.id.txtSensorRoll6);
-					RollText6.setText(tmp[i+1]);
-					break;
-				case 0 :
-					TextView RollText7 = (TextView)findViewById(R.id.txtSensorRoll7);
-					RollText7.setText(tmp[i+1]);
-					break;
-				case 10 :
-					TextView RollText8 = (TextView)findViewById(R.id.txtSensorRoll8);
-					RollText8.setText(tmp[i+1]);
-					break;
-				case 20 :
-					TextView RollText9 = (TextView)findViewById(R.id.txtSensorRoll9);
-					RollText9.setText(tmp[i+1]);
-					break;
-				case 30 :
-					TextView RollText10 = (TextView)findViewById(R.id.txtSensorRoll10);
-					RollText10.setText(tmp[i+1]);
-					break;
-				case 40 :
-					TextView RollText11 = (TextView)findViewById(R.id.txtSensorRoll11);
-					RollText11.setText(tmp[i+1]);
-					break;
-				case 50 :
-					TextView RollText12 = (TextView)findViewById(R.id.txtSensorRoll12);
-					RollText12.setText(tmp[i+1]);
-					break;
-				case 60 :
-					TextView RollText13 = (TextView)findViewById(R.id.txtSensorRoll13);
-					RollText13.setText(tmp[i+1]);
-					break;
-				case 70 :
-					TextView RollText14 = (TextView)findViewById(R.id.txtSensorRoll14);
-					RollText14.setText(tmp[i+1]);
-					break;					
-				}
-			}
+			
 			else if(tmp[i].equals(("SL"))|| tmp[i].equals("SC")){
 				value = tmp[i+2];
 				value.replaceAll(" ", " ");
@@ -649,182 +452,47 @@ public class SensorSetting extends TabActivity {
 		TextView RightText14 = (TextView)findViewById(R.id.txtSensorRight14);
 		packet[29][TYPE] = "RL"; packet[29][FACTOR] = RightText14.getText().toString() ; packet[29][VALUE] = String.valueOf(140);
 
-		TextView TiltText0 = (TextView)findViewById(R.id.txtSensorTilt0);
-		packet[30][TYPE] = "TL"; packet[30][FACTOR] = TiltText0.getText().toString() ; packet[30][VALUE] = String.valueOf(-70);
-
-		TextView TiltText1 = (TextView)findViewById(R.id.txtSensorTilt1);
-		packet[31][TYPE] = "TL"; packet[31][FACTOR] = TiltText1.getText().toString() ; packet[31][VALUE] = String.valueOf(-60);
-
-		TextView TiltText2 = (TextView)findViewById(R.id.txtSensorTilt2);
-		packet[32][TYPE] = "TL"; packet[32][FACTOR] = TiltText2.getText().toString() ; packet[32][VALUE] = String.valueOf(-50);
-
-		TextView TiltText3 = (TextView)findViewById(R.id.txtSensorTilt3);
-		packet[33][TYPE] = "TL"; packet[33][FACTOR] = TiltText3.getText().toString() ; packet[33][VALUE] = String.valueOf(-40);
-
-		TextView TiltText4 = (TextView)findViewById(R.id.txtSensorTilt4);
-		packet[34][TYPE] = "TL"; packet[34][FACTOR] = TiltText4.getText().toString() ; packet[34][VALUE] = String.valueOf(-30);
-
-		TextView TiltText5 = (TextView)findViewById(R.id.txtSensorTilt5);
-		packet[35][TYPE] = "TL"; packet[35][FACTOR] = TiltText5.getText().toString() ; packet[35][VALUE] = String.valueOf(-20);
-
-		TextView TiltText6 = (TextView)findViewById(R.id.txtSensorTilt6);
-		packet[36][TYPE] = "TL"; packet[36][FACTOR] = TiltText6.getText().toString() ; packet[36][VALUE] = String.valueOf(-10);
-
-		TextView TiltText7 = (TextView)findViewById(R.id.txtSensorTilt7);
-		packet[37][TYPE] = "TL"; packet[37][FACTOR] = TiltText7.getText().toString() ; packet[37][VALUE] = String.valueOf(0);
-
-		TextView TiltText8 = (TextView)findViewById(R.id.txtSensorTilt8);
-		packet[38][TYPE] = "TL"; packet[38][FACTOR] = TiltText8.getText().toString() ; packet[38][VALUE] = String.valueOf(10);
-
-		TextView TiltText9 = (TextView)findViewById(R.id.txtSensorTilt9);
-		packet[39][TYPE] = "TL"; packet[39][FACTOR] = TiltText9.getText().toString() ; packet[39][VALUE] = String.valueOf(20);
-
-		TextView TiltText10 = (TextView)findViewById(R.id.txtSensorTilt10);
-		packet[40][TYPE] = "TL"; packet[40][FACTOR] = TiltText10.getText().toString() ; packet[40][VALUE] = String.valueOf(30);
-
-		TextView TiltText11 = (TextView)findViewById(R.id.txtSensorTilt11);
-		packet[41][TYPE] = "TL"; packet[41][FACTOR] = TiltText11.getText().toString() ; packet[41][VALUE] = String.valueOf(40);
-
-		TextView TiltText12 = (TextView)findViewById(R.id.txtSensorTilt12);
-		packet[42][TYPE] = "TL"; packet[42][FACTOR] = TiltText12.getText().toString() ; packet[42][VALUE] = String.valueOf(50);
-
-		TextView TiltText13 = (TextView)findViewById(R.id.txtSensorTilt13);
-		packet[43][TYPE] = "TL"; packet[43][FACTOR] = TiltText13.getText().toString() ; packet[43][VALUE] = String.valueOf(60);
-
-		TextView TiltText14 = (TextView)findViewById(R.id.txtSensorTilt14);
-		packet[44][TYPE] = "TL"; packet[44][FACTOR] = TiltText14.getText().toString() ; packet[44][VALUE] = String.valueOf(70);
-
-		TextView RollText0 = (TextView)findViewById(R.id.txtSensorRoll0);
-		packet[45][TYPE] = "RS"; packet[45][FACTOR] = RollText0.getText().toString() ; packet[45][VALUE] = String.valueOf(-70);
-
-		TextView RollText1 = (TextView)findViewById(R.id.txtSensorRoll1);
-		packet[46][TYPE] = "RS"; packet[46][FACTOR] = RollText1.getText().toString() ; packet[46][VALUE] = String.valueOf(-60);
-
-		TextView RollText2 = (TextView)findViewById(R.id.txtSensorRoll2);
-		packet[47][TYPE] = "RS"; packet[47][FACTOR] = RollText2.getText().toString() ; packet[47][VALUE] = String.valueOf(-50);
-
-		TextView RollText3 = (TextView)findViewById(R.id.txtSensorRoll3);
-		packet[48][TYPE] = "RS"; packet[48][FACTOR] = RollText3.getText().toString() ; packet[48][VALUE] = String.valueOf(-40);
-
-		TextView RollText4 = (TextView)findViewById(R.id.txtSensorRoll4);
-		packet[49][TYPE] = "RS"; packet[49][FACTOR] = RollText4.getText().toString() ; packet[49][VALUE] = String.valueOf(-30);
-
-		TextView RollText5 = (TextView)findViewById(R.id.txtSensorRoll5);
-		packet[50][TYPE] = "RS"; packet[50][FACTOR] = RollText5.getText().toString() ; packet[50][VALUE] = String.valueOf(-20);
-
-		TextView RollText6 = (TextView)findViewById(R.id.txtSensorRoll6);
-		packet[51][TYPE] = "RS"; packet[51][FACTOR] = RollText6.getText().toString() ; packet[51][VALUE] = String.valueOf(-10);
-
-		TextView RollText7 = (TextView)findViewById(R.id.txtSensorRoll7);
-		packet[52][TYPE] = "RS"; packet[52][FACTOR] = RollText7.getText().toString() ; packet[52][VALUE] = String.valueOf(0);
-
-		TextView RollText8 = (TextView)findViewById(R.id.txtSensorRoll8);
-		packet[53][TYPE] = "RS"; packet[53][FACTOR] = RollText8.getText().toString() ; packet[53][VALUE] = String.valueOf(10);
-
-		TextView RollText9 = (TextView)findViewById(R.id.txtSensorRoll9);
-		packet[54][TYPE] = "RS"; packet[54][FACTOR] = RollText9.getText().toString() ; packet[54][VALUE] = String.valueOf(20);
-
-		TextView RollText10 = (TextView)findViewById(R.id.txtSensorRoll10);
-		packet[55][TYPE] = "RS"; packet[55][FACTOR] = RollText10.getText().toString() ; packet[55][VALUE] = String.valueOf(30);
-
-		TextView RollText11 = (TextView)findViewById(R.id.txtSensorRoll11);
-		packet[56][TYPE] = "RS"; packet[56][FACTOR] = RollText11.getText().toString() ; packet[56][VALUE] = String.valueOf(40);
-
-		TextView RollText12 = (TextView)findViewById(R.id.txtSensorRoll12);
-		packet[57][TYPE] = "RS"; packet[57][FACTOR] = RollText12.getText().toString() ; packet[57][VALUE] = String.valueOf(50);
-
-		TextView RollText13 = (TextView)findViewById(R.id.txtSensorRoll13);
-		packet[58][TYPE] = "RS"; packet[58][FACTOR] = RollText13.getText().toString() ; packet[58][VALUE] = String.valueOf(60);
-
-		TextView RollText14 = (TextView)findViewById(R.id.txtSensorRoll14);
-		packet[59][TYPE] = "RS"; packet[59][FACTOR] = RollText14.getText().toString() ; packet[59][VALUE] = String.valueOf(70);
-
-		TextView PitchText0 = (TextView)findViewById(R.id.txtSensorPitch0);
-		packet[60][TYPE] = "PS"; packet[60][FACTOR] = PitchText0.getText().toString() ; packet[60][VALUE] = String.valueOf(-70);
-
-		TextView PitchText1 = (TextView)findViewById(R.id.txtSensorPitch1);
-		packet[61][TYPE] = "PS"; packet[61][FACTOR] = PitchText1.getText().toString() ; packet[61][VALUE] = String.valueOf(-60);
-
-		TextView PitchText2 = (TextView)findViewById(R.id.txtSensorPitch2);
-		packet[62][TYPE] = "PS"; packet[62][FACTOR] = PitchText2.getText().toString() ; packet[62][VALUE] = String.valueOf(-50);
-
-		TextView PitchText3 = (TextView)findViewById(R.id.txtSensorPitch3);
-		packet[63][TYPE] = "PS"; packet[63][FACTOR] = PitchText3.getText().toString() ; packet[63][VALUE] = String.valueOf(-40);
-
-		TextView PitchText4 = (TextView)findViewById(R.id.txtSensorPitch4);
-		packet[64][TYPE] = "PS"; packet[64][FACTOR] = PitchText4.getText().toString() ; packet[64][VALUE] = String.valueOf(-30);
-
-		TextView PitchText5 = (TextView)findViewById(R.id.txtSensorPitch5);
-		packet[65][TYPE] = "PS"; packet[65][FACTOR] = PitchText5.getText().toString() ; packet[65][VALUE] = String.valueOf(-20);
-
-		TextView PitchText6 = (TextView)findViewById(R.id.txtSensorPitch6);
-		packet[66][TYPE] = "PS"; packet[66][FACTOR] = PitchText6.getText().toString() ; packet[66][VALUE] = String.valueOf(-10);
-
-		TextView PitchText7 = (TextView)findViewById(R.id.txtSensorPitch7);
-		packet[67][TYPE] = "PS"; packet[67][FACTOR] = PitchText7.getText().toString() ; packet[67][VALUE] = String.valueOf(0);
-
-		TextView PitchText8 = (TextView)findViewById(R.id.txtSensorPitch8);
-		packet[68][TYPE] = "PS"; packet[68][FACTOR] = PitchText8.getText().toString() ; packet[68][VALUE] = String.valueOf(10);
-
-		TextView PitchText9 = (TextView)findViewById(R.id.txtSensorPitch9);
-		packet[69][TYPE] = "PS"; packet[69][FACTOR] = PitchText9.getText().toString() ; packet[69][VALUE] = String.valueOf(20);
-
-		TextView PitchText10 = (TextView)findViewById(R.id.txtSensorPitch10);
-		packet[70][TYPE] = "PS"; packet[70][FACTOR] = PitchText10.getText().toString() ; packet[70][VALUE] = String.valueOf(30);
-
-		TextView PitchText11 = (TextView)findViewById(R.id.txtSensorPitch11);
-		packet[71][TYPE] = "PS"; packet[71][FACTOR] = PitchText11.getText().toString() ; packet[71][VALUE] = String.valueOf(40);
-
-		TextView PitchText12 = (TextView)findViewById(R.id.txtSensorPitch12);
-		packet[72][TYPE] = "PS"; packet[72][FACTOR] = PitchText12.getText().toString() ; packet[72][VALUE] = String.valueOf(50);
-
-		TextView PitchText13 = (TextView)findViewById(R.id.txtSensorPitch13);
-		packet[73][TYPE] = "PS"; packet[73][FACTOR] = PitchText13.getText().toString() ; packet[73][VALUE] = String.valueOf(60);
-
-		TextView PitchText14 = (TextView)findViewById(R.id.txtSensorPitch14);
-		packet[74][TYPE] = "PS"; packet[74][FACTOR] = PitchText14.getText().toString() ; packet[74][VALUE] = String.valueOf(70);
-
 		TextView SlideText0 = (TextView)findViewById(R.id.txtSensorSlide0);
-		packet[75][TYPE] = "SL"; packet[75][FACTOR] = SlideText0.getText().toString() ; packet[75][VALUE] = String.valueOf(30);
+		packet[30][TYPE] = "SL"; packet[30][FACTOR] = SlideText0.getText().toString() ; packet[30][VALUE] = String.valueOf(30);
 
 		TextView SlideText1 = (TextView)findViewById(R.id.txtSensorSlide1);
-		packet[76][TYPE] = "SL"; packet[76][FACTOR] = SlideText1.getText().toString() ; packet[76][VALUE] = String.valueOf(25);
+		packet[31][TYPE] = "SL"; packet[31][FACTOR] = SlideText1.getText().toString() ; packet[31][VALUE] = String.valueOf(25);
 
 		TextView SlideText2 = (TextView)findViewById(R.id.txtSensorSlide2);
-		packet[77][TYPE] = "SL"; packet[77][FACTOR] = SlideText2.getText().toString() ; packet[77][VALUE] = String.valueOf(20);
+		packet[32][TYPE] = "SL"; packet[32][FACTOR] = SlideText2.getText().toString() ; packet[32][VALUE] = String.valueOf(20);
 
 		TextView SlideText3 = (TextView)findViewById(R.id.txtSensorSlide3);
-		packet[78][TYPE] = "SL"; packet[78][FACTOR] = SlideText3.getText().toString() ; packet[78][VALUE] = String.valueOf(15);
+		packet[33][TYPE] = "SL"; packet[33][FACTOR] = SlideText3.getText().toString() ; packet[33][VALUE] = String.valueOf(15);
 
 		TextView SlideText4 = (TextView)findViewById(R.id.txtSensorSlide4);
-		packet[79][TYPE] = "SL"; packet[79][FACTOR] = SlideText4.getText().toString() ; packet[79][VALUE] = String.valueOf(10);
+		packet[34][TYPE] = "SL"; packet[34][FACTOR] = SlideText4.getText().toString() ; packet[34][VALUE] = String.valueOf(10);
 
 		TextView SlideText5 = (TextView)findViewById(R.id.txtSensorSlide5);
-		packet[80][TYPE] = "SL"; packet[80][FACTOR] = SlideText5.getText().toString() ; packet[80][VALUE] = String.valueOf(5);
+		packet[35][TYPE] = "SL"; packet[35][FACTOR] = SlideText5.getText().toString() ; packet[35][VALUE] = String.valueOf(5);
 
 		TextView SlideText6 = (TextView)findViewById(R.id.txtSensorSlide6);
-		packet[81][TYPE] = "SC"; packet[81][FACTOR] = SlideText6.getText().toString() ; packet[81][VALUE] = String.valueOf(0);
+		packet[36][TYPE] = "SC"; packet[36][FACTOR] = SlideText6.getText().toString() ; packet[36][VALUE] = String.valueOf(0);
 
 		TextView SlideText7 = (TextView)findViewById(R.id.txtSensorSlide7);
-		packet[82][TYPE] = "SR"; packet[82][FACTOR] = SlideText7.getText().toString() ; packet[82][VALUE] = String.valueOf(5);
+		packet[37][TYPE] = "SR"; packet[37][FACTOR] = SlideText7.getText().toString() ; packet[37][VALUE] = String.valueOf(5);
 
 		TextView SlideText8 = (TextView)findViewById(R.id.txtSensorSlide8);
-		packet[83][TYPE] = "SR"; packet[83][FACTOR] = SlideText8.getText().toString() ; packet[83][VALUE] = String.valueOf(10);
+		packet[38][TYPE] = "SR"; packet[38][FACTOR] = SlideText8.getText().toString() ; packet[38][VALUE] = String.valueOf(10);
 
 		TextView SlideText9 = (TextView)findViewById(R.id.txtSensorSlide9);
-		packet[84][TYPE] = "SR"; packet[84][FACTOR] = SlideText9.getText().toString() ; packet[84][VALUE] = String.valueOf(15);
+		packet[39][TYPE] = "SR"; packet[39][FACTOR] = SlideText9.getText().toString() ; packet[39][VALUE] = String.valueOf(15);
 
 		TextView SlideText10 = (TextView)findViewById(R.id.txtSensorSlide10);
-		packet[85][TYPE] = "SR"; packet[85][FACTOR] = SlideText10.getText().toString() ; packet[85][VALUE] = String.valueOf(20);
+		packet[40][TYPE] = "SR"; packet[40][FACTOR] = SlideText10.getText().toString() ; packet[40][VALUE] = String.valueOf(20);
 
 		TextView SlideText11 = (TextView)findViewById(R.id.txtSensorSlide11);
-		packet[86][TYPE] = "SR"; packet[86][FACTOR] = SlideText11.getText().toString() ; packet[86][VALUE] = String.valueOf(25);
+		packet[41][TYPE] = "SR"; packet[41][FACTOR] = SlideText11.getText().toString() ; packet[41][VALUE] = String.valueOf(25);
 
 		TextView SlideText12 = (TextView)findViewById(R.id.txtSensorSlide12);
-		packet[87][TYPE] = "SR"; packet[87][FACTOR] = SlideText12.getText().toString() ; packet[87][VALUE] = String.valueOf(30);
+		packet[42][TYPE] = "SR"; packet[42][FACTOR] = SlideText12.getText().toString() ; packet[42][VALUE] = String.valueOf(30);
 
 		String str = "";
-		for(int i=0;i<87;i++){
+		for(int i=0;i<PACKET_LENGTH-2;i++){
 			if(packet[i][FACTOR].equals("null") || packet[i][FACTOR].equals(" ") || packet[i][FACTOR].equals("NULL")){
 				packet[i][FACTOR] = "FF";
 			}
@@ -832,18 +500,19 @@ public class SensorSetting extends TabActivity {
 				str = str + packet[i][j] + ",";				
 			}			
 		}
-		if(packet[87][FACTOR].equals("null") || packet[87][FACTOR].equals(" ") || packet[87][FACTOR].equals("NULL")){
-			packet[87][FACTOR] = "FF";
+		if(packet[PACKET_LENGTH-1][FACTOR].equals("null") || packet[PACKET_LENGTH-1][FACTOR].equals(" ") || packet[PACKET_LENGTH-1][FACTOR].equals("NULL")){
+			packet[PACKET_LENGTH-1][FACTOR] = "FF";
 		}
-		str = str + packet[87][TYPE] + ",";
-		str = str + packet[87][FACTOR] + ",";
-		str = str + packet[87][VALUE] + "\n";		
+		str = str + packet[PACKET_LENGTH-1][TYPE] + ",";
+		str = str + packet[PACKET_LENGTH-1][FACTOR] + ",";
+		str = str + packet[PACKET_LENGTH-1][VALUE] + "\n";		
 
 		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();
 		editor.putString("savePacket", str);
 		editor.commit();
 		Toast.makeText(this, "Saved", 3).show();
+		Log.i("[Packet]",str);
 	}
 
 	public void onClick(View v){
@@ -999,297 +668,71 @@ public class SensorSetting extends TabActivity {
 			RightText14.setText( ds.getDataService().getDigital("RL"));
 			packet[29][TYPE] = "RL"; packet[29][FACTOR] = RightText14.getText().toString() ; packet[29][VALUE] = String.valueOf(140);
 			break;
-		case R.id.btnSensorTilt0 :	 			
-			TextView TiltText0 = (TextView)findViewById(R.id.txtSensorTilt0);
-			TiltText0.setText( ds.getDataService().getDigital("TL"));
-			packet[30][TYPE] = "TL"; packet[30][FACTOR] = TiltText0.getText().toString() ; packet[30][VALUE] = String.valueOf(-70);
-			break;
-		case R.id.btnSensorTilt1 : 
-			TextView TiltText1 = (TextView)findViewById(R.id.txtSensorTilt1);
-			TiltText1.setText( ds.getDataService().getDigital("TL"));
-			packet[31][TYPE] = "TL"; packet[31][FACTOR] = TiltText1.getText().toString() ; packet[31][VALUE] = String.valueOf(-60);
-			break;
-		case R.id.btnSensorTilt2 : 
-			TextView TiltText2 = (TextView)findViewById(R.id.txtSensorTilt2);
-			TiltText2.setText( ds.getDataService().getDigital("TL"));
-			packet[32][TYPE] = "TL"; packet[32][FACTOR] = TiltText2.getText().toString() ; packet[32][VALUE] = String.valueOf(-50);
-			break;
-		case R.id.btnSensorTilt3 :
-			TextView TiltText3 = (TextView)findViewById(R.id.txtSensorTilt3);
-			TiltText3.setText( ds.getDataService().getDigital("TL"));
-			packet[33][TYPE] = "TL"; packet[33][FACTOR] = TiltText3.getText().toString() ; packet[33][VALUE] = String.valueOf(-40);
-			break;
-		case R.id.btnSensorTilt4 : 
-			TextView TiltText4 = (TextView)findViewById(R.id.txtSensorTilt4);
-			TiltText4.setText( ds.getDataService().getDigital("TL"));
-			packet[34][TYPE] = "TL"; packet[34][FACTOR] = TiltText4.getText().toString() ; packet[34][VALUE] = String.valueOf(-30);
-			break;
-		case R.id.btnSensorTilt5 : 
-			TextView TiltText5 = (TextView)findViewById(R.id.txtSensorTilt5);
-			TiltText5.setText( ds.getDataService().getDigital("TL"));
-			packet[35][TYPE] = "TL"; packet[35][FACTOR] = TiltText5.getText().toString() ; packet[35][VALUE] = String.valueOf(-20);
-			break;
-		case R.id.btnSensorTilt6 : 
-			TextView TiltText6 = (TextView)findViewById(R.id.txtSensorTilt6);
-			TiltText6.setText( ds.getDataService().getDigital("TL"));
-			packet[36][TYPE] = "TL"; packet[36][FACTOR] = TiltText6.getText().toString() ; packet[36][VALUE] = String.valueOf(-10);
-			break;
-		case R.id.btnSensorTilt7 : 
-			TextView TiltText7 = (TextView)findViewById(R.id.txtSensorTilt7);
-			TiltText7.setText( ds.getDataService().getDigital("TL"));
-			packet[37][TYPE] = "TL"; packet[37][FACTOR] = TiltText7.getText().toString() ; packet[37][VALUE] = String.valueOf(0);
-			break;
-		case R.id.btnSensorTilt8 : 
-			TextView TiltText8 = (TextView)findViewById(R.id.txtSensorTilt8);
-			TiltText8.setText( ds.getDataService().getDigital("TL"));
-			packet[38][TYPE] = "TL"; packet[38][FACTOR] = TiltText8.getText().toString() ; packet[38][VALUE] = String.valueOf(10);
-			break;
-		case R.id.btnSensorTilt9 : 
-			TextView TiltText9 = (TextView)findViewById(R.id.txtSensorTilt9);
-			TiltText9.setText( ds.getDataService().getDigital("TL"));
-			packet[39][TYPE] = "TL"; packet[39][FACTOR] = TiltText9.getText().toString() ; packet[39][VALUE] = String.valueOf(20);
-			break;
-		case R.id.btnSensorTilt10 : 
-			TextView TiltText10 = (TextView)findViewById(R.id.txtSensorTilt10);
-			TiltText10.setText( ds.getDataService().getDigital("TL"));
-			packet[40][TYPE] = "TL"; packet[40][FACTOR] = TiltText10.getText().toString() ; packet[40][VALUE] = String.valueOf(30);
-			break;
-		case R.id.btnSensorTilt11 : 
-			TextView TiltText11 = (TextView)findViewById(R.id.txtSensorTilt11);
-			TiltText11.setText( ds.getDataService().getDigital("TL"));
-			packet[41][TYPE] = "TL"; packet[41][FACTOR] = TiltText11.getText().toString() ; packet[41][VALUE] = String.valueOf(40);
-			break;
-		case R.id.btnSensorTilt12 : 
-			TextView TiltText12 = (TextView)findViewById(R.id.txtSensorTilt12);
-			TiltText12.setText( ds.getDataService().getDigital("TL"));
-			packet[42][TYPE] = "TL"; packet[42][FACTOR] = TiltText12.getText().toString() ; packet[42][VALUE] = String.valueOf(50);
-			break;
-		case R.id.btnSensorTilt13 :
-			TextView TiltText13 = (TextView)findViewById(R.id.txtSensorTilt13);
-			TiltText13.setText( ds.getDataService().getDigital("TL"));
-			packet[43][TYPE] = "TL"; packet[43][FACTOR] = TiltText13.getText().toString() ; packet[43][VALUE] = String.valueOf(60);
-			break;
-		case R.id.btnSensorTilt14 : 
-			TextView TiltText14 = (TextView)findViewById(R.id.txtSensorTilt14);
-			TiltText14.setText( ds.getDataService().getDigital("TL"));
-			packet[44][TYPE] = "TL"; packet[44][FACTOR] = TiltText14.getText().toString() ; packet[44][VALUE] = String.valueOf(70);
-			break;
-		case R.id.btnSensorRoll0 :	 			
-			TextView RollText0 = (TextView)findViewById(R.id.txtSensorRoll0);
-			RollText0.setText( ds.getDataService().getDigital("RS"));
-			packet[45][TYPE] = "RS"; packet[45][FACTOR] = RollText0.getText().toString() ; packet[45][VALUE] = String.valueOf(-70);
-			break;
-		case R.id.btnSensorRoll1 : 
-			TextView RollText1 = (TextView)findViewById(R.id.txtSensorRoll1);
-			RollText1.setText( ds.getDataService().getDigital("RS"));
-			packet[46][TYPE] = "RS"; packet[46][FACTOR] = RollText1.getText().toString() ; packet[46][VALUE] = String.valueOf(-60);
-			break;
-		case R.id.btnSensorRoll2 : 
-			TextView RollText2 = (TextView)findViewById(R.id.txtSensorRoll2);
-			RollText2.setText( ds.getDataService().getDigital("RS"));
-			packet[47][TYPE] = "RS"; packet[47][FACTOR] = RollText2.getText().toString() ; packet[47][VALUE] = String.valueOf(-50);
-			break;
-		case R.id.btnSensorRoll3 :
-			TextView RollText3 = (TextView)findViewById(R.id.txtSensorRoll3);
-			RollText3.setText( ds.getDataService().getDigital("RS"));
-			packet[48][TYPE] = "RS"; packet[48][FACTOR] = RollText3.getText().toString() ; packet[48][VALUE] = String.valueOf(-40);
-			break;
-		case R.id.btnSensorRoll4 : 
-			TextView RollText4 = (TextView)findViewById(R.id.txtSensorRoll4);
-			RollText4.setText( ds.getDataService().getDigital("RS"));
-			packet[49][TYPE] = "RS"; packet[49][FACTOR] = RollText4.getText().toString() ; packet[49][VALUE] = String.valueOf(-30);
-			break;
-		case R.id.btnSensorRoll5 : 
-			TextView RollText5 = (TextView)findViewById(R.id.txtSensorRoll5);
-			RollText5.setText( ds.getDataService().getDigital("RS"));
-			packet[50][TYPE] = "RS"; packet[50][FACTOR] = RollText5.getText().toString() ; packet[50][VALUE] = String.valueOf(-20);
-			break;
-		case R.id.btnSensorRoll6 : 
-			TextView RollText6 = (TextView)findViewById(R.id.txtSensorRoll6);
-			RollText6.setText( ds.getDataService().getDigital("RS"));
-			packet[51][TYPE] = "RS"; packet[51][FACTOR] = RollText6.getText().toString() ; packet[51][VALUE] = String.valueOf(-10);
-			break;
-		case R.id.btnSensorRoll7 : 
-			TextView RollText7 = (TextView)findViewById(R.id.txtSensorRoll7);
-			RollText7.setText( ds.getDataService().getDigital("RS"));
-			packet[52][TYPE] = "RS"; packet[52][FACTOR] = RollText7.getText().toString() ; packet[52][VALUE] = String.valueOf(0);
-			break;
-		case R.id.btnSensorRoll8 : 
-			TextView RollText8 = (TextView)findViewById(R.id.txtSensorRoll8);
-			RollText8.setText( ds.getDataService().getDigital("RS"));
-			packet[53][TYPE] = "RS"; packet[53][FACTOR] = RollText8.getText().toString() ; packet[53][VALUE] = String.valueOf(10);
-			break;
-		case R.id.btnSensorRoll9 : 
-			TextView RollText9 = (TextView)findViewById(R.id.txtSensorRoll9);
-			RollText9.setText( ds.getDataService().getDigital("RS"));
-			packet[54][TYPE] = "RS"; packet[54][FACTOR] = RollText9.getText().toString() ; packet[54][VALUE] = String.valueOf(20);
-			break;
-		case R.id.btnSensorRoll10 : 
-			TextView RollText10 = (TextView)findViewById(R.id.txtSensorRoll10);
-			RollText10.setText( ds.getDataService().getDigital("RS"));
-			packet[55][TYPE] = "RS"; packet[55][FACTOR] = RollText10.getText().toString() ; packet[55][VALUE] = String.valueOf(30);
-			break;
-		case R.id.btnSensorRoll11 : 
-			TextView RollText11 = (TextView)findViewById(R.id.txtSensorRoll11);
-			RollText11.setText( ds.getDataService().getDigital("RS"));
-			packet[56][TYPE] = "RS"; packet[56][FACTOR] = RollText11.getText().toString() ; packet[56][VALUE] = String.valueOf(40);
-			break;
-		case R.id.btnSensorRoll12 : 
-			TextView RollText12 = (TextView)findViewById(R.id.txtSensorRoll12);
-			RollText12.setText( ds.getDataService().getDigital("RS"));
-			packet[57][TYPE] = "RS"; packet[57][FACTOR] = RollText12.getText().toString() ; packet[57][VALUE] = String.valueOf(50);
-			break;
-		case R.id.btnSensorRoll13 :
-			TextView RollText13 = (TextView)findViewById(R.id.txtSensorRoll13);
-			RollText13.setText( ds.getDataService().getDigital("RS"));
-			packet[58][TYPE] = "RS"; packet[58][FACTOR] = RollText13.getText().toString() ; packet[58][VALUE] = String.valueOf(60);
-			break;
-		case R.id.btnSensorRoll14 : 
-			TextView RollText14 = (TextView)findViewById(R.id.txtSensorRoll14);
-			RollText14.setText( ds.getDataService().getDigital("RS"));
-			packet[59][TYPE] = "RS"; packet[59][FACTOR] = RollText14.getText().toString() ; packet[59][VALUE] = String.valueOf(70);
-			break;
-
-		case R.id.btnSensorPitch0 :	 			
-			TextView PitchText0 = (TextView)findViewById(R.id.txtSensorPitch0);
-			PitchText0.setText( ds.getDataService().getDigital("PS"));
-			packet[60][TYPE] = "PS"; packet[60][FACTOR] = PitchText0.getText().toString() ; packet[60][VALUE] = String.valueOf(-70);
-			break;
-		case R.id.btnSensorPitch1 : 
-			TextView PitchText1 = (TextView)findViewById(R.id.txtSensorPitch1);
-			PitchText1.setText( ds.getDataService().getDigital("PS"));
-			packet[61][TYPE] = "PS"; packet[61][FACTOR] = PitchText1.getText().toString() ; packet[61][VALUE] = String.valueOf(-60);
-			break;
-		case R.id.btnSensorPitch2 : 
-			TextView PitchText2 = (TextView)findViewById(R.id.txtSensorPitch2);
-			PitchText2.setText( ds.getDataService().getDigital("PS"));
-			packet[62][TYPE] = "PS"; packet[62][FACTOR] = PitchText2.getText().toString() ; packet[62][VALUE] = String.valueOf(-50);
-			break;
-		case R.id.btnSensorPitch3 :
-			TextView PitchText3 = (TextView)findViewById(R.id.txtSensorPitch3);
-			PitchText3.setText( ds.getDataService().getDigital("PS"));
-			packet[63][TYPE] = "PS"; packet[63][FACTOR] = PitchText3.getText().toString() ; packet[63][VALUE] = String.valueOf(-40);
-			break;
-		case R.id.btnSensorPitch4 : 
-			TextView PitchText4 = (TextView)findViewById(R.id.txtSensorPitch4);
-			PitchText4.setText( ds.getDataService().getDigital("PS"));
-			packet[64][TYPE] = "PS"; packet[64][FACTOR] = PitchText4.getText().toString() ; packet[64][VALUE] = String.valueOf(-30);
-			break;
-		case R.id.btnSensorPitch5 : 
-			TextView PitchText5 = (TextView)findViewById(R.id.txtSensorPitch5);
-			PitchText5.setText( ds.getDataService().getDigital("PS"));
-			packet[65][TYPE] = "PS"; packet[65][FACTOR] = PitchText5.getText().toString() ; packet[65][VALUE] = String.valueOf(-20);
-			break;
-		case R.id.btnSensorPitch6 : 
-			TextView PitchText6 = (TextView)findViewById(R.id.txtSensorPitch6);
-			PitchText6.setText( ds.getDataService().getDigital("PS"));
-			packet[66][TYPE] = "PS"; packet[66][FACTOR] = PitchText6.getText().toString() ; packet[66][VALUE] = String.valueOf(-10);
-			break;
-		case R.id.btnSensorPitch7 : 
-			TextView PitchText7 = (TextView)findViewById(R.id.txtSensorPitch7);
-			PitchText7.setText( ds.getDataService().getDigital("PS"));
-			packet[67][TYPE] = "PS"; packet[67][FACTOR] = PitchText7.getText().toString() ; packet[67][VALUE] = String.valueOf(0);
-			break;
-		case R.id.btnSensorPitch8 : 
-			TextView PitchText8 = (TextView)findViewById(R.id.txtSensorPitch8);
-			PitchText8.setText( ds.getDataService().getDigital("PS"));
-			packet[68][TYPE] = "PS"; packet[68][FACTOR] = PitchText8.getText().toString() ; packet[68][VALUE] = String.valueOf(10);
-			break;
-		case R.id.btnSensorPitch9 : 
-			TextView PitchText9 = (TextView)findViewById(R.id.txtSensorPitch9);
-			PitchText9.setText( ds.getDataService().getDigital("PS"));
-			packet[69][TYPE] = "PS"; packet[69][FACTOR] = PitchText9.getText().toString() ; packet[69][VALUE] = String.valueOf(20);
-			break;
-		case R.id.btnSensorPitch10 : 
-			TextView PitchText10 = (TextView)findViewById(R.id.txtSensorPitch10);
-			PitchText10.setText( ds.getDataService().getDigital("PS"));
-			packet[70][TYPE] = "PS"; packet[70][FACTOR] = PitchText10.getText().toString() ; packet[70][VALUE] = String.valueOf(30);
-			break;
-		case R.id.btnSensorPitch11 : 
-			TextView PitchText11 = (TextView)findViewById(R.id.txtSensorPitch11);
-			PitchText11.setText( ds.getDataService().getDigital("PS"));
-			packet[71][TYPE] = "PS"; packet[71][FACTOR] = PitchText11.getText().toString() ; packet[71][VALUE] = String.valueOf(40);
-			break;
-		case R.id.btnSensorPitch12 : 
-			TextView PitchText12 = (TextView)findViewById(R.id.txtSensorPitch12);
-			PitchText12.setText( ds.getDataService().getDigital("PS"));
-			packet[72][TYPE] = "PS"; packet[72][FACTOR] = PitchText12.getText().toString() ; packet[72][VALUE] = String.valueOf(50);
-			break;
-		case R.id.btnSensorPitch13 :
-			TextView PitchText13 = (TextView)findViewById(R.id.txtSensorPitch13);
-			PitchText13.setText( ds.getDataService().getDigital("PS"));
-			packet[73][TYPE] = "PS"; packet[73][FACTOR] = PitchText13.getText().toString() ; packet[73][VALUE] = String.valueOf(60);
-			break;
-		case R.id.btnSensorPitch14 : 
-			TextView PitchText14 = (TextView)findViewById(R.id.txtSensorPitch14);
-			PitchText14.setText( ds.getDataService().getDigital("PS"));
-			packet[74][TYPE] = "PS"; packet[74][FACTOR] = PitchText14.getText().toString() ; packet[74][VALUE] = String.valueOf(70);
-			break;
-
+		
 		case R.id.btnSensorSlide0 :	 			
 			TextView SlideText0 = (TextView)findViewById(R.id.txtSensorSlide0);
 			SlideText0.setText( ds.getDataService().getDigital("SL"));
-			packet[75][TYPE] = "SL"; packet[75][FACTOR] = SlideText0.getText().toString() ; packet[75][VALUE] = String.valueOf(30);
+			packet[30][TYPE] = "SL"; packet[30][FACTOR] = SlideText0.getText().toString() ; packet[30][VALUE] = String.valueOf(30);
 			break;
 		case R.id.btnSensorSlide1 : 
 			TextView SlideText1 = (TextView)findViewById(R.id.txtSensorSlide1);
 			SlideText1.setText( ds.getDataService().getDigital("SL"));
-			packet[76][TYPE] = "SL"; packet[76][FACTOR] = SlideText1.getText().toString() ; packet[76][VALUE] = String.valueOf(25);
+			packet[31][TYPE] = "SL"; packet[31][FACTOR] = SlideText1.getText().toString() ; packet[31][VALUE] = String.valueOf(25);
 			break;
 		case R.id.btnSensorSlide2 : 
 			TextView SlideText2 = (TextView)findViewById(R.id.txtSensorSlide2);
 			SlideText2.setText( ds.getDataService().getDigital("SL"));
-			packet[77][TYPE] = "SL"; packet[77][FACTOR] = SlideText2.getText().toString() ; packet[77][VALUE] = String.valueOf(20);
+			packet[32][TYPE] = "SL"; packet[32][FACTOR] = SlideText2.getText().toString() ; packet[32][VALUE] = String.valueOf(20);
 			break;
 		case R.id.btnSensorSlide3 :
 			TextView SlideText3 = (TextView)findViewById(R.id.txtSensorSlide3);
 			SlideText3.setText( ds.getDataService().getDigital("SL"));
-			packet[78][TYPE] = "SL"; packet[78][FACTOR] = SlideText3.getText().toString() ; packet[78][VALUE] = String.valueOf(15);
+			packet[33][TYPE] = "SL"; packet[33][FACTOR] = SlideText3.getText().toString() ; packet[33][VALUE] = String.valueOf(15);
 			break;
 		case R.id.btnSensorSlide4 : 
 			TextView SlideText4 = (TextView)findViewById(R.id.txtSensorSlide4);
 			SlideText4.setText( ds.getDataService().getDigital("SL"));
-			packet[79][TYPE] = "SL"; packet[79][FACTOR] = SlideText4.getText().toString() ; packet[79][VALUE] = String.valueOf(10);
+			packet[34][TYPE] = "SL"; packet[34][FACTOR] = SlideText4.getText().toString() ; packet[34][VALUE] = String.valueOf(10);
 			break;
 		case R.id.btnSensorSlide5 : 
 			TextView SlideText5 = (TextView)findViewById(R.id.txtSensorSlide5);
 			SlideText5.setText( ds.getDataService().getDigital("SL"));
-			packet[80][TYPE] = "SL"; packet[80][FACTOR] = SlideText5.getText().toString() ; packet[80][VALUE] = String.valueOf(5);
+			packet[35][TYPE] = "SL"; packet[35][FACTOR] = SlideText5.getText().toString() ; packet[35][VALUE] = String.valueOf(5);
 			break;
 		case R.id.btnSensorSlide6 : 
 			TextView SlideText6 = (TextView)findViewById(R.id.txtSensorSlide6);
 			SlideText6.setText( ds.getDataService().getDigital("SC"));
-			packet[81][TYPE] = "SC"; packet[81][FACTOR] = SlideText6.getText().toString() ; packet[81][VALUE] = String.valueOf(0);
+			packet[36][TYPE] = "SC"; packet[36][FACTOR] = SlideText6.getText().toString() ; packet[36][VALUE] = String.valueOf(0);
 			break;
 		case R.id.btnSensorSlide7 : 
 			TextView SlideText7 = (TextView)findViewById(R.id.txtSensorSlide7);
 			SlideText7.setText( ds.getDataService().getDigital("SR"));
-			packet[82][TYPE] = "SR"; packet[82][FACTOR] = SlideText7.getText().toString() ; packet[82][VALUE] = String.valueOf(5);
+			packet[37][TYPE] = "SR"; packet[37][FACTOR] = SlideText7.getText().toString() ; packet[37][VALUE] = String.valueOf(5);
 			break;
 		case R.id.btnSensorSlide8 : 
 			TextView SlideText8 = (TextView)findViewById(R.id.txtSensorSlide8);
 			SlideText8.setText( ds.getDataService().getDigital("SR"));
-			packet[83][TYPE] = "SR"; packet[83][FACTOR] = SlideText8.getText().toString() ; packet[83][VALUE] = String.valueOf(10);
+			packet[38][TYPE] = "SR"; packet[38][FACTOR] = SlideText8.getText().toString() ; packet[38][VALUE] = String.valueOf(10);
 			break;
 		case R.id.btnSensorSlide9 : 
 			TextView SlideText9 = (TextView)findViewById(R.id.txtSensorSlide9);
 			SlideText9.setText( ds.getDataService().getDigital("SR"));
-			packet[84][TYPE] = "SR"; packet[84][FACTOR] = SlideText9.getText().toString() ; packet[84][VALUE] = String.valueOf(15);
+			packet[39][TYPE] = "SR"; packet[39][FACTOR] = SlideText9.getText().toString() ; packet[39][VALUE] = String.valueOf(15);
 			break;
 		case R.id.btnSensorSlide10 : 
 			TextView SlideText10 = (TextView)findViewById(R.id.txtSensorSlide10);
 			SlideText10.setText( ds.getDataService().getDigital("SR"));
-			packet[85][TYPE] = "SR"; packet[85][FACTOR] = SlideText10.getText().toString() ; packet[85][VALUE] = String.valueOf(20);
+			packet[40][TYPE] = "SR"; packet[40][FACTOR] = SlideText10.getText().toString() ; packet[40][VALUE] = String.valueOf(20);
 			break;
 		case R.id.btnSensorSlide11 : 
 			TextView SlideText11 = (TextView)findViewById(R.id.txtSensorSlide11);
 			SlideText11.setText( ds.getDataService().getDigital("SR"));
-			packet[86][TYPE] = "SR"; packet[86][FACTOR] = SlideText11.getText().toString() ; packet[86][VALUE] = String.valueOf(25);
+			packet[41][TYPE] = "SR"; packet[41][FACTOR] = SlideText11.getText().toString() ; packet[41][VALUE] = String.valueOf(25);
 			break;
 		case R.id.btnSensorSlide12 : 
 			TextView SlideText12 = (TextView)findViewById(R.id.txtSensorSlide12);
 			SlideText12.setText( ds.getDataService().getDigital("SR"));
-			packet[87][TYPE] = "SR"; packet[87][FACTOR] = SlideText12.getText().toString() ; packet[87][VALUE] = String.valueOf(30);
+			packet[42][TYPE] = "SR"; packet[42][FACTOR] = SlideText12.getText().toString() ; packet[42][VALUE] = String.valueOf(30);
 			break;
 
 		case R.id.btnSave : 

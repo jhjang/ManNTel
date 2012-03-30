@@ -2,8 +2,7 @@ package com.manNtel.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,13 +16,11 @@ import com.manNtel.struct.GameStruct;
 public class Tutorial extends Activity 
 {
 	GameStruct user;
-	SoundPool pool;
-	int stream;
-
+	private static MediaPlayer mp;
+	
 	public void btnGame(View v)
 	{
-		pool.stop(stream);
-		pool.release();
+		mp.stop();
 		switch(v.getId())
 		{
 		case R.id.btnStart :
@@ -43,9 +40,7 @@ public class Tutorial extends Activity
 
 	public void btnMenu(View v)
 	{
-		pool.stop(stream);
-		pool.release();
-		
+		mp.stop();
 		switch(v.getId()){
 		case R.id.btnGoMain :
 			startActivity(new Intent(this, Main.class));
@@ -63,6 +58,10 @@ public class Tutorial extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tutorial);
 
+		//사운드 처리
+		mp = MediaPlayer.create(this, R.raw.playing);
+		mp.setLooping(true);
+		mp.start();		
 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);   
@@ -154,23 +153,7 @@ public class Tutorial extends Activity
 			break;
 		}
 		ProcessManager.getInstance().addActivity(this);
-
-		//사운드 추가
-		pool = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
-
-		pool.setOnLoadCompleteListener(mListener);
-		pool.load(this, R.raw.playing,1);
 	}
-
-	SoundPool.OnLoadCompleteListener mListener =
-			new SoundPool.OnLoadCompleteListener() {
-		@Override
-		public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-			if(status ==0){
-				stream = soundPool.play(sampleId, 1, 1, 0, 1, 1);
-			}
-		}
-	};
 
 	@Override
 	public void onDestroy(){
