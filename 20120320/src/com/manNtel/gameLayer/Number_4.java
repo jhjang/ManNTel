@@ -174,48 +174,6 @@ public class Number_4 extends GrowFlower {
 				waterDropAniRunFlag = true;
 			}
 		}	
-
-		//오른발
-		//		else{
-		//			if(inputPitch * incValue < CLEAR_ROTATE_VALUE){		
-		//				waterFlag = false;
-		//
-		//				waterDrop.stopAllActions();
-		//				waterDrop.runAction(CCHide.action());
-		//				waterAniRunFlag = false;
-		//				waterDropAniRunFlag = false;
-		//
-		//				if(inputPitch == 0){
-		//					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right1.png");
-		//					waterBucket.setTexture(texture);
-		//				}
-		//				else if(inputPitch * incValue <= CLEAR_ROTATE_VALUE){
-		//					texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right2.png");
-		//					waterBucket.setTexture(texture);
-		//				}
-		//
-		//			}
-		//			else if(inputPitch*incValue >= CLEAR_ROTATE_VALUE){
-		//
-		//				texture = CCTextureCache.sharedTextureCache().addImage("game4/can_right3.png");
-		//				waterBucket.setTexture(texture);
-		//
-		//				waterFlag = true;
-		//
-		//
-		//				if(!waterDropAniRunFlag){
-		//					CCAnimation waterAnimation = CCAnimation.animation("waterDrop");
-		//					waterAnimation.addFrame("game4/water_right1.png");
-		//					waterAnimation.addFrame("game4/water_right2.png");
-		//
-		//					CCAnimate waterani = CCAnimate.action(0.5f,waterAnimation,false);
-		//
-		//					waterDrop.runAction(CCShow.action());
-		//					waterDrop.runAction(CCRepeatForever.action(waterani));
-		//					waterDropAniRunFlag = true;
-		//				}
-		//			}	
-		//		}
 	}
 
 	//무게에 따른 효과

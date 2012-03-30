@@ -129,8 +129,7 @@ public class Number_5 extends MoveFlower{
 		//무게가 다 안되면 바로 리턴
 		if(!mWeightFlag || mSlideFlag){			
 			return;
-		}		
-		
+		}	
 		
 		//다음 이동 좌표 계산 후 이동  
 		float nextFlowerX = mStartX + (mDistance * mSlide / mUserSlide);		
@@ -149,8 +148,8 @@ public class Number_5 extends MoveFlower{
 		}	
 	}
 	
-	public void checkScore(float dt){
-		if(mBalance <= 0 && mSlide <=0){
+	public void checkScore(float dt){		
+		if((mBalance - mUserBal <=0) && mSlide <=0){
 			mScoreFlag = false;
 			mWeightFlag = false;
 			mSlideFlag = false;

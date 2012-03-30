@@ -2,6 +2,8 @@ package com.manNtel.gameLayer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,6 +20,8 @@ import com.manNtel.struct.GameStruct;
 
 public class GameQuit extends Activity {
 	private GameStruct mUser;
+	SoundPool pool;
+	int stream;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
     {	
@@ -64,14 +68,34 @@ public class GameQuit extends Activity {
     	dbm.close();    	
     	
     	ProcessManager.getInstance().addActivity(this);
+    	
+		//사운드 추가
+		pool = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+
+		pool.setOnLoadCompleteListener(mListener);
+		pool.load(this, R.raw.ending,1);
     }
 	
+	@Override
 	public void onDestroy(){
 		super.onDestroy();
 		ProcessManager.getInstance().deleteActivity(this);
 	}
 	
+	SoundPool.OnLoadCompleteListener mListener =
+			new SoundPool.OnLoadCompleteListener() {
+		@Override
+		public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+			if(status ==0){
+				stream = soundPool.play(sampleId, 1, 1, 0, 1, 1);
+			}
+		}
+	};
+	
 	public void onClick(View v){
+		pool.stop(stream);
+		pool.release();
+		
 		switch(v.getId()){
 		case R.id.btnMain : 
 			Intent intent = new Intent(this,Main.class);

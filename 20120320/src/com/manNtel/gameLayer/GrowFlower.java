@@ -27,7 +27,6 @@ import org.cocos2d.types.ccColor3B;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import com.android.manNtel_mid.R;

@@ -5,12 +5,9 @@ import org.cocos2d.actions.instant.CCHide;
 import org.cocos2d.actions.instant.CCShow;
 import org.cocos2d.actions.interval.CCAnimate;
 import org.cocos2d.nodes.CCAnimation;
-import org.cocos2d.opengl.CCTexture2D;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.struct.GameStruct;
@@ -95,15 +92,11 @@ public class Number_6 extends GrowFlower {
 			return;
 		}
 	}
-	
+
 
 	//롤링에 따른 효과
 	public void increaseAngle(float dt)
 	{	
-		CCTexture2D texture;
-
-		//위치 변경 부분
-
 		//왼 발
 		if(mUser.part.equals("좌")){
 			if(inputRoll>=0){
@@ -158,7 +151,7 @@ public class Number_6 extends GrowFlower {
 			else{ 
 				progressTimer.setPercentage(0);
 			}
-			
+
 			if(inputRoll * incValue < CLEAR_ROTATE_VALUE){		
 				waterFlag = false;
 
