@@ -92,6 +92,7 @@
     <string name="msgWelcome">님 환영합니다.</string>
     <string name="msgGameSel">실행할 게임을 선택해 주세요.</string>
     <string name="msgLevelSel">게임의 난이도를 골라주세요.</string>
+    <string name="dlgDbToFile">Export Database</string> 
 
     <!-- 튜토리얼 메시지 -->
     <string name="tutGame1_1">화분 옮기기 게임을 시작합니다.</string>
@@ -220,6 +221,7 @@
     <string name="dlgSaveContent">설정 Data를 EEPROM에 저장하시겠습니까?</string>
     <string name="dlgLoadContent">설정 Data를 EEPROM에서 읽어오시겠습니까?</string>
     <string name="dlgDebugContent">디버그 모드로 동작 하시겠습니까?</string>
+    <string name="dlgDBContent">Database를 추출하시겠습니까?</string>
     <string name="dlgYes">예</string>
     <string name="dlgNo">아니오</string>
 

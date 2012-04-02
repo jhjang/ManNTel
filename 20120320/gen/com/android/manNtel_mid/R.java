@@ -47,14 +47,15 @@ public final class R {
     }
     public static final class id {
         public static final int addList=0x7f060039;
-        public static final int balLeft=0x7f0600b6;
-        public static final int balRight=0x7f0600b7;
+        public static final int balLeft=0x7f0600b7;
+        public static final int balRight=0x7f0600b8;
         public static final int btnBirth=0x7f060002;
-        public static final int btnChoiceGame=0x7f0600b0;
+        public static final int btnChoiceGame=0x7f0600b1;
         public static final int btnClose=0x7f060006;
+        public static final int btnDB=0x7f0600aa;
         public static final int btnDebug=0x7f0600a9;
-        public static final int btnExit=0x7f0600bc;
-        public static final int btnGame=0x7f0600bb;
+        public static final int btnExit=0x7f0600bd;
+        public static final int btnGame=0x7f0600bc;
         public static final int btnGame1=0x7f060019;
         public static final int btnGame2=0x7f06001a;
         public static final int btnGame3=0x7f06001b;
@@ -62,7 +63,7 @@ public final class R {
         public static final int btnGame5=0x7f06001d;
         public static final int btnGame6=0x7f06001e;
         public static final int btnGoMain=0x7f060007;
-        public static final int btnLayout=0x7f0600ab;
+        public static final int btnLayout=0x7f0600ac;
         public static final int btnLevel1=0x7f060033;
         public static final int btnLevel2=0x7f060034;
         public static final int btnLevel3=0x7f060035;
@@ -129,9 +130,9 @@ public final class R {
         public static final int btnSex=0x7f060003;
         public static final int btnShutdown=0x7f060008;
         public static final int btnShutdown2=0x7f060010;
-        public static final int btnStart=0x7f0600af;
+        public static final int btnStart=0x7f0600b0;
         public static final int btnSysSetting=0x7f06000f;
-        public static final int btnTest=0x7f0600ba;
+        public static final int btnTest=0x7f0600bb;
         public static final int btnUserInfo=0x7f06000d;
         public static final int btnValUser=0x7f06000c;
         public static final int edtID=0x7f060001;
@@ -148,14 +149,14 @@ public final class R {
         public static final int edtSetLevel4=0x7f06002a;
         public static final int edtSetLevel5=0x7f06002b;
         public static final int exit=0x7f06003b;
-        public static final int imgTuto=0x7f0600ae;
+        public static final int imgTuto=0x7f0600af;
         public static final int layoutDebug=0x7f060098;
         public static final int list=0x7f060038;
-        public static final int listLayout=0x7f0600aa;
-        public static final int maxAngle=0x7f0600b8;
-        public static final int maxWeight=0x7f0600b9;
-        public static final int name=0x7f0600b3;
-        public static final int part=0x7f0600b5;
+        public static final int listLayout=0x7f0600ab;
+        public static final int maxAngle=0x7f0600b9;
+        public static final int maxWeight=0x7f0600ba;
+        public static final int name=0x7f0600b4;
+        public static final int part=0x7f0600b6;
         public static final int partleft=0x7f060030;
         public static final int partright=0x7f060031;
         public static final int scrollLeftLoad=0x7f06003c;
@@ -168,7 +169,7 @@ public final class R {
         public static final int setLevelLayout=0x7f060026;
         public static final int setSlideLayout=0x7f06002c;
         public static final int setting=0x7f06003a;
-        public static final int sex=0x7f0600b4;
+        public static final int sex=0x7f0600b5;
         public static final int slideSeekBar=0x7f06002d;
         public static final int slideSeekValue=0x7f06002e;
         public static final int textAngle=0x7f06009d;
@@ -230,11 +231,11 @@ public final class R {
         public static final int txtSensorSlide7=0x7f06008d;
         public static final int txtSensorSlide8=0x7f06008f;
         public static final int txtSensorSlide9=0x7f060091;
-        public static final int txtTuto1=0x7f0600ac;
-        public static final int txtTuto2=0x7f0600ad;
+        public static final int txtTuto1=0x7f0600ad;
+        public static final int txtTuto2=0x7f0600ae;
         public static final int txtWelcome=0x7f06000a;
-        public static final int userAge=0x7f0600b2;
-        public static final int userid=0x7f0600b1;
+        public static final int userAge=0x7f0600b3;
+        public static final int userid=0x7f0600b2;
     }
     public static final class layout {
         public static final int adduser=0x7f030000;
@@ -262,95 +263,97 @@ public final class R {
         public static final int playing=0x7f040001;
     }
     public static final class string {
-        public static final int EvalLabel=0x7f050074;
+        public static final int EvalLabel=0x7f050075;
         /**  재활 게임 이력 
          */
-        public static final int GameRecordDate=0x7f0500ab;
-        public static final int GameRecordLevel=0x7f0500ae;
-        public static final int GameRecordNum=0x7f0500ad;
-        public static final int GameRecordPlayTime=0x7f0500af;
-        public static final int GameRecordScore=0x7f0500b0;
-        public static final int GameRecordTimes=0x7f0500ac;
-        public static final int GameRecordTitle=0x7f0500b1;
-        public static final int SensorLabel=0x7f050076;
-        public static final int SystemLabel=0x7f050075;
-        public static final int addUserLabel=0x7f050066;
-        public static final int addUser_ID=0x7f0500c1;
-        public static final int addUser_birth=0x7f0500c2;
-        public static final int addUser_birthChoice=0x7f0500c3;
-        public static final int addUser_name=0x7f0500c0;
-        public static final int addUser_part=0x7f0500c6;
-        public static final int addUser_partChoice=0x7f0500c7;
-        public static final int addUser_sex=0x7f0500c4;
-        public static final int addUser_sexChoice=0x7f0500c5;
-        public static final int angleWeightDesp=0x7f0500cd;
-        public static final int angleWeightMaxAngle=0x7f0500ce;
-        public static final int angleWeightMaxWeight=0x7f0500cf;
+        public static final int GameRecordDate=0x7f0500ac;
+        public static final int GameRecordLevel=0x7f0500af;
+        public static final int GameRecordNum=0x7f0500ae;
+        public static final int GameRecordPlayTime=0x7f0500b0;
+        public static final int GameRecordScore=0x7f0500b1;
+        public static final int GameRecordTimes=0x7f0500ad;
+        public static final int GameRecordTitle=0x7f0500b2;
+        public static final int SensorLabel=0x7f050077;
+        public static final int SystemLabel=0x7f050076;
+        public static final int addUserLabel=0x7f050067;
+        public static final int addUser_ID=0x7f0500c3;
+        public static final int addUser_birth=0x7f0500c4;
+        public static final int addUser_birthChoice=0x7f0500c5;
+        public static final int addUser_name=0x7f0500c2;
+        public static final int addUser_part=0x7f0500c8;
+        public static final int addUser_partChoice=0x7f0500c9;
+        public static final int addUser_sex=0x7f0500c6;
+        public static final int addUser_sexChoice=0x7f0500c7;
+        public static final int angleWeightDesp=0x7f0500cf;
+        public static final int angleWeightMaxAngle=0x7f0500d0;
+        public static final int angleWeightMaxWeight=0x7f0500d1;
         /**  App Name 
          */
-        public static final int appName=0x7f050062;
-        public static final int bal_stance=0x7f0500c9;
-        public static final int bal_stanceReady=0x7f0500ca;
-        public static final int bal_startCount=0x7f0500cb;
+        public static final int appName=0x7f050063;
+        public static final int bal_stance=0x7f0500cb;
+        public static final int bal_stanceReady=0x7f0500cc;
+        public static final int bal_startCount=0x7f0500cd;
         /**  발란스 측정 
          */
-        public static final int bal_totWeight=0x7f0500c8;
-        public static final int balanceLabel=0x7f050068;
-        public static final int btnChoiceGame=0x7f050092;
-        public static final int btnDebug=0x7f050097;
-        public static final int btnDelete=0x7f05007a;
-        public static final int btnEvalComp=0x7f05007c;
-        public static final int btnExit=0x7f05007d;
-        public static final int btnGameRecord=0x7f05007f;
-        public static final int btnGetUserInfo=0x7f050079;
-        public static final int btnGoMain=0x7f050082;
-        public static final int btnInputOK=0x7f050086;
-        public static final int btnLevel1=0x7f05008c;
-        public static final int btnLevel2=0x7f05008d;
-        public static final int btnLevel3=0x7f05008e;
-        public static final int btnLevel4=0x7f05008f;
-        public static final int btnLevel5=0x7f050090;
-        public static final int btnMain=0x7f050081;
-        public static final int btnNext=0x7f050085;
-        public static final int btnNextPage=0x7f050078;
-        public static final int btnOtherUser=0x7f050080;
-        public static final int btnPrev=0x7f050084;
+        public static final int bal_totWeight=0x7f0500ca;
+        public static final int balanceLabel=0x7f050069;
+        public static final int btnChoiceGame=0x7f050093;
+        public static final int btnDebug=0x7f050098;
+        public static final int btnDelete=0x7f05007b;
+        public static final int btnEvalComp=0x7f05007d;
+        public static final int btnExit=0x7f05007e;
+        public static final int btnGameRecord=0x7f050080;
+        public static final int btnGetUserInfo=0x7f05007a;
+        public static final int btnGoMain=0x7f050083;
+        public static final int btnInputOK=0x7f050087;
+        public static final int btnLevel1=0x7f05008d;
+        public static final int btnLevel2=0x7f05008e;
+        public static final int btnLevel3=0x7f05008f;
+        public static final int btnLevel4=0x7f050090;
+        public static final int btnLevel5=0x7f050091;
+        public static final int btnMain=0x7f050082;
+        public static final int btnNext=0x7f050086;
+        public static final int btnNextPage=0x7f050079;
+        public static final int btnOtherUser=0x7f050081;
+        public static final int btnPrev=0x7f050085;
         /**  버튼 
          */
-        public static final int btnPrevPage=0x7f050077;
-        public static final int btnRomLoad=0x7f050096;
-        public static final int btnRomSave=0x7f050095;
-        public static final int btnSave=0x7f050093;
-        public static final int btnSelGame=0x7f050087;
-        public static final int btnSelectOK=0x7f05007b;
-        public static final int btnSensor=0x7f050094;
-        public static final int btnSetting=0x7f05008a;
-        public static final int btnShutdown=0x7f050083;
-        public static final int btnStart=0x7f050091;
-        public static final int btnSysSetting=0x7f05008b;
-        public static final int btnUserInfo=0x7f050089;
-        public static final int btnValRecord=0x7f05007e;
-        public static final int btnValUser=0x7f050088;
-        public static final int chkGameBalLabel=0x7f05006e;
+        public static final int btnPrevPage=0x7f050078;
+        public static final int btnRomLoad=0x7f050097;
+        public static final int btnRomSave=0x7f050096;
+        public static final int btnSave=0x7f050094;
+        public static final int btnSelGame=0x7f050088;
+        public static final int btnSelectOK=0x7f05007c;
+        public static final int btnSensor=0x7f050095;
+        public static final int btnSetting=0x7f05008b;
+        public static final int btnShutdown=0x7f050084;
+        public static final int btnStart=0x7f050092;
+        public static final int btnSysSetting=0x7f05008c;
+        public static final int btnUserInfo=0x7f05008a;
+        public static final int btnValRecord=0x7f05007f;
+        public static final int btnValUser=0x7f050089;
+        public static final int chkGameBalLabel=0x7f05006f;
         public static final int dlgClose=0x7f050046;
-        public static final int dlgDebugContent=0x7f0500b5;
-        public static final int dlgLoadContent=0x7f0500b4;
-        public static final int dlgNo=0x7f0500b7;
-        public static final int dlgPartContent=0x7f0500bd;
-        public static final int dlgPartLeft=0x7f0500be;
-        public static final int dlgPartRight=0x7f0500bf;
-        public static final int dlgPartTitle=0x7f0500bc;
-        public static final int dlgSaveContent=0x7f0500b3;
-        public static final int dlgSexContent=0x7f0500b9;
-        public static final int dlgSexFemale=0x7f0500bb;
-        public static final int dlgSexMale=0x7f0500ba;
+        public static final int dlgDBContent=0x7f0500b7;
+        public static final int dlgDbToFile=0x7f05004a;
+        public static final int dlgDebugContent=0x7f0500b6;
+        public static final int dlgLoadContent=0x7f0500b5;
+        public static final int dlgNo=0x7f0500b9;
+        public static final int dlgPartContent=0x7f0500bf;
+        public static final int dlgPartLeft=0x7f0500c0;
+        public static final int dlgPartRight=0x7f0500c1;
+        public static final int dlgPartTitle=0x7f0500be;
+        public static final int dlgSaveContent=0x7f0500b4;
+        public static final int dlgSexContent=0x7f0500bb;
+        public static final int dlgSexFemale=0x7f0500bd;
+        public static final int dlgSexMale=0x7f0500bc;
         /**  사용자 추가 
          */
-        public static final int dlgSexTitle=0x7f0500b8;
+        public static final int dlgSexTitle=0x7f0500ba;
         /**  환경 설정 
          */
-        public static final int dlgSysTitle=0x7f0500b2;
-        public static final int dlgYes=0x7f0500b6;
+        public static final int dlgSysTitle=0x7f0500b3;
+        public static final int dlgYes=0x7f0500b8;
         public static final int game1End=0x7f050029;
         public static final int game1MovingLeft=0x7f050027;
         public static final int game1MovingRight=0x7f050028;
@@ -367,19 +370,19 @@ public final class R {
         public static final int game6Pitch=0x7f05002f;
         public static final int gameDecreaseWeight=0x7f050033;
         public static final int gameGrownFlower=0x7f050036;
-        public static final int gameMainLabel=0x7f05006d;
+        public static final int gameMainLabel=0x7f05006e;
         /**  게임 라벨 
          */
         public static final int gameMovedPot=0x7f050035;
         public static final int gameMovingNow=0x7f050034;
         /**  게임 메뉴 
          */
-        public static final int gameNum1=0x7f05005c;
-        public static final int gameNum2=0x7f05005d;
-        public static final int gameNum3=0x7f05005e;
-        public static final int gameNum4=0x7f05005f;
-        public static final int gameNum5=0x7f050060;
-        public static final int gameNum6=0x7f050061;
+        public static final int gameNum1=0x7f05005d;
+        public static final int gameNum2=0x7f05005e;
+        public static final int gameNum3=0x7f05005f;
+        public static final int gameNum4=0x7f050060;
+        public static final int gameNum5=0x7f050061;
+        public static final int gameNum6=0x7f050062;
         /**  한개 두개 할때 그 개 
          */
         public static final int gamePlayTime=0x7f050038;
@@ -393,40 +396,40 @@ public final class R {
         /**  게임종료 
          */
         public static final int gameQuitWho=0x7f050006;
-        public static final int gameRecordLabel=0x7f050073;
+        public static final int gameRecordLabel=0x7f050074;
         public static final int gameSecond=0x7f050031;
-        public static final int gameSelectLabel=0x7f05006f;
-        public static final int gameSettingLabel=0x7f050072;
+        public static final int gameSelectLabel=0x7f050070;
+        public static final int gameSettingLabel=0x7f050073;
         public static final int gameSuccess=0x7f050032;
-        public static final int info_Age=0x7f0500a2;
-        public static final int info_AngleWeight=0x7f0500a8;
-        public static final int info_BalLeft=0x7f0500a6;
-        public static final int info_BalRight=0x7f0500a7;
-        public static final int info_Balance=0x7f0500a5;
+        public static final int info_Age=0x7f0500a3;
+        public static final int info_AngleWeight=0x7f0500a9;
+        public static final int info_BalLeft=0x7f0500a7;
+        public static final int info_BalRight=0x7f0500a8;
+        public static final int info_Balance=0x7f0500a6;
         /**  사용자 정보 
          */
-        public static final int info_ID=0x7f0500a0;
-        public static final int info_MaxAngle=0x7f0500a9;
-        public static final int info_MaxWeight=0x7f0500aa;
-        public static final int info_Name=0x7f0500a1;
-        public static final int info_Part=0x7f0500a4;
-        public static final int info_Sex=0x7f0500a3;
-        public static final int levelSelectLabel=0x7f050070;
-        public static final int list_userBirth=0x7f05009e;
-        public static final int list_userID=0x7f05009d;
+        public static final int info_ID=0x7f0500a1;
+        public static final int info_MaxAngle=0x7f0500aa;
+        public static final int info_MaxWeight=0x7f0500ab;
+        public static final int info_Name=0x7f0500a2;
+        public static final int info_Part=0x7f0500a5;
+        public static final int info_Sex=0x7f0500a4;
+        public static final int levelSelectLabel=0x7f050071;
+        public static final int list_userBirth=0x7f05009f;
+        public static final int list_userID=0x7f05009e;
         /**  사용자 목록 
          */
-        public static final int list_userName=0x7f05009c;
-        public static final int list_userRecentCon=0x7f05009f;
+        public static final int list_userName=0x7f05009d;
+        public static final int list_userRecentCon=0x7f0500a0;
         /**  Activity Label 
          */
-        public static final int mainMenuLabel=0x7f050063;
-        public static final int main_adduser=0x7f050099;
-        public static final int main_exit=0x7f05009b;
+        public static final int mainMenuLabel=0x7f050064;
+        public static final int main_adduser=0x7f05009a;
+        public static final int main_exit=0x7f05009c;
         /**  메인 메뉴 
          */
-        public static final int main_list=0x7f050098;
-        public static final int main_setting=0x7f05009a;
+        public static final int main_list=0x7f050099;
+        public static final int main_setting=0x7f05009b;
         public static final int menuBack=0x7f05003b;
         public static final int menuEndGame=0x7f05003e;
         public static final int menuMain=0x7f050039;
@@ -440,9 +443,9 @@ public final class R {
         /**  메시지 
          */
         public static final int notification=0x7f05003f;
-        public static final int partChoiceLabel=0x7f050067;
-        public static final int pitchDesp=0x7f0500d0;
-        public static final int pitchMaxPitch=0x7f0500d1;
+        public static final int partChoiceLabel=0x7f050068;
+        public static final int pitchDesp=0x7f0500d2;
+        public static final int pitchMaxPitch=0x7f0500d3;
         public static final int recordAbility=0x7f050013;
         public static final int recordAngle=0x7f050014;
         public static final int recordBalance=0x7f05000f;
@@ -457,8 +460,8 @@ public final class R {
         public static final int recordWeight=0x7f050012;
         public static final int recordWeightLeft=0x7f050010;
         public static final int recordWeightRight=0x7f050011;
-        public static final int rollDesp=0x7f0500d2;
-        public static final int rollMaxRoll=0x7f0500d3;
+        public static final int rollDesp=0x7f0500d4;
+        public static final int rollMaxRoll=0x7f0500d5;
         public static final int sensorGetData=0x7f050005;
         /**  센서설정 
          */
@@ -466,37 +469,37 @@ public final class R {
         public static final int sensorRollDefault=0x7f050003;
         public static final int sensorSlideDefault=0x7f050004;
         public static final int sensorTiltDefault=0x7f050002;
-        public static final int setAngleWeightLabel=0x7f050069;
-        public static final int setPitchingLabel=0x7f05006b;
-        public static final int setRollingLabel=0x7f05006a;
-        public static final int setSlidingLabel=0x7f05006c;
-        public static final int slideDesp=0x7f0500d4;
-        public static final int slideMaxSlide=0x7f0500d5;
+        public static final int setAngleWeightLabel=0x7f05006a;
+        public static final int setPitchingLabel=0x7f05006c;
+        public static final int setRollingLabel=0x7f05006b;
+        public static final int setSlidingLabel=0x7f05006d;
+        public static final int slideDesp=0x7f0500d6;
+        public static final int slideMaxSlide=0x7f0500d7;
         /**  Defalut Language 
  공백 
          */
         public static final int space=0x7f050000;
         /**  튜토리얼 메시지 
          */
-        public static final int tutGame1_1=0x7f05004a;
-        public static final int tutGame1_2_Left=0x7f05004b;
-        public static final int tutGame1_2_Right=0x7f05004c;
-        public static final int tutGame2_1=0x7f05004d;
-        public static final int tutGame2_2_Left=0x7f05004e;
-        public static final int tutGame2_2_Right=0x7f05004f;
-        public static final int tutGame3_1=0x7f050050;
-        public static final int tutGame3_2_Left=0x7f050051;
-        public static final int tutGame3_2_Right=0x7f050052;
-        public static final int tutGame4_1=0x7f050053;
-        public static final int tutGame4_2_Left=0x7f050054;
-        public static final int tutGame4_2_Right=0x7f050055;
-        public static final int tutGame5_1=0x7f050056;
-        public static final int tutGame5_2_Left=0x7f050057;
-        public static final int tutGame5_2_Right=0x7f050058;
-        public static final int tutGame6_1=0x7f050059;
-        public static final int tutGame6_2_Left=0x7f05005a;
-        public static final int tutGame6_2_Right=0x7f05005b;
-        public static final int tutorialLabel=0x7f050071;
+        public static final int tutGame1_1=0x7f05004b;
+        public static final int tutGame1_2_Left=0x7f05004c;
+        public static final int tutGame1_2_Right=0x7f05004d;
+        public static final int tutGame2_1=0x7f05004e;
+        public static final int tutGame2_2_Left=0x7f05004f;
+        public static final int tutGame2_2_Right=0x7f050050;
+        public static final int tutGame3_1=0x7f050051;
+        public static final int tutGame3_2_Left=0x7f050052;
+        public static final int tutGame3_2_Right=0x7f050053;
+        public static final int tutGame4_1=0x7f050054;
+        public static final int tutGame4_2_Left=0x7f050055;
+        public static final int tutGame4_2_Right=0x7f050056;
+        public static final int tutGame5_1=0x7f050057;
+        public static final int tutGame5_2_Left=0x7f050058;
+        public static final int tutGame5_2_Right=0x7f050059;
+        public static final int tutGame6_1=0x7f05005a;
+        public static final int tutGame6_2_Left=0x7f05005b;
+        public static final int tutGame6_2_Right=0x7f05005c;
+        public static final int tutorialLabel=0x7f050072;
         /**  환경설정 
          */
         public static final int txtGameOpt1=0x7f050019;
@@ -511,11 +514,11 @@ public final class R {
         public static final int txtLevelOpt4=0x7f050022;
         public static final int txtLevelOpt5=0x7f050023;
         public static final int txtLevelOptDef=0x7f050024;
-        public static final int userInfoLabel=0x7f050065;
-        public static final int userListLabel=0x7f050064;
+        public static final int userInfoLabel=0x7f050066;
+        public static final int userListLabel=0x7f050065;
         /**  각,하중,롤링,피칭,슬라이딩 
          */
-        public static final int valComplete=0x7f0500cc;
+        public static final int valComplete=0x7f0500ce;
         public static final int warning=0x7f050041;
         public static final int wrongID=0x7f050043;
         public static final int wrongName=0x7f050042;

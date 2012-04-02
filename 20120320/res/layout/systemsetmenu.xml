@@ -45,6 +45,16 @@
         android:text="@string/btnDebug"
         android:textColor="#083762"
         android:textSize="30px" />
+    
+    <Button
+        android:id="@+id/btnDB"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="@string/dlgDbToFile"
+        android:textColor="#083762"
+        android:textSize="20px" />
 
     <Button
         android:id="@+id/btnClose"
@@ -56,5 +66,5 @@
         android:text="@string/dlgClose"
         android:textColor="#083762"
         android:textSize="20px" />
-
+    
 </LinearLayout>

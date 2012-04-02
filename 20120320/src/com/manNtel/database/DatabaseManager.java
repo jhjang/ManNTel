@@ -27,7 +27,7 @@ public class DatabaseManager
 
 		@Override
 		public void onCreate(SQLiteDatabase db)
-		{		
+		{				
 			db.execSQL("CREATE TABLE " + DBCon.USERINFO + " (" + DBCon.KEY + 		" VARCHAR(15) PRIMARY KEY, " 
 					+ DBCon.ID + 		" text, " 
 					+ DBCon.NAME + 		" text, "
@@ -172,7 +172,9 @@ public class DatabaseManager
 		{		
 			return mDb.query(DBCon.GAMERECORD, new String[] {DBCon.KEY, DBCon.NAME, DBCon.PLAYDATE, DBCon.PART, DBCon.TIMES, DBCon.GAMENUM, DBCon.LEVEL, DBCon.PLAYTIME, DBCon.SCORE}, null, null, null, null, null);
 		}
-		else
+		else if(flag==2){
+			return mDb.query(DBCon.EVALRECORD, new String[] {DBCon.KEY,DBCon.PLAYDATE, DBCon.LEFTBAL, DBCon.RIGHTBAL, DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE}, null, null, null, null, null);
+		}
 			return null;		
 	}
 
@@ -226,4 +228,12 @@ public class DatabaseManager
 
 		return mDb.update(DBCon.USERINFO, args, DBCon.KEY + "=" + "\"" + rowId + "\"", null) > 0;
 	}	
+	
+	public void exportToCsv(){
+		Log.i("[DatabaseManager]","export start.....");
+		
+		
+		
+		Log.i("[DatabaseManager]","export end.....");
+	}
 }

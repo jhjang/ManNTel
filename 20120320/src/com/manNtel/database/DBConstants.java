@@ -11,6 +11,7 @@ public final class DBConstants implements BaseColumns
 		public static final String 	DBPATH = "/data/data/com.android.manNtel_mid/databases/";
 		
 		public static final String	DB_NAME = "manNtel.db";
+		
 		//Version
 		public static final int 	DB_VERSION = 1;
 		
