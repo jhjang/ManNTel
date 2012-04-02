@@ -2,13 +2,22 @@ package com.manNtel.database;
 
 //
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.manNtel.database.DBConstants.DBCon;
 import com.manNtel.struct.EvalStruct;
@@ -44,7 +53,7 @@ public class DatabaseManager
 					+ DBCon.SLIDE + 	" Integer, "
 					+ DBCon.RECENTCON + 	" text);");
 			Log.i("[DatabaseManager]", "User List Table Created");
-			
+
 			db.execSQL("CREATE TABLE " + DBCon.GAMERECORD + " (idx Integer PRIMARY KEY AUTOINCREMENT, " 
 					+ DBCon.KEY + 			" text, "
 					+ DBCon.NAME + 			" text, "
@@ -56,7 +65,7 @@ public class DatabaseManager
 					+ DBCon.PLAYTIME + 		" text, "
 					+ DBCon.SCORE + 		" Integer);");			
 			Log.i("[DatabaseManager]", "Game Record Table Created");
-			
+
 			db.execSQL("CREATE TABLE " + DBCon.EVALRECORD + " (idx Integer PRIMARY KEY AUTOINCREMENT, " 
 					+ DBCon.KEY + 			" text, "					
 					+ DBCon.PLAYDATE + 		" text, "
@@ -92,7 +101,7 @@ public class DatabaseManager
 	public long addItem(EvalStruct newUser) 
 	{
 		ContentValues args = new ContentValues();
-				
+
 		args.put(DBCon.KEY, newUser.mKey);
 		args.put(DBCon.PLAYDATE, newUser.mDate);
 		args.put(DBCon.LEFTBAL, newUser.mLeftBal);
@@ -149,24 +158,24 @@ public class DatabaseManager
 	{
 		mDbHelper.close();
 	}
-	
+
 	public void deleteItem(String rowID)
 	{
 		Log.i("[DELETE]","value of " + rowID);		
 		String sql = "DELETE FROM " + DBCon.USERINFO + " WHERE " + DBCon.KEY + " = " +  "\"" + rowID + "\"" + ";";		
-		
+
 		mDb.execSQL(sql);		
 	}
 
 	public Cursor fetchAllItems(int flag)
 	{
-		//0 : »ç¿ëÀÚ ¸ñ·Ï 1:°ÔÀÓÀÌ·Â 2:Æò°¡ÀÌ·Â
-		
+		//0 : å ì™ì˜™å ì™ì˜™å ï¿½å ì™ì˜™å ï¿½1:å ì™ì˜™å ì™ì˜™å ì‹±ë¤„ì˜™ 2:å ì™ì˜™å ì‹±ë¤„ì˜™
+
 		if(flag==0)
 		{
 			return mDb.query(DBCon.USERINFO, new String[] {DBCon.KEY, DBCon.ID, DBCon.NAME, DBCon.BIRTH, DBCon.AGE, DBCon.SEX,DBCon.PART, DBCon.LEFTBAL, DBCon.RIGHTBAL, 
-				DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE, DBCon.RECENTCON}, 
-				null,null,null,null,null);
+					DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE, DBCon.RECENTCON}, 
+					null,null,null,null,null);
 		}
 		else if(flag==1)
 		{		
@@ -175,7 +184,7 @@ public class DatabaseManager
 		else if(flag==2){
 			return mDb.query(DBCon.EVALRECORD, new String[] {DBCon.KEY,DBCon.PLAYDATE, DBCon.LEFTBAL, DBCon.RIGHTBAL, DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE}, null, null, null, null, null);
 		}
-			return null;		
+		return null;		
 	}
 
 	public Cursor fetchItem(int flag, String rowId) throws SQLException
@@ -185,26 +194,26 @@ public class DatabaseManager
 		if(flag==0)
 		{
 			mCursor =		
-				mDb.query(true, DBCon.USERINFO, new String[] {DBCon.KEY, DBCon.ID, DBCon.NAME, DBCon.BIRTH, DBCon.AGE, DBCon.SEX,DBCon.PART, DBCon.LEFTBAL, DBCon.RIGHTBAL,
-						DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE, DBCon.RECENTCON},				
-						DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, null,null);			
+					mDb.query(true, DBCon.USERINFO, new String[] {DBCon.KEY, DBCon.ID, DBCon.NAME, DBCon.BIRTH, DBCon.AGE, DBCon.SEX,DBCon.PART, DBCon.LEFTBAL, DBCon.RIGHTBAL,
+							DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE, DBCon.RECENTCON},				
+							DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, null,null);			
 		}
-		
-		
+
+
 		else if(flag==1)
 		{
 			mCursor = 
-				mDb.query(true, DBCon.GAMERECORD, new String[] {DBCon.KEY, DBCon.NAME, DBCon.PLAYDATE, DBCon.PART, DBCon.TIMES, DBCon.GAMENUM, DBCon.LEVEL, DBCon.PLAYTIME, DBCon.SCORE}, 
-						DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, DBCon.TIMES + " desc", null);
+					mDb.query(true, DBCon.GAMERECORD, new String[] {DBCon.KEY, DBCon.NAME, DBCon.PLAYDATE, DBCon.PART, DBCon.TIMES, DBCon.GAMENUM, DBCon.LEVEL, DBCon.PLAYTIME, DBCon.SCORE}, 
+							DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, DBCon.TIMES + " desc", null);
 		}
-		
+
 		else if(flag==2)
 		{
 			mCursor = 
-				mDb.query(true, DBCon.EVALRECORD, new String[] {"idx", DBCon.KEY, DBCon.PLAYDATE, DBCon.LEFTBAL, DBCon.RIGHTBAL, DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE}, 
-						DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, "idx" + " desc", null);
+					mDb.query(true, DBCon.EVALRECORD, new String[] {"idx", DBCon.KEY, DBCon.PLAYDATE, DBCon.LEFTBAL, DBCon.RIGHTBAL, DBCon.ANGLE, DBCon.WEIGHT, DBCon.ROLL, DBCon.PITCH, DBCon.SLIDE}, 
+							DBCon.KEY + "=" + "\"" + rowId + "\"", null, null, null, "idx" + " desc", null);
 		}
-		
+
 		if (mCursor != null) 	
 		{
 			mCursor.moveToFirst();
@@ -223,17 +232,133 @@ public class DatabaseManager
 	public boolean updateItem(String rowId, String data) 
 	{
 		ContentValues args = new ContentValues();
-     
+
 		args.put(DBCon.RECENTCON, data);		
 
 		return mDb.update(DBCon.USERINFO, args, DBCon.KEY + "=" + "\"" + rowId + "\"", null) > 0;
 	}	
-	
+
 	public void exportToCsv(){
 		Log.i("[DatabaseManager]","export start.....");
-		
-		
-		
+
+		Cursor userListCursor = this.fetchAllItems(0);
+		Cursor gameRecordCursor = this.fetchAllItems(1);
+		Cursor evalRecordCursor = this.fetchAllItems(2);
+
+		userListCursor.moveToFirst();
+		gameRecordCursor.moveToFirst();
+		evalRecordCursor.moveToFirst();
+		File saveFile = null;
+
+		try{
+			String dirPath = mContext.getFilesDir().getAbsolutePath();
+			File file = new File(dirPath);
+
+			if(Environment.getExternalStorageState().equals("mounted")){
+				Toast.makeText(mContext, "Save to SDCard", Toast.LENGTH_SHORT).show();
+				
+				saveFile = new File(Environment.getExternalStorageDirectory()+"/db.csv");				 
+			} else{
+				Log.i("[SavePath]","Save to Local");
+				if(!file.exists()){
+					file.mkdir();
+					Toast.makeText(mContext, "Make Directory", Toast.LENGTH_SHORT).show();
+				}
+				Toast.makeText(mContext, "Save to Local", Toast.LENGTH_SHORT).show();
+				saveFile = new File(dirPath+"/db.csv");
+			}				
+
+			String userListCol = "";
+			String gameRecordCol = "";
+			String evalRecordCol = "";
+
+			String userList="";
+			String gameRecord="";
+			String evalRecord="";
+
+			for(int i=0;i<userListCursor.getColumnCount();i++){
+				if(i==userListCursor.getColumnCount()-1){
+					userListCol = userListCol + userListCursor.getColumnName(i)+"\n";					
+					break;
+				}				
+				userListCol+=userListCursor.getColumnName(i) + ",";				
+			}
+
+			for(int i=0;i<userListCursor.getCount();i++){
+				for(int j=0;j<userListCursor.getColumnCount();j++){
+					if(j==userListCursor.getColumnCount()-1){
+						userList += userListCursor.getString(j) + "\n";
+						break;
+					}
+					userList += userListCursor.getString(j) + ",";
+				}
+				userListCursor.moveToNext();
+			}
+			
+			for(int i=0;i<gameRecordCursor.getColumnCount();i++){
+				if(i==gameRecordCursor.getColumnCount()-1){
+					gameRecordCol = gameRecordCol + gameRecordCursor.getColumnName(i)+"\n";					
+					break;
+				}				
+				gameRecordCol+=gameRecordCursor.getColumnName(i) + ",";				
+			}
+
+			for(int i=0;i<gameRecordCursor.getCount();i++){
+				for(int j=0;j<gameRecordCursor.getColumnCount();j++){
+					if(j==gameRecordCursor.getColumnCount()-1){
+						gameRecord += gameRecordCursor.getString(j) + "\n";
+						break;
+					}
+					gameRecord += gameRecordCursor.getString(j) + ",";
+				}				
+				gameRecordCursor.moveToNext();				
+			}
+			
+			for(int i=0;i<evalRecordCursor.getColumnCount();i++){
+				if(i==evalRecordCursor.getColumnCount()-1){
+					evalRecordCol = evalRecordCol + evalRecordCursor.getColumnName(i)+"\n";					
+					break;
+				}				
+				evalRecordCol+=evalRecordCursor.getColumnName(i) + ",";				
+			}
+
+			for(int i=0;i<evalRecordCursor.getCount();i++){
+				for(int j=0;j<evalRecordCursor.getColumnCount();j++){
+					if(j==evalRecordCursor.getColumnCount()-1){
+						evalRecord += evalRecordCursor.getString(j) + "\n";
+						break;
+					}
+					evalRecord += evalRecordCursor.getString(j) + ",";
+				}
+				evalRecordCursor.moveToNext();
+			}
+
+			BufferedWriter fos = new BufferedWriter(new FileWriter(saveFile));
+			
+			fos.write("User List Table\n");
+			fos.write(userListCol);
+			fos.write(userList);
+			
+			fos.write("\nGame Record Table\n");
+			fos.write(gameRecordCol);
+			fos.write(gameRecord);
+			
+			fos.write("\nEval Record Table\n");
+			fos.write(evalRecordCol);
+			fos.write(evalRecord);
+
+			fos.flush();			
+			fos.close();			
+
+			Toast.makeText(mContext, "Data Export Success", Toast.LENGTH_SHORT).show();
+		} catch(Exception e) { 
+			e.printStackTrace();	
+		}	
+
+		userListCursor.close();
+		gameRecordCursor.close();
+		evalRecordCursor.close();
+
 		Log.i("[DatabaseManager]","export end.....");
 	}
 }

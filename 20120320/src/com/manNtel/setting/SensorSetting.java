@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,9 @@ public class SensorSetting extends TabActivity {
 	{
 		mTab = getTabHost();
 		super.onCreate(savedInstanceState);
+		
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		LayoutInflater inflater = LayoutInflater.from(this);
 		inflater.inflate(R.layout.sensorsetting, mTab.getTabContentView(), true);

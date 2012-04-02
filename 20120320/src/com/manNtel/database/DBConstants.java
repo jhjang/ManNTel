@@ -20,6 +20,10 @@ public final class DBConstants implements BaseColumns
 		
 		public static final String 	EVALRECORD = "EVALRECORD";
 		public static final String 	GAMERECORD = "GAMERECORD";
+		
+		//Export
+		public static final String CSV_PATHNAME = "/data/data/com.android.manNtel_mid/exports/db.csv";
+		
 		//USERINFO columns
 		public static final String KEY = "key";
 		

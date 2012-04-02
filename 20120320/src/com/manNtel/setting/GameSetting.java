@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TabHost;
@@ -40,6 +41,9 @@ public class GameSetting extends TabActivity
     {
         super.onCreate(savedInstanceState);
         mTab = getTabHost();
+        
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
                        
