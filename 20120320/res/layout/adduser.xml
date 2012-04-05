@@ -25,6 +25,7 @@
             android:id="@+id/edtName"
             android:layout_width="250dip"
             android:layout_height="80px"
+            android:imeOptions="flagNoExtractUi"
             android:inputType="text"
             android:textSize="35px" />
     </LinearLayout>
@@ -48,6 +49,7 @@
             android:id="@+id/edtID"
             android:layout_width="250dip"
             android:layout_height="80px"
+            android:imeOptions="flagNoExtractUi"
             android:inputType="text"
             android:textSize="35px" />
     </LinearLayout>

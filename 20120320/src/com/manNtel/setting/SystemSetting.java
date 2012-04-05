@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
@@ -64,6 +67,70 @@ public class SystemSetting extends Activity implements OnClickListener {
 			break;
 		case R.id.btnDB:			
 			new AlertDialog.Builder(this).setTitle(R.string.dlgSysTitle).setMessage(R.string.dlgDBContent).setPositiveButton(R.string.dlgYes, DbExport).setNegativeButton(R.string.dlgNo,DbExport).show();
+			break;
+		case R.id.btnPass:
+			final LinearLayout linear = (LinearLayout)View.inflate(this, R.layout.passdlg, null);
+			
+			new AlertDialog.Builder(this)
+			.setTitle("Change Password (4 Characters)")
+			.setIcon(R.drawable.icon)
+			.setView(linear)
+			.setPositiveButton("OK", new DialogInterface.OnClickListener() {				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					EditText newPass = (EditText)linear.findViewById(R.id.edtNewPass);
+					EditText confirmPass = (EditText)linear.findViewById(R.id.edtConfirmPass);
+					
+					if(newPass.getText().toString().equals(confirmPass.getText().toString())){
+						SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+						
+						SharedPreferences.Editor editor = pref.edit();
+						
+						editor.putString("password", newPass.getText().toString());
+						new AlertDialog.Builder(getWindow().getContext())
+						.setTitle("알림")
+						.setMessage("변경되었습니다.")
+						.setIcon(R.drawable.icon)
+						.setCancelable(false)
+						.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								return;
+							}
+						})
+						.show();
+						
+						
+					}
+					else{
+						new AlertDialog.Builder(getWindow().getContext())
+						.setTitle("알림")
+						.setMessage("암호를 확인 후 다시 입력하세요.")
+						.setIcon(R.drawable.icon)
+						.setCancelable(false)
+						.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+							
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								// TODO Auto-generated method stub
+								return;
+							}
+						})
+						.show();
+					}					
+				}
+			})
+			.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+					// TODO Auto-generated method stub
+					return;
+				}
+			})
+			.show();
 			break;
 		case R.id.btnClose:
 			finish();

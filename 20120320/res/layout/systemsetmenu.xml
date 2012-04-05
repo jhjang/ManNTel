@@ -54,7 +54,17 @@
         android:onClick="onClick"
         android:text="@string/dlgDbToFile"
         android:textColor="#083762"
-        android:textSize="20px" />
+        android:textSize="30px" />
+    
+    <Button
+        android:id="@+id/btnPass"
+        android:layout_width="400px"
+        android:layout_height="82px"
+        android:layout_margin="10px"
+        android:onClick="onClick"
+        android:text="Set Password"
+        android:textColor="#083762"
+        android:textSize="30px" />
 
     <Button
         android:id="@+id/btnClose"

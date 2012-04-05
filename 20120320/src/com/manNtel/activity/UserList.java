@@ -11,8 +11,10 @@ package com.manNtel.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -95,7 +97,7 @@ public class UserList extends Activity
 					.setMessage(R.string.msgSelectUser)
 					.setIcon(R.drawable.icon)
 					.setNeutralButton(R.string.dlgClose,new DialogInterface.OnClickListener(){ @Override
-					public void onClick(DialogInterface dialog, int whichButton) {}}).show();
+						public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 				}
 				break;
 			case 4:
@@ -114,23 +116,31 @@ public class UserList extends Activity
 					.setMessage(R.string.msgSelectUser)
 					.setIcon(R.drawable.icon)
 					.setNeutralButton(R.string.dlgClose,new DialogInterface.OnClickListener(){ @Override
-					public void onClick(DialogInterface dialog, int whichButton) {}}).show();
+						public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 				}
 				break;
 			case 5:
 				startActivity(new Intent(UserList.this,Main.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 				break;
 			case 6:
-				if(selFlag && selIndex<userList.length)
-				{
+				if(selFlag && selIndex<userList.length)	{
 					dbm.deleteItem(userList[selIndex].mKey);        		
 					Intent intent = getIntent();
 					finish();
 					startActivity(intent);
-				}				
+				}					
+				else{
+					new AlertDialog.Builder(UserList.this)
+					.setTitle(R.string.notification)
+					.setMessage(R.string.msgSelectUser)
+					.setIcon(R.drawable.icon)
+					.setNeutralButton(R.string.dlgClose,new DialogInterface.OnClickListener(){ @Override
+						public void onClick(DialogInterface dialog, int whichButton) {}}).show();
+				}
 				break;
 			}
 		}
+	
 	};
 	private void changeColor(int index)
 	{
@@ -343,7 +353,7 @@ public class UserList extends Activity
 	public void onCreate(Bundle savedInstanceState) 
 	{
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);   
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);   
 		super.onCreate(savedInstanceState);
 
 		dbm = new DatabaseManager(this);
@@ -357,13 +367,13 @@ public class UserList extends Activity
 
 		drawTable();
 		drawBtn();
-		
+
 
 		setContentView(mainL);
 		mainL.setBackgroundResource(R.drawable.pattern_bg);
 		ProcessManager.getInstance().addActivity(this);
 	}
-	
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
