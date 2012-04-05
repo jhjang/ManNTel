@@ -81,36 +81,6 @@ public class GameSelect extends Activity
 
 		TextView welcome = (TextView)findViewById(R.id.txtWelcome);
 		welcome.setText(user.name);
-
-		switch(user.gameNum)
-		{
-		case 1 :
-			Button game1 = (Button)findViewById(R.id.btnGame1);
-			game1.setBackgroundResource(R.drawable.btn_on);
-			break;
-		case 2 :
-			Button game2 = (Button)findViewById(R.id.btnGame2);
-			game2.setBackgroundResource(R.drawable.btn_on);
-			break;
-		case 3 :
-			Button game3 = (Button)findViewById(R.id.btnGame3);
-			game3.setBackgroundResource(R.drawable.btn_on);
-			break;
-		case 4 :
-			Button game4 = (Button)findViewById(R.id.btnGame4);
-			game4.setBackgroundResource(R.drawable.btn_on);
-			break;
-		case 5 :
-			Button game5 = (Button)findViewById(R.id.btnGame5);
-			game5.setBackgroundResource(R.drawable.btn_on);
-			break;
-		case 6 :
-			Button game6 = (Button)findViewById(R.id.btnGame6);
-			game6.setBackgroundResource(R.drawable.btn_on);
-			break;
-		default : 
-			break;
-		}
 		
 		ProcessManager.getInstance().addActivity(this);
 	}

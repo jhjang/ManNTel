@@ -86,30 +86,6 @@ public class LevelSelect extends Activity
         TextView welcome = (TextView)findViewById(R.id.txtWelcome);
         welcome.setText(user.name);  
         
-        switch(user.level)
-        {
-        case 1 : 
-        	Button bt1 = (Button)findViewById(R.id.btnLevel1);
-        	bt1.setBackgroundResource(R.drawable.btn_on);
-        	break;
-        case 2 : 
-        	Button bt2 = (Button)findViewById(R.id.btnLevel2);
-        	bt2.setBackgroundResource(R.drawable.btn_on);
-        	break;
-        case 3 : 
-        	Button bt3 = (Button)findViewById(R.id.btnLevel3);
-        	bt3.setBackgroundResource(R.drawable.btn_on);
-        	break;
-        case 4 : 
-        	Button bt4 = (Button)findViewById(R.id.btnLevel4);
-        	bt4.setBackgroundResource(R.drawable.btn_on);
-        	break;
-        case 5 : 
-        	Button bt5 = (Button)findViewById(R.id.btnLevel5);
-        	bt5.setBackgroundResource(R.drawable.btn_on);
-        	break;
-        }
-        
         ProcessManager.getInstance().addActivity(this);
     }
 	@Override

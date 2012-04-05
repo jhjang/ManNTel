@@ -6,14 +6,25 @@
 
     <uses-sdk android:minSdkVersion="10" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name="com.manNtel.service.SharedDataService"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/appName"
-        android:name="com.manNtel.service.SharedDataService" >
+        android:label="@string/appName" >
+        <receiver
+            android:name="com.manNtel.service.AppBootReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:label="bootReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name="com.manNtel.activity.Main"
             android:label="@string/mainMenuLabel" >
@@ -111,7 +122,9 @@
         <activity
             android:name="com.manNtel.gameLayer.GameQuit"
             android:label="게임 종료" />
-        <service android:name="com.manNtel.service.DataService"></service> 
+
+        <service android:name="com.manNtel.service.DataService" >
+        </service>
     </application>
 
 </manifest>
