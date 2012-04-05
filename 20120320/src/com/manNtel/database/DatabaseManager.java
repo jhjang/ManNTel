@@ -4,11 +4,7 @@ package com.manNtel.database;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.PrintWriter;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
