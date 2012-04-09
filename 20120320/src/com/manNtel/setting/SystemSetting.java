@@ -14,8 +14,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
 import com.android.manNtel_mid.R;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.service.ProcessManager;

@@ -122,6 +122,34 @@
         <activity
             android:name="com.manNtel.gameLayer.GameQuit"
             android:label="게임 종료" />
+        
+        <activity
+            android:name="com.manNtel.valueSetting.ReadyRoll"
+            android:label="@string/setRollingLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.ReadyPitch"
+            android:label="@string/setPitchingLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.ReadySlide"
+            android:label="@string/setSlidingLabel" />
+        <activity
+            android:name="com.manNtel.valueSetting.ReadyAngleWeight"
+            android:label="@string/setAngleWeightLabel" />
+        
+        <activity
+            android:name="com.manNtel.evaluation.EvalReadyAngleWeight"
+            android:label="@string/setAngleWeightLabel" />                
+        <activity
+            android:name="com.manNtel.evaluation.EvalReadyRoll"
+            android:label="@string/setRollingLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalReadyPitch"
+            android:label="@string/setPitchingLabel" />
+        <activity
+            android:name="com.manNtel.evaluation.EvalReadySlide"
+            android:label="@string/setSlidingLabel" />
+        
+        
 
         <service android:name="com.manNtel.service.DataService" >
         </service>

@@ -162,7 +162,7 @@ public class AngleWeight extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goSetRoll = new Intent(this,Roll.class);
+			Intent goSetRoll = new Intent(this,ReadyRoll.class);
 			goSetRoll.putExtra("userInfo", newUser);			
 			startActivityForResult(goSetRoll, 2);			
 			break;

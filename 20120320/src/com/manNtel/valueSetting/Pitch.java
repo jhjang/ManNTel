@@ -149,7 +149,7 @@ public class Pitch extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goSlide = new Intent(this,Slide.class);
+			Intent goSlide = new Intent(this,ReadySlide.class);
 			goSlide.putExtra("userInfo", newUser);
 			startActivityForResult(goSlide, 3);
 			break;

@@ -33,7 +33,6 @@ import com.android.manNtel_mid.R;
 import com.manNtel.common.UserListForm;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.service.ProcessManager;
-import com.manNtel.setting.SystemSetting;
 import com.manNtel.struct.UserInfoStruct;
 
 public class UserList extends Activity 

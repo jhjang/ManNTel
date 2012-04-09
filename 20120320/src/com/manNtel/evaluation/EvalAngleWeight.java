@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -29,7 +30,7 @@ public class EvalAngleWeight extends Activity
 	EvalStruct user = null;
 	Timer mTimer = null;
 	Handler handler = new Handler();
-	
+
 	public CountDownTimer cdt = new CountDownTimer(6000,1000)
 	{
 		int i = 5;
@@ -62,7 +63,7 @@ public class EvalAngleWeight extends Activity
 
 		int valueAngle = (int)ds.getDataService().getValue("TL");
 		int valueWeight = -1;
-		
+
 		if(user.mPart.equals("좌"))
 		{
 			valueWeight = (int)ds.getDataService().getValue("LL");
@@ -92,57 +93,58 @@ public class EvalAngleWeight extends Activity
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) 
-	{
+	{		
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);		
-		
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);		
+
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.setangleweight);
 
-		cdt.start();
-		
-		//디버그 모드 처리       
-				SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
-				if(pref.getBoolean("isDebug", false)){
-					LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
-					debugLayout.setVisibility(View.VISIBLE);
-
-					TimerTask debugTask = new TimerTask(){
-						@Override
-						public void run(){
-							try{
-
-								handler.post(new Runnable() {
-									@Override
-									public void run(){
-										TextView debug1 = (TextView)findViewById(R.id.txtDebug1);
-										TextView debug2 = (TextView)findViewById(R.id.txtDebug2);
-										TextView debug3 = (TextView)findViewById(R.id.txtDebug3);                				        				
-
-										debug1.setText(debug2.getText().toString());
-										debug2.setText(debug3.getText().toString());
-										SharedDataService ds = (SharedDataService)getApplication();
-
-										SimpleDateFormat sd = new SimpleDateFormat("yyyy MM dd-HH:mm:ss");		
-										Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());      				 
-
-										debug3.setText(sd.format(currentTimestamp) + "  :  " + ds.getDataService().getFullData());
-									}
-								});        				        				       				
-							} catch(Exception e) { e.printStackTrace(); }
-						}
-					};        	
-					mTimer = new Timer();
-					mTimer.schedule(debugTask, 0, 1000);        	
-				}  
-
 		Bundle bundle = getIntent().getExtras();
 		user = bundle.getParcelable("userInfo");
-		
+
+		Log.i("[Data]",user.mPart);
+
+		cdt.start();
+
+		//디버그 모드 처리       
+		SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+		if(pref.getBoolean("isDebug", false)){
+			LinearLayout debugLayout = (LinearLayout)findViewById(R.id.layoutDebug);
+			debugLayout.setVisibility(View.VISIBLE);
+
+			TimerTask debugTask = new TimerTask(){
+				@Override
+				public void run(){
+					try{
+
+						handler.post(new Runnable() {
+							@Override
+							public void run(){
+								TextView debug1 = (TextView)findViewById(R.id.txtDebug1);
+								TextView debug2 = (TextView)findViewById(R.id.txtDebug2);
+								TextView debug3 = (TextView)findViewById(R.id.txtDebug3);                				        				
+
+								debug1.setText(debug2.getText().toString());
+								debug2.setText(debug3.getText().toString());
+								SharedDataService ds = (SharedDataService)getApplication();
+
+								SimpleDateFormat sd = new SimpleDateFormat("yyyy MM dd-HH:mm:ss");		
+								Timestamp currentTimestamp = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());      				 
+
+								debug3.setText(sd.format(currentTimestamp) + "  :  " + ds.getDataService().getFullData());
+							}
+						});        				        				       				
+					} catch(Exception e) { e.printStackTrace(); }
+				}
+			};        	
+			mTimer = new Timer();
+			mTimer.schedule(debugTask, 0, 1000);        	
+		}		
 		ProcessManager.getInstance().addActivity(this);
 	}
-	
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
@@ -163,7 +165,7 @@ public class EvalAngleWeight extends Activity
 			break;
 		case R.id.btnNext:
 
-			Intent goSetRoll = new Intent(this,EvalRoll.class);
+			Intent goSetRoll = new Intent(this,EvalReadyRoll.class);
 			goSetRoll.putExtra("userInfo", user);			
 			startActivityForResult(goSetRoll, 2);			
 			break;

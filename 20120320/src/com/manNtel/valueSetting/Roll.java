@@ -151,7 +151,7 @@ public class Roll extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goPitch = new Intent(this,Pitch.class);
+			Intent goPitch = new Intent(this,ReadyPitch.class);
 			goPitch.putExtra("userInfo", newUser);			
 			startActivityForResult(goPitch, 3);
 			break;

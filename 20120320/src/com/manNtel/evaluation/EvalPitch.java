@@ -151,7 +151,7 @@ public class EvalPitch extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goSlide = new Intent(this,EvalSlide.class);
+			Intent goSlide = new Intent(this,EvalReadySlide.class);
 			goSlide.putExtra("userInfo", user);
 			startActivityForResult(goSlide, 3);
 			break;

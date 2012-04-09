@@ -165,7 +165,7 @@ public class EvalBalance extends Activity {
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goSetAngleWeight = new Intent(this,EvalAngleWeight.class);
+			Intent goSetAngleWeight = new Intent(this,EvalReadyAngleWeight.class);
 			goSetAngleWeight.putExtra("userInfo", user);			
 			goSetAngleWeight.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			startActivityForResult(goSetAngleWeight, 1);			

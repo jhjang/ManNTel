@@ -181,7 +181,7 @@ public class Balance extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goSetAngleWeight = new Intent(this,AngleWeight.class);
+			Intent goSetAngleWeight = new Intent(this,ReadyAngleWeight.class);
 			goSetAngleWeight.putExtra("userInfo", newUser);			
 			goSetAngleWeight.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			startActivityForResult(goSetAngleWeight, 1);			

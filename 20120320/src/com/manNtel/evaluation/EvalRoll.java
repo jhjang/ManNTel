@@ -149,7 +149,7 @@ public class EvalRoll extends Activity
 			finish();
 			break;
 		case R.id.btnNext:
-			Intent goPitch = new Intent(this,EvalPitch.class);
+			Intent goPitch = new Intent(this,EvalReadyPitch.class);
 			goPitch.putExtra("userInfo", user);			
 			startActivityForResult(goPitch, 3);
 			break;
