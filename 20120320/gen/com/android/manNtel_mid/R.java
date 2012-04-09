@@ -348,13 +348,20 @@ public final class R {
         public static final int dlgDBContent=0x7f0500b7;
         public static final int dlgDbToFile=0x7f05004a;
         public static final int dlgDebugContent=0x7f0500b6;
+        /**  추가. 
+         */
+        public static final int dlgGoSetPass=0x7f0500d8;
+        public static final int dlgGoSetPassNo=0x7f0500d9;
         public static final int dlgLoadContent=0x7f0500b5;
         public static final int dlgNo=0x7f0500b9;
         public static final int dlgPartContent=0x7f0500bf;
         public static final int dlgPartLeft=0x7f0500c0;
         public static final int dlgPartRight=0x7f0500c1;
         public static final int dlgPartTitle=0x7f0500be;
+        public static final int dlgPassDeny=0x7f0500dc;
         public static final int dlgSaveContent=0x7f0500b4;
+        public static final int dlgSetPass=0x7f0500da;
+        public static final int dlgSetPassOK=0x7f0500db;
         public static final int dlgSexContent=0x7f0500bb;
         public static final int dlgSexFemale=0x7f0500bd;
         public static final int dlgSexMale=0x7f0500bc;

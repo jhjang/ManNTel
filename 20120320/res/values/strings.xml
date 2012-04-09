@@ -91,9 +91,9 @@
     <string name="dlgClose">닫기</string>
     <string name="msgWelcome">님 환영합니다.</string>
     <string name="msgGameSel">실행할 게임을 선택해 주세요.</string>
-    <string name="msgLevelSel">게임의 난이도를 골라주세요.</string>
+    <string name="msgLevelSel">게임의 난이도를 골라주세요.</string>    
     <string name="dlgDbToFile">Export Database</string> 
-
+    
     <!-- 튜토리얼 메시지 -->
     <string name="tutGame1_1">화분 옮기기 게임을 시작합니다.</string>
     <string name="tutGame1_2_Left">왼쪽 다리로 체중을 옮겼다가 제 자리로 돌아오시면 해바라기 화분이 안전한 곳으로 옮겨집니다.</string>
@@ -260,5 +260,12 @@
     <string name="rollMaxRoll">최대 Rolling : </string>
     <string name="slideDesp">무릎을 최대한 굽히면서\n상체를 재활 다리쪽으로 이동시키세요.</string>
     <string name="slideMaxSlide">최대 Sliding : </string>
+    
+    <!-- 추가. -->
+    <string name="dlgGoSetPass">암호 설정</string>
+    <string name="dlgGoSetPassNo">취소</string>
+    <string name="dlgSetPass">암호가 없습니다. 암호를 설정하시겠습니까?</string>
+    <string name="dlgSetPassOK">설정되었습니다.</string>
+    <string name="dlgPassDeny">암호를 확인 후 다시 입력하세요.</string>
 
 </resources>

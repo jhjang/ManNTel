@@ -87,9 +87,10 @@ public class SystemSetting extends Activity implements OnClickListener {
 						SharedPreferences.Editor editor = pref.edit();
 						
 						editor.putString("password", newPass.getText().toString());
+						editor.commit();
 						new AlertDialog.Builder(getWindow().getContext())
 						.setTitle("알림")
-						.setMessage("변경되었습니다.")
+						.setMessage(R.string.dlgSetPassOK)
 						.setIcon(R.drawable.icon)
 						.setCancelable(false)
 						.setNegativeButton("Close", new DialogInterface.OnClickListener() {

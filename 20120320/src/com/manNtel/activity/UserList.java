@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -32,12 +33,15 @@ import com.android.manNtel_mid.R;
 import com.manNtel.common.UserListForm;
 import com.manNtel.database.DatabaseManager;
 import com.manNtel.service.ProcessManager;
+import com.manNtel.setting.SystemSetting;
 import com.manNtel.struct.UserInfoStruct;
 
 public class UserList extends Activity 
 {
 	private static int ROW = 11;
 	private static int COL = 4;
+	
+	public static Activity app;
 
 	UserListForm[][] cell = new UserListForm[ROW][COL];
 	LinearLayout mainL = null;
@@ -66,6 +70,8 @@ public class UserList extends Activity
 
 	Button.OnClickListener mBtnClickListener = new Button.OnClickListener() 
 	{
+
+		private String originPass;
 
 		@Override
 		public void onClick(View v) 
@@ -124,10 +130,45 @@ public class UserList extends Activity
 				break;
 			case 6:
 				if(selFlag && selIndex<userList.length)	{
-					dbm.deleteItem(userList[selIndex].mKey);        		
-					Intent intent = getIntent();
-					finish();
-					startActivity(intent);
+					//사용자 암호 확인
+					final LinearLayout linear = (LinearLayout)View.inflate(app, R.layout.getpassdlg, null);
+					SharedPreferences pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+					originPass = pref.getString("password", "null");
+					new AlertDialog.Builder(app)
+					.setTitle("User Delete")
+					.setIcon(R.drawable.icon)
+					.setView(linear)
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface arg0, int arg1) {
+							// TODO Auto-generated method stub
+							EditText inputPass = (EditText)linear.findViewById(R.id.edtPass);
+							if(originPass.equals(inputPass.getText().toString())){							
+								dbm.deleteItem(userList[selIndex].mKey);        		
+								Intent intent = getIntent();
+								finish();
+								startActivity(intent);
+							}
+							else{
+								new AlertDialog.Builder(app)
+								.setTitle("알림")
+								.setMessage(R.string.dlgPassDeny)
+								.setIcon(R.drawable.icon)
+								.setCancelable(false)
+								.setNegativeButton("Close", new DialogInterface.OnClickListener() {							
+									@Override
+									public void onClick(DialogInterface dialog, int which) { return; }
+								})
+								.show();						
+							}
+						}				
+					})
+					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {				
+						@Override
+						public void onClick(DialogInterface dialog, int which) { return; }
+					})
+					.show();					
+
 				}					
 				else{
 					new AlertDialog.Builder(UserList.this)
@@ -140,7 +181,7 @@ public class UserList extends Activity
 				break;
 			}
 		}
-	
+
 	};
 	private void changeColor(int index)
 	{
@@ -356,6 +397,8 @@ public class UserList extends Activity
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);   
 		super.onCreate(savedInstanceState);
 
+		app = this;
+		
 		dbm = new DatabaseManager(this);
 		dbm.open();
 
