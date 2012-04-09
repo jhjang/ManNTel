@@ -30,6 +30,7 @@ import android.content.SharedPreferences;
 import android.view.MotionEvent;
 
 import com.android.manNtel_mid.R;
+import com.manNtel.activity.Game;
 import com.manNtel.activity.LevelSelect;
 import com.manNtel.activity.Main;
 import com.manNtel.service.ProcessManager;
@@ -168,6 +169,15 @@ public class GrowFlower extends CCLayer implements ControlState {
 		}
 	}
 
+	@Override
+	public void onEnter()
+	{
+		super.onEnter();
+				
+		Game.bg_sound.playSound(Game.app, 0x7f040002, true);
+		Game.soundCode=0x7f040002;
+	}
+	
 	public void debug(float dt){
 		//디버그 모드 처리		
 
@@ -270,7 +280,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 	public void moveBack(Object sender)
 	{		
 		//		ds.endFlag = true;
-
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		CCDirector.theApp.finish();
 	}
 
@@ -278,6 +288,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 	{
 		//메인화면으로 이동
 		//		ds.endFlag = true;
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		Intent intent = new Intent(mContext,Main.class);
 		mContext.startActivity(intent);
 	}
@@ -357,6 +368,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 	public void setEndGame(Object sender)
 	{
 		//게임 종료
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		mUser.score = score;
 		mUser.count++;		
 
@@ -396,6 +408,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 	public void setLevel(Object sender)
 	{
 		//난이도 선택
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		this.removeAllChildren(true);
 		this.removeFromParentAndCleanup(true);
 
@@ -440,6 +453,7 @@ public class GrowFlower extends CCLayer implements ControlState {
 	//메뉴 콜백 함수
 	public void setPause(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
 		if(pauseFlag)
 		{
 			CCDirector.sharedDirector().pause();
@@ -452,6 +466,8 @@ public class GrowFlower extends CCLayer implements ControlState {
 
 	public void sysShutdown(Object sender)
 	{
+		Game.bt_sound.playEffect(Game.app, R.raw.button);
+		
 		ProcessManager.getInstance().allEndActivity();
 		android.os.Process.killProcess(android.os.Process.myPid());
 	}
