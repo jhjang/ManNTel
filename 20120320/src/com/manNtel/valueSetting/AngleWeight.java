@@ -70,7 +70,8 @@ public class AngleWeight extends Activity
 			valueWeight = ds.getDataService().getValue("RL");
 		}
 
-		angle.setText(Float.toString(valueAngle));
+//		angle.setText(Float.toString(valueAngle));
+		angle.setText("사용안함");
 		weight.setText(Float.toString(valueWeight));
 
 		newUser.mAngle = valueAngle;

@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="150px"
+        android:layout_marginTop="120px"
         android:orientation="horizontal" >
 
         <TextView
@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="53px"
         android:gravity="bottom"
         android:orientation="horizontal" >
 
@@ -118,7 +118,7 @@
         android:id="@+id/layoutDebug"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="5px"
+        
         android:background="#000000"
         android:orientation="vertical"
         android:visibility="invisible" >

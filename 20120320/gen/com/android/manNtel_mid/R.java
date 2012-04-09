@@ -271,6 +271,7 @@ public final class R {
     public static final class string {
         public static final int EvalLabel=0x7f050075;
         /**  재활 게임 이력 
+ 재활 게임 이력 
          */
         public static final int GameRecordDate=0x7f0500ac;
         public static final int GameRecordLevel=0x7f0500af;
@@ -294,12 +295,14 @@ public final class R {
         public static final int angleWeightMaxAngle=0x7f0500d0;
         public static final int angleWeightMaxWeight=0x7f0500d1;
         /**  App Name 
+ App Name 
          */
         public static final int appName=0x7f050063;
         public static final int bal_stance=0x7f0500cb;
         public static final int bal_stanceReady=0x7f0500cc;
         public static final int bal_startCount=0x7f0500cd;
         /**  발란스 측정 
+ 발란스 측정 
          */
         public static final int bal_totWeight=0x7f0500ca;
         public static final int balanceLabel=0x7f050069;
@@ -323,6 +326,7 @@ public final class R {
         public static final int btnOtherUser=0x7f050081;
         public static final int btnPrev=0x7f050085;
         /**  버튼 
+ 버튼 
          */
         public static final int btnPrevPage=0x7f050078;
         public static final int btnRomLoad=0x7f050097;
@@ -354,9 +358,11 @@ public final class R {
         public static final int dlgSexFemale=0x7f0500bd;
         public static final int dlgSexMale=0x7f0500bc;
         /**  사용자 추가 
+ 사용자 추가 
          */
         public static final int dlgSexTitle=0x7f0500ba;
         /**  환경 설정 
+ 환경 설정 
          */
         public static final int dlgSysTitle=0x7f0500b3;
         public static final int dlgYes=0x7f0500b8;
@@ -364,6 +370,7 @@ public final class R {
         public static final int game1MovingLeft=0x7f050027;
         public static final int game1MovingRight=0x7f050028;
         /**  게임 메시지 
+ 게임 메시지 
          */
         public static final int game1StartLeft=0x7f050025;
         public static final int game1StartRight=0x7f050026;
@@ -378,10 +385,12 @@ public final class R {
         public static final int gameGrownFlower=0x7f050036;
         public static final int gameMainLabel=0x7f05006e;
         /**  게임 라벨 
+ 게임 라벨 
          */
         public static final int gameMovedPot=0x7f050035;
         public static final int gameMovingNow=0x7f050034;
         /**  게임 메뉴 
+ 게임 메뉴 
          */
         public static final int gameNum1=0x7f05005d;
         public static final int gameNum2=0x7f05005e;
@@ -390,6 +399,7 @@ public final class R {
         public static final int gameNum5=0x7f050061;
         public static final int gameNum6=0x7f050062;
         /**  한개 두개 할때 그 개 
+ 한개 두개 할때 그 개 
          */
         public static final int gamePlayTime=0x7f050038;
         public static final int gamePotCount=0x7f050037;
@@ -400,6 +410,7 @@ public final class R {
         public static final int gameQuitTwo=0x7f05000b;
         public static final int gameQuitWhile=0x7f050007;
         /**  게임종료 
+ 게임종료 
          */
         public static final int gameQuitWho=0x7f050006;
         public static final int gameRecordLabel=0x7f050074;
@@ -413,6 +424,7 @@ public final class R {
         public static final int info_BalRight=0x7f0500a8;
         public static final int info_Balance=0x7f0500a6;
         /**  사용자 정보 
+ 사용자 정보 
          */
         public static final int info_ID=0x7f0500a1;
         public static final int info_MaxAngle=0x7f0500aa;
@@ -424,15 +436,18 @@ public final class R {
         public static final int list_userBirth=0x7f05009f;
         public static final int list_userID=0x7f05009e;
         /**  사용자 목록 
+ 사용자 목록 
          */
         public static final int list_userName=0x7f05009d;
         public static final int list_userRecentCon=0x7f0500a0;
         /**  Activity Label 
+ Activity Label 
          */
         public static final int mainMenuLabel=0x7f050064;
         public static final int main_adduser=0x7f05009a;
         public static final int main_exit=0x7f05009c;
         /**  메인 메뉴 
+ 메인 메뉴 
          */
         public static final int main_list=0x7f050099;
         public static final int main_setting=0x7f05009b;
@@ -447,6 +462,7 @@ public final class R {
         public static final int msgSelectUser=0x7f050040;
         public static final int msgWelcome=0x7f050047;
         /**  메시지 
+ 메시지 
          */
         public static final int notification=0x7f05003f;
         public static final int partChoiceLabel=0x7f050068;
@@ -456,6 +472,7 @@ public final class R {
         public static final int recordAngle=0x7f050014;
         public static final int recordBalance=0x7f05000f;
         /**  이력 
+ 이력 
          */
         public static final int recordDate=0x7f05000d;
         public static final int recordLoad=0x7f050015;
@@ -470,6 +487,7 @@ public final class R {
         public static final int rollMaxRoll=0x7f0500d5;
         public static final int sensorGetData=0x7f050005;
         /**  센서설정 
+ 센서설정 
          */
         public static final int sensorLoadDefault=0x7f050001;
         public static final int sensorRollDefault=0x7f050003;
@@ -483,9 +501,12 @@ public final class R {
         public static final int slideMaxSlide=0x7f0500d7;
         /**  Defalut Language 
  공백 
+ Defalut Language 
+ 공백 
          */
         public static final int space=0x7f050000;
         /**  튜토리얼 메시지 
+ 튜토리얼 메시지 
          */
         public static final int tutGame1_1=0x7f05004b;
         public static final int tutGame1_2_Left=0x7f05004c;
@@ -507,6 +528,7 @@ public final class R {
         public static final int tutGame6_2_Right=0x7f05005c;
         public static final int tutorialLabel=0x7f050072;
         /**  환경설정 
+ 환경설정 
          */
         public static final int txtGameOpt1=0x7f050019;
         public static final int txtGameOpt2=0x7f05001a;
@@ -523,6 +545,7 @@ public final class R {
         public static final int userInfoLabel=0x7f050066;
         public static final int userListLabel=0x7f050065;
         /**  각,하중,롤링,피칭,슬라이딩 
+ 각,하중,롤링,피칭,슬라이딩 
          */
         public static final int valComplete=0x7f0500ce;
         public static final int warning=0x7f050041;
