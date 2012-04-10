@@ -58,6 +58,7 @@ public class Number_5 extends MoveFlower{
 			mDistance = (int)(POS_END.x - POS_START.x);
 			mStartX = POS_START.x;
 			mUserBal = mUser.leftBal;
+			mGuideSlideStartMsg = CCDirector.theApp.getResources().getString(R.string.game5SlideNowLeft);
 		}
 		else{
 			mBalType = "RL";
@@ -67,9 +68,10 @@ public class Number_5 extends MoveFlower{
 			mDistance = (int)(POS_START.x - POS_END.x);
 			mStartX = POS_END.x;
 			mUserBal = mUser.rightBal;
+			mGuideSlideStartMsg = CCDirector.theApp.getResources().getString(R.string.game5SlideNowRight);
 		}	
 
-		mGuideSlideStartMsg = CCDirector.theApp.getResources().getString(R.string.game5SlideNow);
+		
 
 		//스프라이트 추가
 		super.addChild(sun,VIEW_OBJ);

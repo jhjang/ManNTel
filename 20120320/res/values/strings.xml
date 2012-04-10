@@ -62,7 +62,7 @@
     <string name="game3SeedToFlower">이제 무릎을 굽히고 5초간 그 자세를 유지하시면 예쁜 해바라기 꽃이 핍니다.</string>
     <string name="game4Roll">햇님이 웃기 시작했어요 몸을 앞으로 숙여주세요</string>
     <string name="game6Pitch">햇님이 웃기 시작햇어요 몸을 회전해 주세요</string>
-    <string name="game5SlideNow">이제 상체를 왼쪽으로 이동해서 화분을 옮겨주세요.</string>
+    <string name="game5SlideNowLeft">이제 상체를 왼쪽으로 이동해서 화분을 옮겨주세요.</string>
     <string name="gameSecond">초!</string>
     <string name="gameSuccess">성공!!</string>
     <string name="gameDecreaseWeight">원래 자세로 돌아가세요!</string>
@@ -267,5 +267,6 @@
     <string name="dlgSetPass">암호가 없습니다. 암호를 설정하시겠습니까?</string>
     <string name="dlgSetPassOK">설정되었습니다.</string>
     <string name="dlgPassDeny">암호를 확인 후 다시 입력하세요.</string>
+    <string name="game5SlideNowRight">이제 상체를 오른쪽으로 이동해서 화분을 옮겨주세요.</string>
 
 </resources>

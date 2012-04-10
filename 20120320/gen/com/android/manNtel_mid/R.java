@@ -387,7 +387,9 @@ public final class R {
         public static final int game2SeedToFlowerFail=0x7f05002b;
         public static final int game3SeedToFlower=0x7f05002d;
         public static final int game4Roll=0x7f05002e;
-        public static final int game5SlideNow=0x7f050030;
+        public static final int game5SlideNow=0x7f0500de;
+        public static final int game5SlideNowLeft=0x7f050030;
+        public static final int game5SlideNowRight=0x7f0500dd;
         public static final int game6Pitch=0x7f05002f;
         public static final int gameDecreaseWeight=0x7f050033;
         public static final int gameGrownFlower=0x7f050036;
